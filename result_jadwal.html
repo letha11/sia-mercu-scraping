@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="id" dir="ltr">
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="https://sia.mercubuana.ac.id/application/akad/assets/images/favicon.ico" type="image/x-icon" />
+<link rel="stylesheet" href="https://sia.mercubuana.ac.id/application/akad/assets/bootstrap/css/bootstrap.min.css" type="text/css" />
+<link rel="stylesheet" href="https://sia.mercubuana.ac.id/application/akad/assets/css/style.css" type="text/css" />
+<script src="https://sia.mercubuana.ac.id/application/akad/assets/js/jquery/jquery-1.9.1.min.js" type="fd2b6d6989daa833132891d2-text/javascript"></script>
+<script src="https://sia.mercubuana.ac.id/application/akad/assets/js/main.js" type="fd2b6d6989daa833132891d2-text/javascript"></script>
+<link rel="stylesheet" href="https://sia.mercubuana.ac.id/application/akad/assets/css/jquery/jquery-ui.css" type="text/css" />
+<script src="https://sia.mercubuana.ac.id/application/akad/assets/js/jquery/jquery.ui.core.min.js" type="fd2b6d6989daa833132891d2-text/javascript"></script>
+<script src="https://sia.mercubuana.ac.id/application/akad/assets/js/jquery/jquery.ui.widget.min.js" type="fd2b6d6989daa833132891d2-text/javascript"></script>
+<script src="https://sia.mercubuana.ac.id/application/akad/assets/js/jquery/jquery.ui.mouse.min.js" type="fd2b6d6989daa833132891d2-text/javascript"></script>
+<script src="https://sia.mercubuana.ac.id/application/akad/assets/js/jquery/jquery.ui.position.min.js" type="fd2b6d6989daa833132891d2-text/javascript"></script>
+<script src="https://sia.mercubuana.ac.id/application/akad/assets/js/jquery/jquery.ui.draggable.min.js" type="fd2b6d6989daa833132891d2-text/javascript"></script>
+<script src="https://sia.mercubuana.ac.id/application/akad/assets/js/jquery/jquery.ui.droppable.min.js" type="fd2b6d6989daa833132891d2-text/javascript"></script>
+<script src="https://sia.mercubuana.ac.id/application/akad/assets/js/jquery/jquery.ui.widget.min.js" type="fd2b6d6989daa833132891d2-text/javascript"></script>
+<script src="https://sia.mercubuana.ac.id/application/akad/assets/js/jquery/jquery.ui.button.min.js" type="fd2b6d6989daa833132891d2-text/javascript"></script>
+<script src="https://sia.mercubuana.ac.id/application/akad/assets/js/jquery/jquery.ui.dialog.min.js" type="fd2b6d6989daa833132891d2-text/javascript"></script>
+<script src="https://sia.mercubuana.ac.id/application/akad/assets/js/lov.js" type="fd2b6d6989daa833132891d2-text/javascript"></script>
+<title>SIM Akademik Universitas Mercubuana  - Jadwal Perkuliahan</title>
+</head>
+<body>
+<div class="main-wrapper" style="width:1000px">
+<div style="min-height:480px;">
+<form name="main_form" id="main_form" method="post">
+<input type="hidden" id="act" name="act" />
+<input type="hidden" id="key" name="key" />
+<input type="hidden" id="format" name="format" />
+<input type="hidden" id="filter_num_record" name="filter_num_record" />
+<input type="hidden" id="filter_string" name="filter_string" />
+<input type="hidden" id="filter_sort" name="filter_sort" />
+<input type="hidden" id="filter_page" name="filter_page" />
+<input type="hidden" id="filter_field_search_list" name="filter_field_search_list" value />
+<div style="padding:20px">
+<div style="height:42px;position:static">
+<div id="wpadminbar">
+<table style="width:1000px;margin:0 auto;top:0">
+<tr>
+<td style="width:30px">
+<a href="https://sia.mercubuana.ac.id/gate.php/session?s=menu"><img src="https://sia.mercubuana.ac.id/application/akad/assets//images/mercu2.jpg" /></a>
+</td>
+<td>
+<div class="quicklinks">
+<ul>
+<li><a href="https://sia.mercubuana.ac.id/akad.php/home">Home</a></li>
+<li><a href="https://sia.mercubuana.ac.id/akad.php/biomhs">Detail Mahasiswa</a></li>
+<li class="menupop"><a href="https://sia.mercubuana.ac.id/akad.php/#"><span>Perkuliahan (Mhs)</span></a><ul>
+<li><a href="https://sia.mercubuana.ac.id/akad.php/biomhs/jadwal">Jadwal Mahasiswa</a></li>
+<li><a href="https://sia.mercubuana.ac.id/akad.php/kegiatandosen">Jadwal Dosen</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</td>
+<td style="text-align:right;padding-right:25px;">
+<span style="width:20px;">
+<a href="https://sia.mercubuana.ac.id/akad.php/biomhs/jadwal"><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/indonesia-24.png" /></a>
+<a href="https://sia.mercubuana.ac.id/en.php/biomhs/jadwal"><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/inggris-24.png" /></a>
+</span>
+<span style="color: #FFF; font-size:11px; font-weight:600; padding:2px 11px; text-shadow: 0 1px 0 rgba(0,0,0,.4); text-decoration:none; -webkit-transition: all 0.35s ease; -moz-transition: all 0.35s ease;-o-transition: all 0.35s ease; transition: all 0.35s ease;"><a style="font-weight: bold;" title="IBKA ANHAR FATCHA(Lapor BAP, ijazah)">IBKA ANHAR FATCHA(Lapor BAP, ijazah)</a></span> |
+<a href="https://sia.mercubuana.ac.id/gate.php/session/logout" style="color: #efefef;font-size:14px;padding:2px 5px;text-shadow:none;-webkit-transition: all 0.35s ease; -moz-transition: all 0.35s ease; -o-transition: all 0.35s ease; transition: all 0.35s ease;">Logout</a>
+</td>
+</tr>
+</table>
+</div>
+</div>
+
+
+<div style="width:100%;margin-bottom:10px">
+<div class="page-header" style="margin-bottom: 10px">
+<h4>
+Jadwal Perkuliahan <div style="float:right"><button type="button" class="btn btn-small btn-info" onclick="if (!window.__cfRLUnblockHandlers) return false; showHelp('biomhs_jadwal.pdf')" data-cf-modified-fd2b6d6989daa833132891d2-><i class="icon-info-sign icon-white"></i> Bantuan</button></div>
+</h4>
+</div>
+<div class="row-fluid"></div>
+<table style="width:100%">
+<tr>
+<td id="pagination" style="width:30%;border:0">
+</td>
+<td style="width:70%;border:0">
+<span style="float:right">
+</span>
+</td>
+</tr>
+</table>
+</div>
+<div>
+<div style="float:left;width:19%">
+<table id="table_menu" class="table table-condensed">
+<thead>
+<tr>
+<th>Aksi Cepat</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td id="biomhs_detail">Detail Mahasiswa</td>
+</tr>
+<tr>
+<td id="biomhs_editmhs">Edit Biodata</td>
+</tr>
+<tr>
+<td id="biomhs_krs">Lihat KRS</td>
+</tr>
+<tr>
+<td id="biomhs_krssp">KRS Smt Pendek</td>
+</tr>
+<tr>
+<td id="biomhs_semester">Status Semester</td>
+</tr>
+<tr>
+<td id="pengajuanstatus_biomhs">Pengajuan Status</td>
+</tr>
+<tr>
+</tr>
+<tr>
+<td id="khs_lst">Lihat KHS</td>
+</tr>
+<tr>
+<td id="biomhs_jadwal">Jadwal Kuliah</td>
+</tr>
+<tr>
+<td id="biomhs_jadwaluts">Jadwal UTS</td>
+</tr>
+<tr>
+<td id="biomhs_jadwaluas">Jadwal UAS</td>
+</tr>
+<tr>
+<td id="biomhs_jadwalsusulan">Jadwal Ujian Susulan</td>
+</tr>
+<tr>
+<td id="tagihan_wajibbayar">Tagihan</td>
+</tr>
+<tr>
+<td id="biomhs_transfer">Transfer Nilai</td>
+</tr>
+<tr>
+<td id="biomhs_konsultasi">Konsultasi</td>
+</tr>
+<tr>
+<td id="biomhs_verifikasiijazah">Verifikasi Data Mahasiswa</td>
+</tr>
+<tr>
+<td id="biomhs_cetakskaktif">Cetak SK Mahasiswa Aktif</td>
+</tr>
+</tbody>
+<table id="table_menu" class="table table-condensed">
+<thead>
+<tr>
+<th>Satuan Kredit Prestasi</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td id="biomhs_peraturanskp">Tata Cara dan Aturan Pengisian</td>
+</tr>
+<tr>
+<td id="biomhs_skp">Pilih Prestasi</td>
+</tr>
+<tr>
+<td id="biomhs_prestasilist">Upload Bukti Prestasi</td>
+</tr>
+<tr>
+<td id="biomhs_riwayatskp">Riwayat SKP</td>
+</tr>
+<tr>
+<td id="biomhs_prestasitranskip">Transkip Prestasi</td>
+</tr>
+
+</tbody>
+</table>
+</table>
+</div>
+<script type="fd2b6d6989daa833132891d2-text/javascript">
+
+$(document).ready(function() {
+	$("#table_menu:not('.table-disabled') td[id]").each(function() {
+		$(this).html('<a href="' + getURL(this.id) + '">' + $(this).text() + '</a>');
+	});
+});
+
+function getURL(method) {
+	armethod = method.split('_');
+	if(armethod.length > 1) {
+		ctl = armethod[0];
+		method = armethod[1];
+        
+        if (armethod[2]) {
+            method = method+"/"+armethod[2];
+        }
+	}
+	else
+		ctl = "biomhs";
+	
+	var url = "https://sia.mercubuana.ac.id/akad.php/__/___/41522010137";
+	
+	url = url.replace("___",method);
+	url = url.replace("__",ctl);
+	
+	return url;
+}
+
+</script>
+<div style=" margin-left:10px;float:right;width:79%">
+<style>
+    .ui-autocomplete {
+        max-height: 200px;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+</style>
+<div class="form-container alert alert-info">
+<table class="table table-condensed table-alert">
+<tr>
+<td width="65">Mahasiswa</td>
+<td width="10" align="center">:</td>
+<td>41522010137 - IBKA ANHAR FATCHA(Lapor BAP, ijazah)</td>
+<td width="110">Kelas / Kampus</td>
+<td width="10" align="center">:</td>
+<td>Reguler / Meruya</td>
+</tr>
+<tr>
+<td>Fak. / Jur.</td>
+<td align="center">:</td>
+<td>Ilmu Komputer / S1 Teknik Informatika</td>
+<td>Jenis Kelamin</td>
+<td align="center">:</td>
+<td>Laki-laki</td>
+</tr>
+<tr>
+<td>Dosen PA</td>
+<td align="center">:</td>
+<td>615810091 - Wawan Gunawan, S.Kom, MT</td>
+<td>Smt / SKS / Status</td>
+<td align="center">:</td>
+<td>3 / 43 / Aktif</td>
+</tr>
+</table>
+</div>
+<script type="fd2b6d6989daa833132891d2-text/javascript">
+
+$(document).ready(function() {
+		});
+
+
+</script>
+<div style="float:left;width:100%">
+<div class="form-container alert alert-info">
+<table class="table table-condensed table-alert">
+<tr>
+<td>Periode</td>
+<td align="center">:</td>
+<td><select name="periode" id="periode" onchange="if (!window.__cfRLUnblockHandlers) return false; goSubmit()" data-cf-modified-fd2b6d6989daa833132891d2->
+<option value="20221">Gasal 2022</option>
+<option value="20223">Genap 2022</option>
+<option value="20231" selected="selected">Gasal 2023</option>
+</select></td>
+<td>
+<div style="float:right;margin-bottom: 5px;">
+<button onclick="if (!window.__cfRLUnblockHandlers) return false; printkartustudiujian(41522010137,20231)" class="btn btn-small" type="button" data-cf-modified-fd2b6d6989daa833132891d2-><i class="icon-print"></i> Cetak</button>
+<button onclick="if (!window.__cfRLUnblockHandlers) return false; printKRS()" class="btn btn-small" type="button" disabled="disabled" data-cf-modified-fd2b6d6989daa833132891d2-><i class="icon-download-alt"></i> Download PDF</button>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+
+<table class="table table-striped table-condensed">
+<thead>
+<tr>
+<th>No</th>
+<th>Hari</th>
+<th>Mulai</th>
+<th>Selesai</th>
+<th style="white-space:nowrap">Kode MK</th>
+<th>Mata Kuliah</th>
+<th>Kelas</th>
+<th>Dosen</th>
+<th>Unit<br>Kelas</th>
+
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Rabu</td>
+<td>07:30</td>
+<td>10:00</td>
+<td>W152100010</td>
+<td>
+ALJABAR LINIER<br><i>Linear Algebra</i>
+<br>
+</td>
+<td>
+1A3153AB<br>
+Ruang :<br>
+<a href="https://anyplace.cs.ucy.ac.cy/viewer/?buid=building_354147fd-5568-4410-85ff-deff5af34eeb_1513391501234&floor=4&selected=poi_664d4b5c-ab3f-4d29-afa4-321fd6fe21dd" target="_blank" title="Lihat Ruang"><img src="/application/akad/assets/images/map.png" alt="Maps" width="25" height="25" />C-421</a> <br>
+<strong> Tatap muka / Luring </strong>
+</td>
+<td>Achmad Kodar, Drs. MT</td>
+
+<td>Teknik Informatika</td>
+
+</tr>
+<tr>
+<td colspan="5"><strong>Catatan Kelas / Dosen :</strong> <br> </td>
+<td colspan="4">
+<strong>Link 1 :</strong> <br><strong><a href target="_blank"></a></strong> <br>
+<strong>Link 2 :</strong> <br><strong><a href target="_blank"></a></strong>
+</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Rabu</td>
+<td>10:15</td>
+<td>12:45</td>
+<td>F062100006</td>
+<td>
+PEMROGRAMAN PL/SQL<br><i>PL/SQL Programming</i>
+<br>
+</td>
+<td>
+1A3153BB<br>
+Ruang :<br>
+<a href="https://anyplace.cs.ucy.ac.cy/viewer/?buid=building_84c07ed6-aa84-4662-93a8-3899280f1756_1494059213363&floor=2&selected=poi_ae99cb16-7b25-484b-991f-1697eebbf964" target="_blank" title="Lihat Ruang"><img src="/application/akad/assets/images/map.png" alt="Maps" width="25" height="25" />D-205</a> <br>
+<strong> Tatap muka / Luring </strong>
+</td>
+<td>Sabar Rudiarto, M.Kom</td>
+
+<td>Teknik Informatika</td>
+
+</tr>
+<tr>
+<td colspan="5"><strong>Catatan Kelas / Dosen :</strong> <br> </td>
+<td colspan="4">
+<strong>Link 1 :</strong> <br><strong><a href target="_blank"></a></strong> <br>
+<strong>Link 2 :</strong> <br><strong><a href target="_blank"></a></strong>
+</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Rabu</td>
+<td>13:15</td>
+<td>15:45</td>
+<td>F062100004</td>
+<td>
+REKAYASA PERANGKAT LUNAK<br><i>Software Engineering</i>
+<br>
+</td>
+<td>
+1A3153CB<br>
+Ruang :<br>
+<a href="https://anyplace.cs.ucy.ac.cy/viewer/?buid=building_84c07ed6-aa84-4662-93a8-3899280f1756_1494059213363&floor=5&selected=poi_b4f859c9-c0bc-4e9c-904c-fe54ea4ee97e" target="_blank" title="Lihat Ruang"><img src="/application/akad/assets/images/map.png" alt="Maps" width="25" height="25" />E-505</a> <br>
+<strong> Tatap muka / Luring </strong>
+</td>
+<td>Lukman Hakim, ST, M.Kom</td>
+
+<td>Teknik Informatika</td>
+
+</tr>
+<tr>
+<td colspan="5"><strong>Catatan Kelas / Dosen :</strong> <br> </td>
+<td colspan="4">
+<strong>Link 1 :</strong> <br><strong><a href target="_blank"></a></strong> <br>
+<strong>Link 2 :</strong> <br><strong><a href target="_blank"></a></strong>
+</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Kamis</td>
+<td>07:30</td>
+<td>10:00</td>
+<td>W152100012</td>
+<td>
+PENGANTAR KECERDASAN BUATAN<br><i>Introduction to Artificial Intelligence (AI)</i>
+<br>
+</td>
+<td>
+1A3154AB<br>
+Ruang :<br>
+<a href="https://anyplace.cs.ucy.ac.cy/viewer/?buid=building_84c07ed6-aa84-4662-93a8-3899280f1756_1494059213363&floor=3&selected=poi_520e56b7-1494-4105-9dbd-ef6edcd8269f" target="_blank" title="Lihat Ruang"><img src="/application/akad/assets/images/map.png" alt="Maps" width="25" height="25" />D-307</a> <br>
+<strong> Tatap muka / Luring </strong>
+</td>
+<td>Misni, S.Kom, M.Kom</td>
+
+<td>Teknik Informatika</td>
+
+</tr>
+<tr>
+<td colspan="5"><strong>Catatan Kelas / Dosen :</strong> <br> </td>
+<td colspan="4">
+<strong>Link 1 :</strong> <br><strong><a href target="_blank"></a></strong> <br>
+<strong>Link 2 :</strong> <br><strong><a href target="_blank"></a></strong>
+</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Kamis</td>
+<td>10:15</td>
+<td>12:45</td>
+<td>P152110001</td>
+<td>
+ALGORITMA LANJUT<br><i>Advanced Algorithm</i>
+<br>
+</td>
+<td>
+1A3154BC<br>
+Ruang :<br>
+<a href target="_blank" title="Lihat Ruang"><img src="/application/akad/assets/images/map.png" alt="Maps" width="25" height="25" />T-001</a> <br>
+<strong> Tatap muka / Luring </strong>
+</td>
+<td>Ida Farida, ST,M.Kom</td>
+
+<td>Teknik Informatika</td>
+
+</tr>
+<tr>
+<td colspan="5"><strong>Catatan Kelas / Dosen :</strong> <br> </td>
+<td colspan="4">
+<strong>Link 1 :</strong> <br><strong><a href target="_blank"></a></strong> <br>
+<strong>Link 2 :</strong> <br><strong><a href target="_blank"></a></strong>
+</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Kamis</td>
+<td>13:15</td>
+<td>15:45</td>
+<td>P152110002</td>
+<td>
+PENGANTAR DATA SCIENCE<br><i>Introduction to Data Science</i>
+<br>
+</td>
+<td>
+1A3154CB<br>
+Ruang :<br>
+<a href="https://anyplace.cs.ucy.ac.cy/viewer/?buid=building_84c07ed6-aa84-4662-93a8-3899280f1756_1494059213363&floor=4&selected=poi_636bae75-30c2-4841-adbe-c6a4480a50a0" target="_blank" title="Lihat Ruang"><img src="/application/akad/assets/images/map.png" alt="Maps" width="25" height="25" />D-402</a> <br>
+<strong> Tatap muka / Luring </strong>
+</td>
+<td>Wawan Gunawan, S.Kom, MT</td>
+
+<td>Teknik Informatika</td>
+
+</tr>
+<tr>
+<td colspan="5"><strong>Catatan Kelas / Dosen :</strong> <br> </td>
+<td colspan="4">
+<strong>Link 1 :</strong> <br><strong><a href target="_blank"></a></strong> <br>
+<strong>Link 2 :</strong> <br><strong><a href target="_blank"></a></strong>
+</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Jumat</td>
+<td>07:30</td>
+<td>10:00</td>
+<td>W152100011</td>
+<td>
+SISTEM OPERASI<br><i>Operating System</i>
+<br>
+</td>
+<td>
+1A3155AC<br>
+Ruang :<br>
+<a href="https://anyplace.cs.ucy.ac.cy/viewer/?buid=building_354147fd-5568-4410-85ff-deff5af34eeb_1513391501234&floor=4&selected=poi_01933995-f172-4ff2-a949-31073a1af089" target="_blank" title="Lihat Ruang"><img src="/application/akad/assets/images/map.png" alt="Maps" width="25" height="25" />A-402</a> <br>
+<strong> Tatap muka / Luring </strong>
+</td>
+<td>Hery Derajad Wijaya, S.Kom, MM</td>
+
+<td>Teknik Informatika</td>
+
+</tr>
+<tr>
+<td colspan="5"><strong>Catatan Kelas / Dosen :</strong> <br> </td>
+<td colspan="4">
+<strong>Link 1 :</strong> <br><strong><a href target="_blank"></a></strong> <br>
+<strong>Link 2 :</strong> <br><strong><a href target="_blank"></a></strong>
+</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Jumat</td>
+<td>14:00</td>
+<td>15:40</td>
+<td>U002100011</td>
+<td>
+KEWIRAUSAHAAN I<br><i>Entrepreneurship I</i>
+<br>
+</td>
+<td>
+1A5155CA<br>
+Ruang :<br>
+<a href="https://anyplace.cs.ucy.ac.cy/viewer/?buid=building_84c07ed6-aa84-4662-93a8-3899280f1756_1494059213363&floor=4&selected=poi_636bae75-30c2-4841-adbe-c6a4480a50a0" target="_blank" title="Lihat Ruang"><img src="/application/akad/assets/images/map.png" alt="Maps" width="25" height="25" />D-402</a> <br>
+<strong> Tatap muka / Luring </strong>
+</td>
+<td>Muji Indarwanto, Ir., MM. MT.</td>
+
+<td>Teknik Informatika</td>
+
+</tr>
+<tr>
+<td colspan="5"><strong>Catatan Kelas / Dosen :</strong> <br> </td>
+<td colspan="4">
+<strong>Link 1 :</strong> <br><strong><a href target="_blank"></a></strong> <br>
+<strong>Link 2 :</strong> <br><strong><a href target="_blank"></a></strong>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div style="clear:both"></div>
+<script type="fd2b6d6989daa833132891d2-text/javascript">
+function printkartustudiujian(nim,periode) {
+    if ( nim ) {
+        window.open('https://sia.mercubuana.ac.id/akad.php/biomhs/cetakkartustudiujian/'+nim+'/'+periode);
+    }
+}
+</script>
+</div>
+</form>
+</div>
+<div class="footer-container">
+<div style="float: left;color: white;margin-right:10px">Teknik Informatika</div>
+<div style="text-align:left;color:#fff; width:50%; float:left;">
+Tahun Kurikulum Berlaku : 2021 &nbsp;&nbsp;||&nbsp;&nbsp; Periode : Gasal 2023</div>
+<div style="text-align:right;color:#fff;">
+
+
+Status: mahasiswa || Username : 41522010137
+|
+<a href="https://sia.mercubuana.ac.id/akad.php/logout" style="color:#EA0000;">Logout</a>
+</div>
+<script src="https://sia.mercubuana.ac.id/application/akad/assets/bootstrap/js/bootstrap-alert.js" type="fd2b6d6989daa833132891d2-text/javascript"></script>
+</div>
+</div>
+<div id="div_waiting" style="padding:20px">
+Data sedang diproses,
+harap tunggu...
+</div>
+<script type="fd2b6d6989daa833132891d2-text/javascript">
+	var g_abs_url = 'https://sia.mercubuana.ac.id/';
+	var g_assets_url = 'https://sia.mercubuana.ac.id/application/akad/assets/';
+	
+	$("#div_waiting").dialog({
+		autoOpen: false,
+		width: 200,
+		height: 100,
+		modal: true,
+		dialogClass: 'notitle'
+	});
+</script>
+<br/>
+<br/>
+Memory: 11.33MB<br/>Time: 0.0953
+<iframe style="display:none" src="https://sia.mercubuana.ac.id/gate.php/session"></iframe>
+<script src="/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="fd2b6d6989daa833132891d2-|49" defer></script><script>(function(){var js = "window['__CF$cv$params']={r:'83762f340d313f59',t:'MTcwMjg4OTcwMC42OTUwMDA='};_cpo=document.createElement('script');_cpo.nonce='',_cpo.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js',document.getElementsByTagName('head')[0].appendChild(_cpo);";var _0xh = document.createElement('iframe');_0xh.height = 1;_0xh.width = 1;_0xh.style.position = 'absolute';_0xh.style.top = 0;_0xh.style.left = 0;_0xh.style.border = 'none';_0xh.style.visibility = 'hidden';document.body.appendChild(_0xh);function handler() {var _0xi = _0xh.contentDocument || _0xh.contentWindow.document;if (_0xi) {var _0xj = _0xi.createElement('script');_0xj.innerHTML = js;_0xi.getElementsByTagName('head')[0].appendChild(_0xj);}}if (document.readyState !== 'loading') {handler();} else if (window.addEventListener) {document.addEventListener('DOMContentLoaded', handler);} else {var prev = document.onreadystatechange || function () {};document.onreadystatechange = function (e) {prev(e);if (document.readyState !== 'loading') {document.onreadystatechange = prev;handler();}};}})();</script><script defer src="https://static.cloudflareinsights.com/beacon.min.js/v84a3a4012de94ce1a686ba8c167c359c1696973893317" integrity="sha512-euoFGowhlaLqXsPWQ48qSkBSCFs3DPRyiwVu3FjR96cMPx+Fr+gpWRhIafcHwqwCqWS42RZhIudOvEI+Ckf6MA==" data-cf-beacon='{"rayId":"83762f340d313f59","b":1,"version":"2023.10.0","token":"197bf7e1a0664e83a65af96c052692bd"}' crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,2921 @@
+<!DOCTYPE html>
+<html lang="id" dir="ltr">
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="https://sia.mercubuana.ac.id/application/akad/assets/images/favicon.ico" type="image/x-icon" />
+<link rel="stylesheet" href="https://sia.mercubuana.ac.id/application/akad/assets/bootstrap/css/bootstrap.min.css" type="text/css" />
+<link rel="stylesheet" href="https://sia.mercubuana.ac.id/application/akad/assets/css/style.css" type="text/css" />
+<script src="https://sia.mercubuana.ac.id/application/akad/assets/js/jquery/jquery-1.9.1.min.js" type="9f67deca590fc74245d74c68-text/javascript"></script>
+<script src="https://sia.mercubuana.ac.id/application/akad/assets/js/main.js" type="9f67deca590fc74245d74c68-text/javascript"></script>
+<link rel="stylesheet" href="https://sia.mercubuana.ac.id/application/akad/assets/css/jquery/jquery-ui.css" type="text/css" />
+<script src="https://sia.mercubuana.ac.id/application/akad/assets/js/jquery/jquery.ui.core.min.js" type="9f67deca590fc74245d74c68-text/javascript"></script>
+<script src="https://sia.mercubuana.ac.id/application/akad/assets/js/jquery/jquery.ui.widget.min.js" type="9f67deca590fc74245d74c68-text/javascript"></script>
+<script src="https://sia.mercubuana.ac.id/application/akad/assets/js/jquery/jquery.ui.mouse.min.js" type="9f67deca590fc74245d74c68-text/javascript"></script>
+<script src="https://sia.mercubuana.ac.id/application/akad/assets/js/jquery/jquery.ui.position.min.js" type="9f67deca590fc74245d74c68-text/javascript"></script>
+<script src="https://sia.mercubuana.ac.id/application/akad/assets/js/jquery/jquery.ui.draggable.min.js" type="9f67deca590fc74245d74c68-text/javascript"></script>
+<script src="https://sia.mercubuana.ac.id/application/akad/assets/js/jquery/jquery.ui.droppable.min.js" type="9f67deca590fc74245d74c68-text/javascript"></script>
+<script src="https://sia.mercubuana.ac.id/application/akad/assets/js/jquery/jquery.ui.widget.min.js" type="9f67deca590fc74245d74c68-text/javascript"></script>
+<script src="https://sia.mercubuana.ac.id/application/akad/assets/js/jquery/jquery.ui.button.min.js" type="9f67deca590fc74245d74c68-text/javascript"></script>
+<script src="https://sia.mercubuana.ac.id/application/akad/assets/js/jquery/jquery.ui.dialog.min.js" type="9f67deca590fc74245d74c68-text/javascript"></script>
+<script src="https://sia.mercubuana.ac.id/application/akad/assets/js/jquery/jquery.ui.tabs.min.js" type="9f67deca590fc74245d74c68-text/javascript"></script>
+<script src="https://sia.mercubuana.ac.id/application/akad/assets/js/highcharts/highcharts.js" type="9f67deca590fc74245d74c68-text/javascript"></script>
+<script src="https://sia.mercubuana.ac.id/application/akad/assets/js/highcharts/highcharts-more.js" type="9f67deca590fc74245d74c68-text/javascript"></script>
+<script src="https://sia.mercubuana.ac.id/application/akad/assets/js/highcharts/modules/exporting.js" type="9f67deca590fc74245d74c68-text/javascript"></script>
+<script src="https://sia.mercubuana.ac.id/application/akad/assets/js/lov.js" type="9f67deca590fc74245d74c68-text/javascript"></script>
+<title>SIM Akademik Universitas Mercubuana  - Halaman Utama</title>
+</head>
+<body>
+<div class="main-wrapper" style="width:1000px">
+<div style="min-height:480px;">
+<form name="main_form" id="main_form" method="post">
+<input type="hidden" id="act" name="act" />
+<input type="hidden" id="key" name="key" />
+<input type="hidden" id="format" name="format" />
+<input type="hidden" id="filter_num_record" name="filter_num_record" />
+<input type="hidden" id="filter_string" name="filter_string" />
+<input type="hidden" id="filter_sort" name="filter_sort" />
+<input type="hidden" id="filter_page" name="filter_page" />
+<input type="hidden" id="filter_field_search_list" name="filter_field_search_list" value />
+<div style="padding:20px">
+<div style="height:42px;position:static">
+<div id="wpadminbar">
+<table style="width:1000px;margin:0 auto;top:0">
+<tr>
+<td style="width:30px">
+<a href="https://sia.mercubuana.ac.id/gate.php/session?s=menu"><img src="https://sia.mercubuana.ac.id/application/akad/assets//images/mercu2.jpg" /></a>
+</td>
+<td>
+<div class="quicklinks">
+<ul>
+<li><a href="https://sia.mercubuana.ac.id/akad.php/home">Home</a></li>
+<li><a href="https://sia.mercubuana.ac.id/akad.php/biomhs">Detail Mahasiswa</a></li>
+<li class="menupop"><a href="https://sia.mercubuana.ac.id/akad.php/#"><span>Perkuliahan (Mhs)</span></a><ul>
+<li><a href="https://sia.mercubuana.ac.id/akad.php/biomhs/jadwal">Jadwal Mahasiswa</a></li>
+<li><a href="https://sia.mercubuana.ac.id/akad.php/kegiatandosen">Jadwal Dosen</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</td>
+<td style="text-align:right;padding-right:25px;">
+<span style="width:20px;">
+<a href="https://sia.mercubuana.ac.id/akad.php/home"><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/indonesia-24.png" /></a>
+<a href="https://sia.mercubuana.ac.id/en.php/home"><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/inggris-24.png" /></a>
+</span>
+<span style="color: #FFF; font-size:11px; font-weight:600; padding:2px 11px; text-shadow: 0 1px 0 rgba(0,0,0,.4); text-decoration:none; -webkit-transition: all 0.35s ease; -moz-transition: all 0.35s ease;-o-transition: all 0.35s ease; transition: all 0.35s ease;"><a style="font-weight: bold;" title="IBKA ANHAR FATCHA(Lapor BAP, ijazah)">IBKA ANHAR FATCHA(Lapor BAP, ijazah)</a></span> |
+<a href="https://sia.mercubuana.ac.id/gate.php/session/logout" style="color: #efefef;font-size:14px;padding:2px 5px;text-shadow:none;-webkit-transition: all 0.35s ease; -moz-transition: all 0.35s ease; -o-transition: all 0.35s ease; transition: all 0.35s ease;">Logout</a>
+</td>
+</tr>
+</table>
+</div>
+</div>
+
+
+<div style="width:100%;margin-bottom:10px">
+<div class="page-header" style="margin-bottom: 10px">
+<h4>
+Selamat datang, IBKA ANHAR FATCHA(Lapor BAP, ijazah) <div style="float:right;color:#177296">Senin, 18 Desember 2023 </div>
+</h4>
+<div style="float:left;padding-top:5px">
+<h5 style="line-height:0">Mahasiswa Teknik Informatika</h5>
+<span style="color:red">Himbauan : Ganti password anda secara berkala, dan pastikan bukan hal yang mudah ditebak (seperti : nim, tanggal lahir dst).</span>
+</div>
+<div style="float:right;color:#177296;padding-top:5px">
+<strong>LAST LOGIN: 1 jam lalu</strong><br>
+Kalender:
+<a href="http://sia-online.mercubuana.ac.id/pengumuman/kalender_akademik_reguler_genap_2013-2014_UMB.jpg" target="_blank">Reguler</a> |
+<a href="http://sia-online.mercubuana.ac.id/pengumuman/kalender_akademik_PKK_2013-2014_UMB.pdf" target="_blank">Karyawan</a>
+</div>
+</div>
+<div style="clear:both;height:10px"></div>
+<div class="alert alert-danger-custom">
+<button type="button" class="close" data-dismiss="alert">&times;</button>
+Jadwal Pengajuan Cuti Kelas <strong> Reguler 2 </strong> dimulai <strong> Tanggal 05 Agustus 2023 sampai Tanggal 16 September 2023 </strong><br/>Jadwal Pengajuan Cuti Kelas <strong> Reguler </strong> dimulai <strong> Tanggal 14 Agustus 2023 sampai Tanggal 15 September 2023 </strong></div>
+
+<div class="form-container alert alert-info form-horizontal" style="padding:8px;margin-bottom:10px">
+Lulus tepat waktu anda adalah <b>semester genap 2025/ 2026</b>
+</div>
+
+<div id="div_modalpengumuman" title="Wajib dibaca sebelum pengisian KRS!">
+<div class="form-container alert alert-info">
+<table class="table table-condensed table-alert">
+<tr><td><font color="#FF0000" style="font-size:18px;"><strong>PENGUMUMAN Desember 2023 </strong></font><br><br></td></tr>
+<tr><td><font color="#FF0000" style="font-size:18px;"><strong>REGULER 1</strong></font><br><br></td></tr>
+<tr>
+<td>
+<ol color="#000000" type="1">
+<li><font color="#000000"><strong>Pembayaran Biaya Kuliah, yaitu :</strong></font><br>
+<ol type="a"><font color="#FF0000"><strong>
+<li>Syarat untuk melihat Nilai Akhir Semester Genap 2022-2023 sudah melunasi biaya kuliah Semester Genap 2022-2023</li>
+<li>Syarat untuk KRS/Daftar Ulang, Ujian TB-1 dan UAS Semester Ganjil 2023/2024 yaitu:<br>
+<ul>
+<li>Syarat KRS/Daftar Ulang: melunasi biaya Semester Genap 2022/2023 dan mahasiswa membayar BPP pokok 50% dan Biaya Kemahasiswaan</li>
+<li>Syarat TB-1: membayar sampai bulan Oktober 2023 (bila belum membayar maka tidak ada nama di absen dan dosen tidak bisa input nilai)</li>
+<li>Syarat UAS sudah melunasi pembayaran Semester Ganjil 2023/2024 (bila belum membayar maka tidak ada nama di absen dan dosen tidak bisa input nilai)</li>
+</ul>
+</li>
+<li>Pengumuman Pembayaran Semester Ganjil 2023/2024 dapat dilihat di link: <strong><a href="https://bak.mercubuana.ac.id">bak.mercubuana.ac.id</a></strong></li>
+<li><font color="#000000"><strong>
+Informasi Layanan Keuangan:<br>
+Kampus Meruya & Menteng: 0813 8936 5142 - 0813 8936 5143<br>
+Kampus Warung Buncit: 0851 7300 8754</strong>
+</li>
+</strong></font>
+</ol>
+</li>
+<li><font color="#FF0000">
+<strong>Lihat Tagihan <a href="https://sia.mercubuana.ac.id/akad.php/tagihan/wajibbayar/41522010137">KLIK DISINI</a></strong>
+</font>
+</li>
+<li><font color="#000000"><strong>
+Pastikan biodata anda pada Sistem Informasi Akademik (SIA), yang terdiri dari:
+Nama, Tempat Tanggal Lahir, Jenis Kelamin, Nama Ibu Kandung, Nomor KTP, Alamat Lengkap (Kelurahan, Kecamatan)</strong> <font color="#FF0000"><strong>TELAH SESUAI</strong></font>.
+Silahkan klik tautan berikut ini untuk memeriksa kebenaran biodata anda : </font><br>
+<strong><a href="https://sia.mercubuana.ac.id/akad.php/biomhs/editmhs/41522010137"><font color="#FF0000">KLIK DISINI</font></a></strong>
+</li>
+<li><font color="#000000"><strong>
+Apabila ingin mengajukan perbaikan biodata, dapat menghubungi ke nomor layanan chat Whatsapp Biro Pembelajaran pada nomor berikut:<br>
+0817-0017-773, atau 0851-5726-3368</strong></font>
+</li>
+</ol>
+</td>
+</tr>
+<tr><td><br><br><br><br><br><br><br></td></tr>
+</table>
+</div>
+</div>
+<br/>
+<table class="table table-condensed">
+<thead>
+<tr>
+<th colspan="3">Status Perkuliahan</th>
+</tr>
+</thead>
+<tbody>
+<tr id="314915" class="sub-header">
+<th colspan="2">
+<div style="float:left">W152100010 - ALJABAR LINIER (1A3153AB) -
+<strong> Tatap muka </strong>
+<br>
+</div>
+<div style="float:right">
+Rabu, 07:30 - 10:00 <a href="https://goo.gl/hyBimj" target="_blank" title="Lihat Ruang"><img src="/application/akad/assets/images/map.png" alt="Maps" width="25" height="25" />@ C-421</a> </div>
+</th>
+</tr>
+<tr>
+<td style="padding-bottom:20px;width:250px">
+<div id="container_absen_0" style="width:250px;height:200px"></div>
+</td>
+<td>
+<div id="tabs">
+<ul>
+<li><a href="#tabs-1">Absensi</a></li>
+<li><a href="#tabs-2">Kuliah / Kuisioner Kuliah</a></li>
+<li><a href="#tabs-3">Nilai</a></li>
+<li><a href="#tabs-4">Kuisioner</a></li>
+</ul>
+<div id="tabs-1">
+<table class="table table-striped table-condensed">
+<thead>
+<tr class="sub-header">
+<th width="20">1</th>
+<th width="20">2</th>
+<th width="20">3</th>
+<th width="20">4</th>
+<th width="20">5</th>
+<th width="20">6</th>
+<th width="20">7</th>
+<th width="20">8</th>
+<th width="20">9</th>
+<th width="20">10</th>
+<th width="20">11</th>
+<th width="20">12</th>
+<th width="20">13</th>
+<th width="20">14</th>
+<th width="20">15</th>
+<th>&nbsp;</th>
+</tr>
+<tr class="sub-header">
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>&nbsp;</th>
+</tr>
+<tr class="sub-header">
+<th><sup>6</sup>&frasl;<sub>9</sub></th>
+<th><sup>13</sup>&frasl;<sub>9</sub></th>
+<th><sup>20</sup>&frasl;<sub>9</sub></th>
+<th><sup>27</sup>&frasl;<sub>9</sub></th>
+<th><sup>4</sup>&frasl;<sub>10</sub></th>
+<th><sup>11</sup>&frasl;<sub>10</sub></th>
+<th><sup>18</sup>&frasl;<sub>10</sub></th>
+<th><sup>25</sup>&frasl;<sub>10</sub></th>
+<th><sup>1</sup>&frasl;<sub>11</sub></th>
+<th><sup>8</sup>&frasl;<sub>11</sub></th>
+<th><sup>15</sup>&frasl;<sub>11</sub></th>
+<th><sup>22</sup>&frasl;<sub>11</sub></th>
+<th><sup>29</sup>&frasl;<sub>11</sub></th>
+<th><sup>6</sup>&frasl;<sub>12</sub></th>
+<th><sup>13</sup>&frasl;<sub>12</sub></th>
+<th>&nbsp;</th>
+</tr>
+<tr>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td colspan="16">
+</td>
+</tr>
+</thead>
+</table>
+</div>
+<div id="tabs-2">
+<table class="table table-striped table-condensed">
+<thead>
+<tr class="sub-header">
+<th width="50">Materi</th>
+<th width="120">Tanggal</th>
+<th>Materi</th>
+<th width="80">Download</th>
+<th width="80">Kuisioner</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td colspan="5">Tidak ada catatan materi perkuliahan mendatang</td>
+</tr>
+<tr>
+<td colspan="5"><a href="javascript:void(0)" onclick="if (!window.__cfRLUnblockHandlers) return false; showKuliahLalu(this)" style="color:#0088CC" data-cf-modified-9f67deca590fc74245d74c68->Tampilkan perkuliahan yang sudah berlalu dan Isi Kuisioner</a></td>
+</tr>
+<tr class="sub-header" style="display:none">
+<th colspan="5">Perkuliahan yang sudah berlalu</th>
+</tr>
+<tr style="display:none">
+<td>Ke - 1</td>
+<td>
+Rab, 6 Sep 2023 </td>
+<td>Sub-CPMK 1.1 Mampu menjelaskan system bilangan (CPMK 1), Materi : Pengantar sistem persamaan linear dan SPL
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/eDBDTXhBRE13RWpNMUV6Vg==/" target="_blank">W152100010-1</a></td>
+<td>
+</td>
+</tr>
+<tr class="alternate" style="display:none">
+<td>Ke - 2</td>
+<td>
+Rab, 13 Sep 2023 </td>
+<td>Sub-CPMK 1.2. Mampu memahami daerah asal dan daerah hasil suatu grafik (CPMK 1), Materi : Operasi Baris Elementer dan Eliminasi Gauss Jordan
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/eTBDTXhBRE13RWpNMUV6Vg==/" target="_blank">W152100010-2</a></td>
+<td>
+</td>
+</tr>
+<tr style="display:none">
+<td>Ke - 3</td>
+<td>
+Rab, 20 Sep 2023 </td>
+<td>Sub-CPMK 1.3. Mampu memahami proses dan tahapan penyelesaian limit fungsi (CPMK 1), Materi : Matriks dan Operasi Matriks
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/ejBDTXhBRE13RWpNMUV6Vg==/" target="_blank">W152100010-3</a></td>
+<td>
+</td>
+</tr>
+<tr class="alternate" style="display:none">
+<td>Ke - 4</td>
+<td>
+Rab, 27 Sep 2023 </td>
+<td>Sub-CPMK 2.1. Memahami makna dan cara penyelesaian limit takhingga (CPMK 2), Materi : Operasi Matriks dan Invers
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/MDBDTXhBRE13RWpNMUV6Vg==/" target="_blank">W152100010-4</a></td>
+<td>
+</td>
+</tr>
+<tr style="display:none">
+<td>Ke - 5</td>
+<td>
+Rab, 4 Okt 2023 </td>
+<td>Sub-CPMK 2.2. Mampu memahami pengertian deferensial dan penyelesaiannya (CPMK 2), Materi : Determinan dan Sifat-sifat fungsi determinan
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/MTBDTXhBRE13RWpNMUV6Vg==/" target="_blank">W152100010-5</a></td>
+<td>
+<a href="javascript:void(0)" style="color:#FF0000" onclick="if (!window.__cfRLUnblockHandlers) return false; isiKuisioner('314915/5')" data-cf-modified-9f67deca590fc74245d74c68->Isi Kuisioner</a>
+</td>
+</tr>
+<tr class="alternate" style="display:none">
+<td>Ke - 6</td>
+<td>
+Rab, 11 Okt 2023 </td>
+<td>Sub-CPMK 2.3. Mampu memahami dan menerapkan aturan rantai dalam penyelesaian defernsial biasa dan defernsial tingkat tinggi (CPMK 2), Materi : Ekspansi Kofator Aturan cramer
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/MjBDTXhBRE13RWpNMUV6Vg==/" target="_blank">W152100010-6</a></td>
+<td>
+</td>
+</tr>
+<tr style="display:none">
+<td>Ke - 7</td>
+<td>
+Rab, 18 Okt 2023 </td>
+<td>Sub-CPMK 3.1. Mampu membuat konsep penggambaran suatu fungsi dan deferensialnya (CPMK 3), Materi : Penghantar Vektor Norm dan Sudut 2 vektor
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/MzBDTXhBRE13RWpNMUV6Vg==/" target="_blank">W152100010-7</a></td>
+<td>
+</td>
+</tr>
+<tr class="alternate" style="display:none">
+<td>Ke - 8</td>
+<td>
+Rab, 25 Okt 2023 </td>
+<td>Sub-CPMK 3.2. Mampu memahami pengertian integral sebagai anti defensial dan integral tertentu (CPMK 3), Materi : Hasil Kali Titik dan Hasil Kali Silang
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/NDBDTXhBRE13RWpNMUV6Vg==/" target="_blank">W152100010-8</a></td>
+<td>
+</td>
+</tr>
+<tr style="display:none">
+<td>Ke - 9</td>
+<td>
+Rab, 1 Nov 2023 </td>
+<td>Sub-CPMK 4.1. Mampu menerapkan integral tertentu dalam menghitung luas daerah dibawah satu atau atau lebing suat fungsi (CPMK 3), Materi : Garis bidang pada ruang berdimensi 3 dan R Euclidian
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/NTBDTXhBRE13RWpNMUV6Vg==/" target="_blank">W152100010-9</a></td>
+<td>
+</td>
+</tr>
+<tr class="alternate" style="display:none">
+<td>Ke - 10</td>
+<td>
+Rab, 8 Nov 2023 </td>
+<td>Sub-CPM 4.1 Mampu menerapkan integral tertentu dalam menghitung isi benda dibawah satu atau atau lebing suat fungsi (CPMK 3), Materi : Hasil kali dalam dan Proses Gram-Schmidt
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/PT1BTXgwQ014QURNd0VqTTFFelY=/" target="_blank">W152100010-10</a></td>
+<td>
+</td>
+</tr>
+<tr style="display:none">
+<td>Ke - 11</td>
+<td>
+Rab, 15 Nov 2023 </td>
+<td>Sub-CPMK 4.1. Mampup memahami fungsi invers dan fungsi berpangkat (CPMK 4), Materi : Transformasi linear Umum Kernel dan range
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/PT1RTXgwQ014QURNd0VqTTFFelY=/" target="_blank">W152100010-11</a></td>
+<td>
+</td>
+</tr>
+<tr class="alternate" style="display:none">
+<td>Ke - 12</td>
+<td>
+Rab, 22 Nov 2023 </td>
+<td>Sub-CPMK 4.2. Mampu menjelaskan dan menyelesaikan integral parsial (CPMK 4), Materi : Nilai Eigen dan vektor Eigen
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/PT1nTXgwQ014QURNd0VqTTFFelY=/" target="_blank">W152100010-12</a></td>
+<td>
+<a href="javascript:void(0)" style="color:#FF0000" onclick="if (!window.__cfRLUnblockHandlers) return false; isiKuisioner('314915/12')" data-cf-modified-9f67deca590fc74245d74c68->Isi Kuisioner</a>
+</td>
+</tr>
+<tr style="display:none">
+<td>Ke - 13</td>
+<td>
+Rab, 29 Nov 2023 </td>
+<td>Sub-CPMK 4.3. Mampu menjelaskan dan menyelesaikan bentuk integral dengan subtitusi (CPMK-4), Materi : Diagonalisasi
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/PT13TXgwQ014QURNd0VqTTFFelY=/" target="_blank">W152100010-13</a></td>
+<td>
+</td>
+</tr>
+<tr class="alternate" style="display:none">
+<td>Ke - 14</td>
+<td>
+Rab, 6 Des 2023 </td>
+<td>Sub-CPMK 4.3. Mampu dan memahami integral tak wajar (CPMK 4), Materi : Diagonalisasi Ortogonal
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/PT1BTngwQ014QURNd0VqTTFFelY=/" target="_blank">W152100010-14</a></td>
+<td>
+</td>
+</tr>
+<tr style="display:none">
+<td>Ke - 15</td>
+<td>
+Rab, 13 Des 2023 </td>
+<td>Sub-CPMK 4.3. Mampu dan memahami integral tak wajar (CPMK 4), Materi : Diagonalisasi Ortogonal
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/PT1RTngwQ014QURNd0VqTTFFelY=/" target="_blank">W152100010-15</a></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="tabs-3">
+<table class="table table-striped table-condensed">
+<thead>
+<tr class="sub-header">
+<th width="250">Komponen</th>
+<th width="80">Prosentase</th>
+<th width="70">Nilai</th>
+<th>&nbsp;</th>
+</tr>
+<tr>
+<td colspan="4">
+<span style="color:red">Nilai belum ada</span>
+</td>
+</tr>
+</thead>
+</table>
+</div>
+<div id="tabs-4">
+<p>
+<strong>Harap isi 2 (dua) kuisioner didalam tab menu kuliah dan tab menu ini.</strong><br>
+<ol type="1">
+<li>Isi form Realisasi Perkuliahan dosen di tab menu-kuliah di sebelah tab kuisioner ini</li>
+<li>
+Isi kuisioner kelas ini.
+<strong>
+<a href="https://sik-puslit.mercubuana.ac.id/form/kelas?kodekelas=314915">Link kuisioner kelas.</a></strong>
+</li>
+</ol>
+</p>
+</div>
+</td>
+</tr>
+<tr id="314693" class="sub-header">
+<th colspan="2">
+<div style="float:left">F062100006 - PEMROGRAMAN PL/SQL (1A3153BB) -
+<strong> Tatap muka </strong>
+<br>
+</div>
+<div style="float:right">
+Rabu, 10:15 - 12:45 <a href="https://goo.gl/8Bju8l" target="_blank" title="Lihat Ruang"><img src="/application/akad/assets/images/map.png" alt="Maps" width="25" height="25" />@ D-205</a> </div>
+</th>
+</tr>
+<tr>
+<td style="padding-bottom:20px;width:250px">
+<div id="container_absen_1" style="width:250px;height:200px"></div>
+</td>
+<td>
+<div id="tabs">
+<ul>
+<li><a href="#tabs-1">Absensi</a></li>
+<li><a href="#tabs-2">Kuliah / Kuisioner Kuliah</a></li>
+<li><a href="#tabs-3">Nilai</a></li>
+<li><a href="#tabs-4">Kuisioner</a></li>
+</ul>
+<div id="tabs-1">
+<table class="table table-striped table-condensed">
+<thead>
+<tr class="sub-header">
+<th width="20">1</th>
+<th width="20">2</th>
+<th width="20">3</th>
+<th width="20">4</th>
+<th width="20">5</th>
+<th width="20">6</th>
+<th width="20">7</th>
+<th width="20">8</th>
+<th width="20">9</th>
+<th width="20">10</th>
+<th width="20">11</th>
+<th width="20">12</th>
+<th width="20">13</th>
+<th width="20">14</th>
+<th width="20">15</th>
+<th>&nbsp;</th>
+</tr>
+<tr class="sub-header">
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>&nbsp;</th>
+</tr>
+<tr class="sub-header">
+<th><sup>6</sup>&frasl;<sub>9</sub></th>
+<th><sup>13</sup>&frasl;<sub>9</sub></th>
+<th><sup>20</sup>&frasl;<sub>9</sub></th>
+<th><sup>27</sup>&frasl;<sub>9</sub></th>
+<th><sup>4</sup>&frasl;<sub>10</sub></th>
+<th><sup>11</sup>&frasl;<sub>10</sub></th>
+<th><sup>18</sup>&frasl;<sub>10</sub></th>
+<th><sup>25</sup>&frasl;<sub>10</sub></th>
+<th><sup>1</sup>&frasl;<sub>11</sub></th>
+<th><sup>8</sup>&frasl;<sub>11</sub></th>
+<th><sup>15</sup>&frasl;<sub>11</sub></th>
+<th><sup>22</sup>&frasl;<sub>11</sub></th>
+<th><sup>29</sup>&frasl;<sub>11</sub></th>
+<th><sup>6</sup>&frasl;<sub>12</sub></th>
+<th><sup>13</sup>&frasl;<sub>12</sub></th>
+<th>&nbsp;</th>
+</tr>
+<tr>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td colspan="16">
+</td>
+</tr>
+</thead>
+</table>
+</div>
+<div id="tabs-2">
+<table class="table table-striped table-condensed">
+<thead>
+<tr class="sub-header">
+<th width="50">Materi</th>
+<th width="120">Tanggal</th>
+<th>Materi</th>
+<th width="80">Download</th>
+<th width="80">Kuisioner</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td colspan="5">Tidak ada catatan materi perkuliahan mendatang</td>
+</tr>
+<tr>
+<td colspan="5"><a href="javascript:void(0)" onclick="if (!window.__cfRLUnblockHandlers) return false; showKuliahLalu(this)" style="color:#0088CC" data-cf-modified-9f67deca590fc74245d74c68->Tampilkan perkuliahan yang sudah berlalu dan Isi Kuisioner</a></td>
+</tr>
+<tr class="sub-header" style="display:none">
+<th colspan="5">Perkuliahan yang sudah berlalu</th>
+</tr>
+<tr style="display:none">
+<td>Ke - 1</td>
+<td>
+Rab, 6 Sep 2023 </td>
+<td>Sub-CPMK 1, 2, 3 Able to use procedures and functions on Oracle (CPMK 1,2,3)
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/eDBpTndBRE13RWpNMkFqUg==/" target="_blank">F062100006-1</a></td>
+<td>
+</td>
+</tr>
+<tr class="alternate" style="display:none">
+<td>Ke - 2</td>
+<td>
+Rab, 13 Sep 2023 </td>
+<td>Sub-CPMK 1 Able to design and build relational database (CPMK 1)
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/eTBpTndBRE13RWpNMkFqUg==/" target="_blank">F062100006-2</a></td>
+<td>
+</td>
+</tr>
+<tr style="display:none">
+<td>Ke - 3</td>
+<td>
+Rab, 20 Sep 2023 </td>
+<td>Sub-CPMK 1, 2, 3 Be able to explain the basic concepts of the oracle 11g and use DDL (Data Definition Language) operations in the oracle and apply it in case studies (CPMK 1, 2, 3)
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/ejBpTndBRE13RWpNMkFqUg==/" target="_blank">F062100006-3</a></td>
+<td>
+</td>
+</tr>
+<tr class="alternate" style="display:none">
+<td>Ke - 4</td>
+<td>
+Rab, 27 Sep 2023 </td>
+<td>Sub-CPMK 1, 2, 3 Able to use DML (Data Manipulation Language) operations and be able to run queries using clauses, variables, and operators in Oracle. (CPMK 1, 2, 3)
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/MDBpTndBRE13RWpNMkFqUg==/" target="_blank">F062100006-4</a></td>
+<td>
+</td>
+</tr>
+<tr style="display:none">
+<td>Ke - 5</td>
+<td>
+Rab, 4 Okt 2023 </td>
+<td>Sub-CPMK 1, 2, 3 Able to apply Oracle functions, conditional expressions, and how to retrieve data from several tables. (CPMK 1,2,3)
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/MTBpTndBRE13RWpNMkFqUg==/" target="_blank">F062100006-5</a></td>
+<td>
+</td>
+</tr>
+<tr class="alternate" style="display:none">
+<td>Ke - 6</td>
+<td>
+Rab, 11 Okt 2023 </td>
+<td>Sub-CPMK 1, 2, 3 • Able to use DDL and DML Query to support DDL and DML creation processes • Able to use CUBE, ROLLUP, GROUPING SETS and additional functions related to these three things to display data in report form. (CPMK 1,2,3)
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/MjBpTndBRE13RWpNMkFqUg==/" target="_blank">F062100006-6</a></td>
+<td>
+<a href="javascript:void(0)" style="color:#FF0000" onclick="if (!window.__cfRLUnblockHandlers) return false; isiKuisioner('314693/6')" data-cf-modified-9f67deca590fc74245d74c68->Isi Kuisioner</a>
+</td>
+</tr>
+<tr style="display:none">
+<td>Ke - 7</td>
+<td>
+Rab, 18 Okt 2023 </td>
+<td>Sub-CPMK 1, 2, 3 Able to use conditional statements, repetition and error handling. (CPMK 1,2,3)
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/MzBpTndBRE13RWpNMkFqUg==/" target="_blank">F062100006-7</a></td>
+<td>
+</td>
+</tr>
+<tr class="alternate" style="display:none">
+<td>Ke - 8</td>
+<td>
+Rab, 25 Okt 2023 </td>
+<td>Sub-CPMK 1, 2, 3 Discussion of Modules 1-6. Case study (CPMK 1,2,3)
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/NDBpTndBRE13RWpNMkFqUg==/" target="_blank">F062100006-8</a></td>
+<td>
+</td>
+</tr>
+<tr style="display:none">
+<td>Ke - 9</td>
+<td>
+Rab, 1 Nov 2023 </td>
+<td>Sub-CPMK 1, 2, 3 Able to use CURSOR (CPMK 1,2,3)
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/NTBpTndBRE13RWpNMkFqUg==/" target="_blank">F062100006-9</a></td>
+<td>
+</td>
+</tr>
+<tr class="alternate" style="display:none">
+<td>Ke - 10</td>
+<td>
+Rab, 8 Nov 2023 </td>
+<td>Sub-CPMK 1, 2, 3 Able to apply PACKAGE in database (CPMK 1,2,3)
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/PT1BTXgwaU53QURNd0VqTTJBalI=/" target="_blank">F062100006-10</a></td>
+<td>
+</td>
+</tr>
+<tr style="display:none">
+<td>Ke - 11</td>
+<td>
+Rab, 15 Nov 2023 </td>
+<td>Sub-CPMK 1, 2, 3 Able to apply TRIGGER in database (CPMK 1,2,3)
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/PT1RTXgwaU53QURNd0VqTTJBalI=/" target="_blank">F062100006-11</a></td>
+<td>
+</td>
+</tr>
+<tr class="alternate" style="display:none">
+<td>Ke - 12</td>
+<td>
+Rab, 22 Nov 2023 </td>
+<td>Sub-CPMK 1, 2, 3 Able to create applications that are connected to the database. (CPMK 1,2,3)
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/PT1nTXgwaU53QURNd0VqTTJBalI=/" target="_blank">F062100006-12</a></td>
+<td>
+<a href="javascript:void(0)" style="color:#FF0000" onclick="if (!window.__cfRLUnblockHandlers) return false; isiKuisioner('314693/12')" data-cf-modified-9f67deca590fc74245d74c68->Isi Kuisioner</a>
+</td>
+</tr>
+<tr style="display:none">
+<td>Ke - 13</td>
+<td>
+Rab, 29 Nov 2023 </td>
+<td>Sub-CPMK 1, 2, 3 Able to create applications that are connected to the database. (CPMK 1,2,3)
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/PT13TXgwaU53QURNd0VqTTJBalI=/" target="_blank">F062100006-13</a></td>
+<td>
+</td>
+</tr>
+<tr class="alternate" style="display:none">
+<td>Ke - 14</td>
+<td>
+Rab, 6 Des 2023 </td>
+<td>Sub-CPMK 1, 2, 3 Able to create applications that are connected to the database. (CPMK 1,2,3)
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/PT1BTngwaU53QURNd0VqTTJBalI=/" target="_blank">F062100006-14</a></td>
+<td>
+</td>
+</tr>
+<tr style="display:none">
+<td>Ke - 15</td>
+<td>
+Rab, 13 Des 2023 </td>
+<td>Sub-CPMK 4, 5 Able to work in groups in working on and presenting projects. (CPMK 4, 5)
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/PT1RTngwaU53QURNd0VqTTJBalI=/" target="_blank">F062100006-15</a></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="tabs-3">
+<table class="table table-striped table-condensed">
+<thead>
+<tr class="sub-header">
+<th width="250">Komponen</th>
+<th width="80">Prosentase</th>
+<th width="70">Nilai</th>
+<th>&nbsp;</th>
+</tr>
+<tr>
+<td colspan="4">
+<span style="color:red">Nilai belum ada</span>
+</td>
+</tr>
+</thead>
+</table>
+</div>
+<div id="tabs-4">
+<p>
+<strong>Harap isi 2 (dua) kuisioner didalam tab menu kuliah dan tab menu ini.</strong><br>
+<ol type="1">
+<li>Isi form Realisasi Perkuliahan dosen di tab menu-kuliah di sebelah tab kuisioner ini</li>
+<li>
+Isi kuisioner kelas ini.
+<strong>
+<a href="https://sik-puslit.mercubuana.ac.id/form/kelas?kodekelas=314693">Link kuisioner kelas.</a></strong>
+</li>
+</ol>
+</p>
+</div>
+</td>
+</tr>
+<tr id="314758" class="sub-header">
+<th colspan="2">
+<div style="float:left">F062100004 - REKAYASA PERANGKAT LUNAK (1A3153CB) -
+<strong> Tatap muka </strong>
+<br>
+</div>
+<div style="float:right">
+Rabu, 13:15 - 15:45 <a href="https://goo.gl/cFYaTq" target="_blank" title="Lihat Ruang"><img src="/application/akad/assets/images/map.png" alt="Maps" width="25" height="25" />@ E-505</a> </div>
+</th>
+</tr>
+<tr>
+<td style="padding-bottom:20px;width:250px">
+<div id="container_absen_2" style="width:250px;height:200px"></div>
+</td>
+<td>
+<div id="tabs">
+<ul>
+<li><a href="#tabs-1">Absensi</a></li>
+<li><a href="#tabs-2">Kuliah / Kuisioner Kuliah</a></li>
+<li><a href="#tabs-3">Nilai</a></li>
+<li><a href="#tabs-4">Kuisioner</a></li>
+</ul>
+<div id="tabs-1">
+<table class="table table-striped table-condensed">
+<thead>
+<tr class="sub-header">
+<th width="20">1</th>
+<th width="20">2</th>
+<th width="20">3</th>
+<th width="20">4</th>
+<th width="20">5</th>
+<th width="20">6</th>
+<th width="20">7</th>
+<th width="20">8</th>
+<th width="20">9</th>
+<th width="20">10</th>
+<th width="20">11</th>
+<th width="20">12</th>
+<th width="20">13</th>
+<th width="20">14</th>
+<th>&nbsp;</th>
+</tr>
+<tr class="sub-header">
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>&nbsp;</th>
+</tr>
+<tr class="sub-header">
+<th><sup>6</sup>&frasl;<sub>9</sub></th>
+<th><sup>13</sup>&frasl;<sub>9</sub></th>
+<th><sup>20</sup>&frasl;<sub>9</sub></th>
+<th><sup>27</sup>&frasl;<sub>9</sub></th>
+<th><sup>4</sup>&frasl;<sub>10</sub></th>
+<th><sup>11</sup>&frasl;<sub>10</sub></th>
+<th><sup>18</sup>&frasl;<sub>10</sub></th>
+<th><sup>25</sup>&frasl;<sub>10</sub></th>
+<th><sup>1</sup>&frasl;<sub>11</sub></th>
+<th><sup>8</sup>&frasl;<sub>11</sub></th>
+<th><sup>15</sup>&frasl;<sub>11</sub></th>
+<th><sup>22</sup>&frasl;<sub>11</sub></th>
+<th><sup>29</sup>&frasl;<sub>11</sub></th>
+<th><sup>13</sup>&frasl;<sub>12</sub></th>
+<th>&nbsp;</th>
+</tr>
+<tr>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td colspan="16">
+</td>
+</tr>
+</thead>
+</table>
+</div>
+<div id="tabs-2">
+<table class="table table-striped table-condensed">
+<thead>
+<tr class="sub-header">
+<th width="50">Materi</th>
+<th width="120">Tanggal</th>
+<th>Materi</th>
+<th width="80">Download</th>
+<th width="80">Kuisioner</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td colspan="5">Tidak ada catatan materi perkuliahan mendatang</td>
+</tr>
+<tr>
+<td colspan="5"><a href="javascript:void(0)" onclick="if (!window.__cfRLUnblockHandlers) return false; showKuliahLalu(this)" style="color:#0088CC" data-cf-modified-9f67deca590fc74245d74c68->Tampilkan perkuliahan yang sudah berlalu dan Isi Kuisioner</a></td>
+</tr>
+<tr class="sub-header" style="display:none">
+<th colspan="5">Perkuliahan yang sudah berlalu</th>
+</tr>
+<tr style="display:none">
+<td>Ke - 1</td>
+<td>
+Rab, 6 Sep 2023 </td>
+<td>Sub-CPMK : 1.1 Mampu menjelaskan yang dimaksud dengan Rekayasa Perangkat Lunak, model siklus hidup perangkat lunak dan proses pembuatan SKPL dalam menyelesaikan sebuah Perangkat Lunak. (CPMK 1) | Materi : • Penjelasan Silabus • Penjelasan Makna Rekayasa Perangkat Lunak. • Penjelasan konsep dasar tentang RPL. • Penjelasan apa itu Model Siklus Hidup Perangkat Lunak • Penjelasan macam-macam Model Siklus Hidup Perangkat Lunak. • Penjelasan makna SKPL. • Penjelasan Proses pembuatan SKPL.
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/eDBDTndBRE13RWpNMkFqUg==/" target="_blank">F062100004-1</a></td>
+<td>
+</td>
+</tr>
+<tr class="alternate" style="display:none">
+<td>Ke - 2</td>
+<td>
+Rab, 13 Sep 2023 </td>
+<td>Sub-CPMK : 1.2 Mampu memahami, menganalisis dan menerapkan konsep Diagram Use Case, Diagram Activity, Diagram Class, dan Diagram Sequence(CPMK 2). | Materi : • Penjelasan konsep Use Case, Diagram Activity, Diagram Class, dan Diagram Sequence. • Penjelasan penerapan Use Case, Diagram Activity, Diagram Class, dan Diagram Sequence.
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/eTBDTndBRE13RWpNMkFqUg==/" target="_blank">F062100004-2</a></td>
+<td>
+</td>
+</tr>
+<tr style="display:none">
+<td>Ke - 3</td>
+<td>
+Rab, 20 Sep 2023 </td>
+<td>Sub-CPMK : 1.3 Mampu memahami penjelasan Data Modelling dan Specification (CPMK 3) | Materi : • Mampu menjelaskan penggunaan Data modeling dan cara pengimplementasiannya. • Mampu menjelaskan apa saja bagian Functional modeling dan kegunaannya. • Mampu menjelaskan bagian-bagian yang termasuk pada Behavioral modeling. Mampu menjelaskan Data dictionary & process specification.</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/ejBDTndBRE13RWpNMkFqUg==/" target="_blank">F062100004-3</a></td>
+<td>
+</td>
+</tr>
+<tr class="alternate" style="display:none">
+<td>Ke - 4</td>
+<td>
+Rab, 27 Sep 2023 </td>
+<td>Sub-CPMK : 1.4 Mampu menganalisa dan menerapkan rancangan dari sebuah User Interface (CPMK 4) | Materi : • Mampu menganalisa Rancangan Input. • Mampu menganalisa Rancangan Layar. • Mampu menganalisa Rancangan Output. • Mampu menerapkan Rancangan Input. • Mampu menerapkan Rancangan Layar. • Mampu menerapkan Rancangan Output.
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/MDBDTndBRE13RWpNMkFqUg==/" target="_blank">F062100004-4</a></td>
+<td>
+</td>
+</tr>
+<tr style="display:none">
+<td>Ke - 5</td>
+<td>
+Rab, 4 Okt 2023 </td>
+<td>Sub-CPMK : 1.5 Mampu menganalisa dan menerapkan metodologi Agile pada Perangkat Lunak dan menerapkan perancangan sistem yang baik. (CPMK 5) | Materi : • Mampu menganalisa apa itu Metodologi Agile dan bagian-bagiannya. • Mampu menerapkan sebuah Metodologi Agile untuk pembuatan sebuah Perangkat Lunak. • Mampu menjelaskan apa yang dimaksud oleh Scrum dan dapat menjelaskan elemen-elemen yang ada pada Scrum itu sendiri. • Mampu menjelaskan spiral dan kegunaanya. • Mampu menjelaskan apa itu Test Driven dan Unified Process.
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/MTBDTndBRE13RWpNMkFqUg==/" target="_blank">F062100004-5</a></td>
+<td>
+<a href="javascript:void(0)" style="color:#FF0000" onclick="if (!window.__cfRLUnblockHandlers) return false; isiKuisioner('314758/5')" data-cf-modified-9f67deca590fc74245d74c68->Isi Kuisioner</a>
+</td>
+</tr>
+<tr class="alternate" style="display:none">
+<td>Ke - 6</td>
+<td>
+Rab, 11 Okt 2023 </td>
+<td>Sub-CPMK : 1.6 Mampu menganalisa dan menerapkan pengujian pada Perangkat Lunak untuk menyelesaikannya. (CPMK 6) | Materi : • Mampu menjelaskan berbagai komponen dalam model pengujian yang ada. • Mampu menjelaskan utility, reliability, robustness,performance dan correctness dalam pengujian sistem. • Mampu menjelaskan berbagai macam metode pengujian perangkat lunak • Mampu menjelaskan yang dimaksud dengan unit testing dan mampu melakukan unit testing dengan menggunakan Junit. • Mampu menjelaskan berbagai macam strategi pengujian perangkat lunak)</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/MjBDTndBRE13RWpNMkFqUg==/" target="_blank">F062100004-6</a></td>
+<td>
+</td>
+</tr>
+<tr style="display:none">
+<td>Ke - 7</td>
+<td>
+Rab, 18 Okt 2023 </td>
+<td>Sub-CPMK : 1.7 Mampu menganalisa dan menerapkan Kualitas pada Perangkat Lunak. (CPMK 6) | Materi : • Mampu menjelaskan apa yang menjadi pengertian dari Kualitas Perangkat Lunak. • Mampu menjelaskan faktor-faktor penentu sebuah Kualitas Perangkat Lunak dikatakan baik. • Mampu menjelaskan macam-macam Model Faktor Kualitas Perangkat Lunak. • Mampu menjelaskan proses penjaminan kualitas perangkat lunak
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/MzBDTndBRE13RWpNMkFqUg==/" target="_blank">F062100004-7</a></td>
+<td>
+</td>
+</tr>
+<tr class="alternate" style="display:none">
+<td>Ke - 8</td>
+<td>
+Rab, 25 Okt 2023 </td>
+<td>Sub-CPMK : 1.8 Mampu menganalisa dan menerapkan Perancangan Berorientasi Objek ( CPMK 3) | Materi : • Mampu menjelaskan berbagai macam yang termasuk pada Object Oriented Analysis. • Mampu menjelaskan empat (4) prinsip utama dalam pemrograman yang berorientasi objek. • Mampu menjelaskan macam-macam Tekhnik Dasar Object Oriented Analysis. Mampu menjelaskan cara kerja perancangan perangkat lunak dengan pendekatan berorientasi objek.</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/NDBDTndBRE13RWpNMkFqUg==/" target="_blank">F062100004-8</a></td>
+<td>
+</td>
+</tr>
+<tr style="display:none">
+<td>Ke - 9</td>
+<td>
+Rab, 1 Nov 2023 </td>
+<td>Sub-CPMK : • 1.9 Mampu menganalisa dan menerapkan Perancangan Berorientasi Objek ( CPMK 3). | Materi : • Mampu menjelaskan konsep tentang Encapsulation, Data Protection, Inheritance, Interface, dan Polymorphism. • Mampu menjelaskan manfaat apa saja yang dapat dihasilkan dari konsep Object Oriented Design.
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/NTBDTndBRE13RWpNMkFqUg==/" target="_blank">F062100004-9</a></td>
+<td>
+</td>
+</tr>
+<tr class="alternate" style="display:none">
+<td>Ke - 10</td>
+<td>
+Rab, 8 Nov 2023 </td>
+<td>Sub-CPMK : • 1.10 Mampu menganalisa dan menerapkan Perancangan Berorientasi Objek ( CPMK 3). | Materi : • Mampu menjelaskan Analisa Sequence Diagram. • Mampu menjelaskan penerapan Sequence Diagram dengan studi kasus.</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/PT1BTXgwQ053QURNd0VqTTJBalI=/" target="_blank">F062100004-10</a></td>
+<td>
+</td>
+</tr>
+<tr style="display:none">
+<td>Ke - 11</td>
+<td>
+Rab, 15 Nov 2023 </td>
+<td>Sub-CPMK : • 1.11 Mampu menjelaskan konsep dasar dalam perkiraan biaya untuk membuat sebuah Perangkat Lunak. ( CPMK 7). | Materi : • Mampu menjelaskan konsep dasar perkiraan biaya.</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/PT1RTXgwQ053QURNd0VqTTJBalI=/" target="_blank">F062100004-11</a></td>
+<td>
+</td>
+</tr>
+<tr class="alternate" style="display:none">
+<td>Ke - 12</td>
+<td>
+Rab, 22 Nov 2023 </td>
+<td>Sub-CPMK : • 1.12 Mampu menjelaskan aspek-aspek yang mendasari untuk penyusunan rencana dalam membangun sebuah perangkat lunak . (CPMK 7) | Materi : • Mampu menjelaskan aspek-aspek yang mendasari untuk penyusunan rencana dalam membangun sebuah perangkat lunak
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/PT1nTXgwQ053QURNd0VqTTJBalI=/" target="_blank">F062100004-12</a></td>
+<td>
+</td>
+</tr>
+<tr style="display:none">
+<td>Ke - 13</td>
+<td>
+Rab, 29 Nov 2023 </td>
+<td>Sub-CPMK : • 1.13 Mampu menjelaskan apa yang dimaksud dengan Work Breakdown Structure dan pengimplementasiannya agar sebuah Perangkat Lunak dapat selesai tepat waktu dan dapat menjelaskan proses Gantt Chart yang baik dan benar. (CPMK 7) | Materi : • Mampu menjelaskan apa itu WBS. • Mampu menjelaskan cara kerja dari WBS. • Mampu menjelaskan tekhnik-tekhnik yang ada pada WBS. • Mampu menjelaskan apa itu Gantt Chart. • Mampu menjelaskan cara kerja Gantt Chart.</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/PT13TXgwQ053QURNd0VqTTJBalI=/" target="_blank">F062100004-13</a></td>
+<td>
+</td>
+</tr>
+<tr class="alternate" style="display:none">
+<td>Ke - 14</td>
+<td>
+Rab, 13 Des 2023 </td>
+<td>• Sub-CPMK 1.15. Mampu bekerja sama dalam kelompok untuk mengerjakan dan mempresentasikan proyek Rekayasa Perangkat Lunak. (CPMK 8) | Materi : • Perencanaan dan pengelolaan tugas/ proyek yang efisien • Presentasi hasil laporan tertulis dan lisan.
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/PT1BTngwQ053QURNd0VqTTJBalI=/" target="_blank">F062100004-14</a></td>
+<td>
+</td>
+</tr>
+<tr style="display:none">
+<td>Ke - 15</td>
+<td>
+Rab, 13 Des 2023 </td>
+<td>• Sub-CPMK 1.15. Mampu bekerja sama dalam kelompok untuk mengerjakan dan mempresentasikan proyek Rekayasa Perangkat Lunak. (CPMK 8) | Materi : • Perencanaan dan pengelolaan tugas/ proyek yang efisien • Presentasi hasil laporan tertulis dan lisan.</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/PT1RTngwQ053QURNd0VqTTJBalI=/" target="_blank">F062100004-15</a></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="tabs-3">
+<table class="table table-striped table-condensed">
+<thead>
+<tr class="sub-header">
+<th width="250">Komponen</th>
+<th width="80">Prosentase</th>
+<th width="70">Nilai</th>
+<th>&nbsp;</th>
+</tr>
+<tr>
+<td colspan="4">
+<span style="color:red">Nilai belum ada</span>
+</td>
+</tr>
+</thead>
+</table>
+</div>
+<div id="tabs-4">
+<p>
+<strong>Harap isi 2 (dua) kuisioner didalam tab menu kuliah dan tab menu ini.</strong><br>
+<ol type="1">
+<li>Isi form Realisasi Perkuliahan dosen di tab menu-kuliah di sebelah tab kuisioner ini</li>
+<li>
+Isi kuisioner kelas ini.
+<strong>
+<a href="https://sik-puslit.mercubuana.ac.id/form/kelas?kodekelas=314758">Link kuisioner kelas.</a></strong>
+</li>
+</ol>
+</p>
+</div>
+</td>
+</tr>
+<tr id="314746" class="sub-header">
+<th colspan="2">
+<div style="float:left">W152100012 - PENGANTAR KECERDASAN BUATAN (1A3154AB) -
+<strong> Tatap muka </strong>
+<br>
+</div>
+<div style="float:right">
+Kamis, 07:30 - 10:00 <a href="https://goo.gl/8AmLdV" target="_blank" title="Lihat Ruang"><img src="/application/akad/assets/images/map.png" alt="Maps" width="25" height="25" />@ D-307</a> </div>
+</th>
+</tr>
+<tr>
+<td style="padding-bottom:20px;width:250px">
+<div id="container_absen_3" style="width:250px;height:200px"></div>
+</td>
+<td>
+<div id="tabs">
+<ul>
+<li><a href="#tabs-1">Absensi</a></li>
+<li><a href="#tabs-2">Kuliah / Kuisioner Kuliah</a></li>
+<li><a href="#tabs-3">Nilai</a></li>
+<li><a href="#tabs-4">Kuisioner</a></li>
+</ul>
+<div id="tabs-1">
+<table class="table table-striped table-condensed">
+<thead>
+<tr class="sub-header">
+<th width="20">1</th>
+<th width="20">2</th>
+<th width="20">3</th>
+<th width="20">4</th>
+<th width="20">5</th>
+<th width="20">6</th>
+<th width="20">7</th>
+<th width="20">8</th>
+<th width="20">9</th>
+<th width="20">10</th>
+<th>&nbsp;</th>
+</tr>
+<tr class="sub-header">
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>&nbsp;</th>
+</tr>
+<tr class="sub-header">
+<th><sup>14</sup>&frasl;<sub>9</sub></th>
+<th><sup>21</sup>&frasl;<sub>9</sub></th>
+<th><sup>12</sup>&frasl;<sub>10</sub></th>
+<th><sup>19</sup>&frasl;<sub>10</sub></th>
+<th><sup>26</sup>&frasl;<sub>10</sub></th>
+<th><sup>2</sup>&frasl;<sub>11</sub></th>
+<th><sup>9</sup>&frasl;<sub>11</sub></th>
+<th><sup>16</sup>&frasl;<sub>11</sub></th>
+<th><sup>23</sup>&frasl;<sub>11</sub></th>
+<th><sup>30</sup>&frasl;<sub>11</sub></th>
+<th>&nbsp;</th>
+</tr>
+<tr>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td colspan="16">
+</td>
+</tr>
+</thead>
+</table>
+</div>
+<div id="tabs-2">
+<table class="table table-striped table-condensed">
+<thead>
+<tr class="sub-header">
+<th width="50">Materi</th>
+<th width="120">Tanggal</th>
+<th>Materi</th>
+<th width="80">Download</th>
+<th width="80">Kuisioner</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td colspan="5">Tidak ada catatan materi perkuliahan mendatang</td>
+</tr>
+<tr>
+<td colspan="5"><a href="javascript:void(0)" onclick="if (!window.__cfRLUnblockHandlers) return false; showKuliahLalu(this)" style="color:#0088CC" data-cf-modified-9f67deca590fc74245d74c68->Tampilkan perkuliahan yang sudah berlalu dan Isi Kuisioner</a></td>
+</tr>
+<tr class="sub-header" style="display:none">
+<th colspan="5">Perkuliahan yang sudah berlalu</th>
+</tr>
+<tr style="display:none">
+<td>Ke - 1</td>
+<td>
+Kam, 14 Sep 2023 </td>
+<td>Sub-CPMK : Mampu menjelaskan pengertian dan sejarah Kecerdasan Buatan (CPMK 1) Materi : • Penjelasan Silabus • Definisi dan teori Kecerdasan Buatan • Penjelasan latar belakang dan sejarah Kecerdasan Buatan
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/eDBpTXhBRE13RWpNMUV6Vg==/" target="_blank">W152100012-1</a></td>
+<td>
+</td>
+</tr>
+<tr class="alternate" style="display:none">
+<td>Ke - 2</td>
+<td>
+Kam, 21 Sep 2023 </td>
+<td>Sub-CPMK: Mampu menjelaskan konsep hubungan AI & Society, Agents dan Knowledge-Based Systems (CPMK 1,5) Materi : • Penjelasan hubungan antara AI & Society dan perkembangan Kecerdasan Buatan seiring kebutuhan di masyarakat • Penjelasan peran dan fungsi Agents dalam Kecerdasan Buatan • Penjelasan bagaimana implementasi sistem berbasis knowledge (KBS) terhadap masalah-masalah di dalam Kecerdasan Buatan.
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/eTBpTXhBRE13RWpNMUV6Vg==/" target="_blank">W152100012-2</a></td>
+<td>
+</td>
+</tr>
+<tr style="display:none">
+<td>Ke - 3</td>
+<td>
+Kam, 12 Okt 2023 </td>
+<td>Sub-CPMK : Mampu menjelaskan konsep dan menentukan metode Pencarian (Search) yang tepat dalam Kecerdasan Buatan (CPMK 2,5) Materi : • Penjelasan konsep dan teori Metode Pencarian (Search) dalam praktek Kecerdasan Buatan • Penjelasan Uniformed Search sebagai bagian dari Metode Pencarian • Penjelasan algoritma Breadth First Search (BFS) dan Depth First Search (DFS)
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/ejBpTXhBRE13RWpNMUV6Vg==/" target="_blank">W152100012-3</a></td>
+<td>
+</td>
+</tr>
+<tr class="alternate" style="display:none">
+<td>Ke - 4</td>
+<td>
+Kam, 19 Okt 2023 </td>
+<td>Sub-CPMK : Mampu menentukan dan membandingkan metode-metode Pencarian (Search) dalam Kecerdasan Buatan (CPMK 2,5) Materi : • Penjelasan algoritma Iterative Deepening sebagai bagian dari Metode Pencarian Uninformed Search • Penjelasan perbedaan antara ketiga algoritma Breadth First Search (BFS), Depth First Search (DFS) dan Iterative Deepening
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/MDBpTXhBRE13RWpNMUV6Vg==/" target="_blank">W152100012-4</a></td>
+<td>
+</td>
+</tr>
+<tr style="display:none">
+<td>Ke - 5</td>
+<td>
+Kam, 26 Okt 2023 </td>
+<td>Sub-CPMK : Mampu mendefinisikan teori Heuristic Search dalam Kecerdasan Buatan (CPMK 2,5) Materi : • Penjelasan Heuristic Search • Penjelasan algoritma Greedy Search dan A*-Search sebagain bagian dari Heuristic Search
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/MTBpTXhBRE13RWpNMUV6Vg==/" target="_blank">W152100012-5</a></td>
+<td>
+</td>
+</tr>
+<tr class="alternate" style="display:none">
+<td>Ke - 6</td>
+<td>
+Kam, 2 Nov 2023 </td>
+<td>Sub-CPMK : Mampu menentukan dan membuat perbandingan metode-metode yang terdapat di Heuristic Search (CPMK 2,5) Materi : • Penjelasan algoritma Route Planning with A*- Search Algorithm dan IDA*-Search • Penjelasan perbandingan antara keempat algoritma Greedy Search, A*-Search, Planning with A*- Search dan IDA*-Search
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/MjBpTXhBRE13RWpNMUV6Vg==/" target="_blank">W152100012-6</a></td>
+<td>
+<a href="javascript:void(0)" style="color:#FF0000" onclick="if (!window.__cfRLUnblockHandlers) return false; isiKuisioner('314746/6')" data-cf-modified-9f67deca590fc74245d74c68->Isi Kuisioner</a>
+</td>
+</tr>
+<tr style="display:none">
+<td>Ke - 7</td>
+<td>
+Kam, 9 Nov 2023 </td>
+<td>Sub-CPMK : Mampu menjelaskan konsep Games beserta algoritmanya (CPMK 2,5) Materi : • Penjelasan konsep dan teori Games dalam Kecerdasan Buatan • Penjelasan algoritma yang terdapat pada Games yaitu Minimax Search, Alpha-Beta-Pruning dan Non-Deterministic Games.
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/MzBpTXhBRE13RWpNMUV6Vg==/" target="_blank">W152100012-7</a></td>
+<td>
+</td>
+</tr>
+<tr class="alternate" style="display:none">
+<td>Ke - 8</td>
+<td>
+Kam, 16 Nov 2023 </td>
+<td>Sub-CPMK : Mampu mengevaluasi fungsi Heuristic beserta algoritmanya (CPMK 2,5) Materi : • Penjelasan fungsi Heuristic • Penjelasan algoritma Chess & Go dalam State of the Art.
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/NDBpTXhBRE13RWpNMUV6Vg==/" target="_blank">W152100012-8</a></td>
+<td>
+</td>
+</tr>
+<tr style="display:none">
+<td>Ke - 9</td>
+<td>
+Kam, 23 Nov 2023 </td>
+<td>Sub-CPMK : Mampu menjelaskan konsep dan teori Ketidakpastian (Uncertainty) dalam Kecerdasan Buatan dan mampu mengidentifikasi masalah-masalah yang menyebabkan terjadinya uncertainty (CPMK 3,5) Materi : • Penjelasan konsep dasar dan teori Ketidakpastian (Uncertainty) • Penjelasan probabilitas dan principal dalam uncertainty • Penjelasan cara mengidentifikasi masalah-masalah yang menimbulkan uncertainty dalam Kecerdasan Buatan.
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/NTBpTXhBRE13RWpNMUV6Vg==/" target="_blank">W152100012-9</a></td>
+<td>
+<a href="javascript:void(0)" style="color:#FF0000" onclick="if (!window.__cfRLUnblockHandlers) return false; isiKuisioner('314746/9')" data-cf-modified-9f67deca590fc74245d74c68->Isi Kuisioner</a>
+</td>
+</tr>
+<tr class="alternate" style="display:none">
+<td>Ke - 10</td>
+<td>
+Kam, 30 Nov 2023 </td>
+<td>Sub-CPMK : Mampu menjelaskan konsep dan algoritma pada pembelajaran mesin (Machine Learning) (CPMK 2,5) Materi : • Penjelasan definisi Machine Learning • Penjelasan algoritma The Nearest Neighbor Method, Decision Tree Learning, The Naïve Bayes Classifier dan Clustering
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/PT1BTXgwaU14QURNd0VqTTFFelY=/" target="_blank">W152100012-10</a></td>
+<td>
+</td>
+</tr>
+<tr style="display:none">
+<td>Ke - 11</td>
+<td>
+Kam, 16 Nov 2023 </td>
+<td>Sub-CPMK : Mampu menjelaskan konsep dan fungsi algoritma Support Vector Machine dalam Kecerdasan Buatan (CPMK 2,5) Materi : • Penjelasan konsep dan fungsi algoritma Support Vector Machine (SVM) • Penjelasan Linier dan Non-Linier Classifier • Penjelasan generalisasi, Curse of Dimensionality dan Feasibility dalam SVM.
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/PT1RTXgwaU14QURNd0VqTTFFelY=/" target="_blank">W152100012-11</a></td>
+<td>
+</td>
+</tr>
+<tr class="alternate" style="display:none">
+<td>Ke - 12</td>
+<td>
+Kam, 23 Nov 2023 </td>
+<td>Sub-CPMK : Mampu menjelaskan konsep dan fungsi Deep Learning dalam Kecerdasan Buatan (CPMK 2,5) Materi : • Penjelasan konsep dan fungsi Deep Learning • Penjelasan perbedaan antara Machine Learning dengan Deep Learning.
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/PT1nTXgwaU14QURNd0VqTTFFelY=/" target="_blank">W152100012-12</a></td>
+<td>
+</td>
+</tr>
+<tr style="display:none">
+<td>Ke - 13</td>
+<td>
+Kam, 30 Nov 2023 </td>
+<td>Sub-CPMK : Mampu menjelaskan konsep dan fungsi Robotic Process Automation (RPA) dalam Kecerdasan Buatan (CPMK 2,4,5) Materi : • Penjelasan konsep dan fungsi Robotic Process Automation (RPA) • Penjelasan salah satu contoh algoritma RPA yang digunakan dalam kehidupan nyata.
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/PT13TXgwaU14QURNd0VqTTFFelY=/" target="_blank">W152100012-13</a></td>
+<td>
+</td>
+</tr>
+<tr class="alternate" style="display:none">
+<td>Ke - 14</td>
+<td>
+Kam, 7 Des 2023 </td>
+<td>Sub-CPMK : Mampu menjelaskan konsep dan fungsi Natural Language Processing (NLP) dalam Kecerdasan Buatan (CPMK 2,4,5) Materi : • Penjelasaan konsep dan teori outsourcing dan virtual teams • Penjelasan konsep dan fungsi Natural Language Processing (NLP) • Penjelasan salah satu contoh algoritma NLP yang digunakan dalam kehidupan nyata .
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/PT1BTngwaU14QURNd0VqTTFFelY=/" target="_blank">W152100012-14</a></td>
+<td>
+</td>
+</tr>
+<tr style="display:none">
+<td>Ke - 15</td>
+<td>
+Kam, 14 Des 2023 </td>
+<td>Sub-CPMK : Mampu menjelaskan dan memproyeksikan infrastruktur dalam membangun sebuah Kecerdasan Buatan (CPMK 1,4,5) Materi : • Definisi infrastruktur • Penjelasan The Future of Artificial Intelligence.
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/PT1RTngwaU14QURNd0VqTTFFelY=/" target="_blank">W152100012-15</a></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="tabs-3">
+<table class="table table-striped table-condensed">
+<thead>
+<tr class="sub-header">
+<th width="250">Komponen</th>
+<th width="80">Prosentase</th>
+<th width="70">Nilai</th>
+<th>&nbsp;</th>
+</tr>
+<tr>
+<td colspan="4">
+<span style="color:red">Nilai belum ada</span>
+</td>
+</tr>
+</thead>
+</table>
+</div>
+<div id="tabs-4">
+<p>
+<strong>Harap isi 2 (dua) kuisioner didalam tab menu kuliah dan tab menu ini.</strong><br>
+<ol type="1">
+<li>Isi form Realisasi Perkuliahan dosen di tab menu-kuliah di sebelah tab kuisioner ini</li>
+<li>
+Isi kuisioner kelas ini.
+<strong>
+<a href="https://sik-puslit.mercubuana.ac.id/form/kelas?kodekelas=314746">Link kuisioner kelas.</a></strong>
+</li>
+</ol>
+</p>
+</div>
+</td>
+</tr>
+<tr id="314949" class="sub-header">
+<th colspan="2">
+<div style="float:left">P152110001 - ALGORITMA LANJUT (1A3154BC) -
+<strong> Tatap muka </strong>
+<br>
+</div>
+<div style="float:right">
+Kamis, 10:15 - 12:45 <a href="#" onclick="if (!window.__cfRLUnblockHandlers) return false; alertURL();" title="Lihat Ruang" data-cf-modified-9f67deca590fc74245d74c68-><img src="/application/akad/assets/images/map.png" alt="Maps" width="25" height="25" />@ T-001</a> </div>
+</th>
+</tr>
+<tr>
+<td style="padding-bottom:20px;width:250px">
+<div id="container_absen_4" style="width:250px;height:200px"></div>
+</td>
+<td>
+<div id="tabs">
+<ul>
+<li><a href="#tabs-1">Absensi</a></li>
+<li><a href="#tabs-2">Kuliah / Kuisioner Kuliah</a></li>
+<li><a href="#tabs-3">Nilai</a></li>
+<li><a href="#tabs-4">Kuisioner</a></li>
+</ul>
+<div id="tabs-1">
+<table class="table table-striped table-condensed">
+<thead>
+<tr class="sub-header">
+<th width="20">1</th>
+<th width="20">2</th>
+<th width="20">3</th>
+<th width="20">4</th>
+<th width="20">5</th>
+<th width="20">6</th>
+<th width="20">7</th>
+<th width="20">8</th>
+<th width="20">9</th>
+<th width="20">10</th>
+<th width="20">11</th>
+<th width="20">12</th>
+<th width="20">13</th>
+<th>&nbsp;</th>
+</tr>
+<tr class="sub-header">
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>&nbsp;</th>
+</tr>
+<tr class="sub-header">
+<th><sup>7</sup>&frasl;<sub>9</sub></th>
+<th><sup>14</sup>&frasl;<sub>9</sub></th>
+<th><sup>5</sup>&frasl;<sub>10</sub></th>
+<th><sup>12</sup>&frasl;<sub>10</sub></th>
+<th><sup>19</sup>&frasl;<sub>10</sub></th>
+<th><sup>26</sup>&frasl;<sub>10</sub></th>
+<th><sup>2</sup>&frasl;<sub>11</sub></th>
+<th><sup>9</sup>&frasl;<sub>11</sub></th>
+<th><sup>16</sup>&frasl;<sub>11</sub></th>
+<th><sup>23</sup>&frasl;<sub>11</sub></th>
+<th><sup>30</sup>&frasl;<sub>11</sub></th>
+<th><sup>6</sup>&frasl;<sub>12</sub></th>
+<th><sup>14</sup>&frasl;<sub>12</sub></th>
+<th>&nbsp;</th>
+</tr>
+<tr>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td colspan="16">
+</td>
+</tr>
+</thead>
+</table>
+</div>
+<div id="tabs-2">
+<table class="table table-striped table-condensed">
+<thead>
+<tr class="sub-header">
+<th width="50">Materi</th>
+<th width="120">Tanggal</th>
+<th>Materi</th>
+<th width="80">Download</th>
+<th width="80">Kuisioner</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td colspan="5">Tidak ada catatan materi perkuliahan mendatang</td>
+</tr>
+<tr>
+<td colspan="5"><a href="javascript:void(0)" onclick="if (!window.__cfRLUnblockHandlers) return false; showKuliahLalu(this)" style="color:#0088CC" data-cf-modified-9f67deca590fc74245d74c68->Tampilkan perkuliahan yang sudah berlalu dan Isi Kuisioner</a></td>
+</tr>
+<tr class="sub-header" style="display:none">
+<th colspan="5">Perkuliahan yang sudah berlalu</th>
+</tr>
+<tr style="display:none">
+<td>Ke - 1</td>
+<td>
+Kam, 7 Sep 2023 </td>
+<td>Sub-CPMK : Mampu menjelaskan Terminologi Algoritma. Materi : • Penjelasan Silabus • Penjelasan konsep algoritma • Introduction, Syllabus • Overview Python overview, Colab overview • Etika, Profesionalisme dan sustainability
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/eDBTTXdBRE14RWpNMUVEVQ==/" target="_blank">P152110001-1</a></td>
+<td>
+</td>
+</tr>
+<tr class="alternate" style="display:none">
+<td>Ke - 2</td>
+<td>
+Kam, 14 Sep 2023 </td>
+<td>Sub-CPMK : Mampu memahami, menganalisis dan menerapkan algoritma sekuential. Materi : • Penjelasan dan Penerapan algoritma • Penjelasan studi kasus.
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/eTBTTXdBRE14RWpNMUVEVQ==/" target="_blank">P152110001-2</a></td>
+<td>
+</td>
+</tr>
+<tr style="display:none">
+<td>Ke - 3</td>
+<td>
+Kam, 5 Okt 2023 </td>
+<td>Sub-CPMK : Mampu menerapkan konsep algoritma sekuensial dalam aplikasi sederhana. Materi : • Penjelasan dan Penerapan algoritma • Penjelasan studi kasus
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/ejBTTXdBRE14RWpNMUVEVQ==/" target="_blank">P152110001-3</a></td>
+<td>
+</td>
+</tr>
+<tr class="alternate" style="display:none">
+<td>Ke - 4</td>
+<td>
+Kam, 12 Okt 2023 </td>
+<td>Sub-CPMK : Mampu memahami, menganalisis dan menerapkan algoritma perulangan. Materi : • Penjelasan dan Penerapan algoritma • Penjelasan studi kasus
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/MDBTTXdBRE14RWpNMUVEVQ==/" target="_blank">P152110001-4</a></td>
+<td>
+</td>
+</tr>
+<tr style="display:none">
+<td>Ke - 5</td>
+<td>
+Kam, 19 Okt 2023 </td>
+<td>Sub-CPMK : Mampu memahami menganalisa dan menerapkan algoritma pengurutan. Materi : • Penjelasan dan Penerapan algoritma • Penjelasan studi kasus
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/MTBTTXdBRE14RWpNMUVEVQ==/" target="_blank">P152110001-5</a></td>
+<td>
+</td>
+</tr>
+<tr class="alternate" style="display:none">
+<td>Ke - 6</td>
+<td>
+Kam, 26 Okt 2023 </td>
+<td>Sub-CPMK : Mampu memahami menganalisa dan menerapkan algoritma pencarian. Materi : • Penjelasan dan Penerapan algoritma • Penjelasan studi kasus
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/MjBTTXdBRE14RWpNMUVEVQ==/" target="_blank">P152110001-6</a></td>
+<td>
+</td>
+</tr>
+<tr style="display:none">
+<td>Ke - 7</td>
+<td>
+Kam, 2 Nov 2023 </td>
+<td>Sub-CPMK : Mampu memahami menganalisa dan menerapkan algoritma greedy. Materi : Penjelasan studi kasus dan pengembangannnya dalam aplikasi.
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/MzBTTXdBRE14RWpNMUVEVQ==/" target="_blank">P152110001-7</a></td>
+<td>
+<a href="javascript:void(0)" style="color:#FF0000" onclick="if (!window.__cfRLUnblockHandlers) return false; isiKuisioner('314949/7')" data-cf-modified-9f67deca590fc74245d74c68->Isi Kuisioner</a>
+</td>
+</tr>
+<tr class="alternate" style="display:none">
+<td>Ke - 8</td>
+<td>
+Kam, 9 Nov 2023 </td>
+<td>Sub-CPMK : Mampu menerapkan konsep algoritma yang telah di pelajari dalam bentuk aplikasi. Materi : • Penjelasan dan Penerapan algoritma • Penerapan aplikasi dalam algritma
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/NDBTTXdBRE14RWpNMUVEVQ==/" target="_blank">P152110001-8</a></td>
+<td>
+</td>
+</tr>
+<tr style="display:none">
+<td>Ke - 9</td>
+<td>
+Kam, 16 Nov 2023 </td>
+<td>Sub-CPMK : Mampu memahami menganalisa dan menerapkan konsep B-trees. Materi : • Penjelasan dan Penerapan algoritma • Penerapan aplikasi dalam algritma
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/NTBTTXdBRE14RWpNMUVEVQ==/" target="_blank">P152110001-9</a></td>
+<td>
+</td>
+</tr>
+<tr class="alternate" style="display:none">
+<td>Ke - 10</td>
+<td>
+Kam, 23 Nov 2023 </td>
+<td>Sub-CPMK : Mampu memilih dan Mampu memahami menganalisa dan menerapkan konsep Fibonanci Heaps. Materi : • Penjelasan dan Penerapan algoritma • Penerapan aplikasi dalam algritma
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/PT1BTXgwU013QURNeEVqTTFFRFU=/" target="_blank">P152110001-10</a></td>
+<td>
+</td>
+</tr>
+<tr style="display:none">
+<td>Ke - 11</td>
+<td>
+Kam, 30 Nov 2023 </td>
+<td>Sub-CPMK : Mampu memahami menganalisa konsep dasar Graph algoritms. Materi : • Penjelasan dan Penerapan algoritma • Penerapan aplikasi dalam algritma
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/PT1RTXgwU013QURNeEVqTTFFRFU=/" target="_blank">P152110001-11</a></td>
+<td>
+</td>
+</tr>
+<tr class="alternate" style="display:none">
+<td>Ke - 12</td>
+<td>
+Rab, 6 Des 2023 </td>
+<td>Sub-CPMK :. Mampu memahami menganalisa dan menerapkan konsep graph algoritm single source shorterst path. Materi : • Penjelasan dan Penerapan algoritma • Penerapan aplikasi dalam algritma
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/PT1nTXgwU013QURNeEVqTTFFRFU=/" target="_blank">P152110001-12</a></td>
+<td>
+</td>
+</tr>
+<tr style="display:none">
+<td>Ke - 13</td>
+<td>
+Kam, 14 Des 2023 </td>
+<td>Sub-CPMK : Mampu menerapkan konsep algoritma yang telah di pelajari dalam bentuk aplikasi. Materi : • Penjelasan dan Penerapan algoritma • Penerapan aplikasi dalam algritma
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/PT13TXgwU013QURNeEVqTTFFRFU=/" target="_blank">P152110001-13</a></td>
+<td>
+</td>
+</tr>
+<tr class="alternate" style="display:none">
+<td>Ke - 14</td>
+<td>
+Kam, 7 Des 2023 </td>
+<td>Sub-CPMK : Mampu memahami menganalisa dan menerapkan konsep String matching. Materi : • Penjelasan dan Penerapan algoritma • Penerapan aplikasi dalam algritma
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/PT1BTngwU013QURNeEVqTTFFRFU=/" target="_blank">P152110001-14</a></td>
+<td>
+</td>
+</tr>
+<tr style="display:none">
+<td>Ke - 15</td>
+<td>
+Kam, 14 Des 2023 </td>
+<td>Sub-CPMK : Mampu membuat laporan dan mempresentasikan algoritma program aplikasi. Materi : • Perencanaan dan pengelolaan tugas/ proyek yang efisien • Presentasi hasil laporan tertulis dan lisan.
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/PT1RTngwU013QURNeEVqTTFFRFU=/" target="_blank">P152110001-15</a></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="tabs-3">
+<table class="table table-striped table-condensed">
+<thead>
+<tr class="sub-header">
+<th width="250">Komponen</th>
+<th width="80">Prosentase</th>
+<th width="70">Nilai</th>
+<th>&nbsp;</th>
+</tr>
+<tr>
+<td colspan="4">
+<span style="color:red">Nilai belum ada</span>
+</td>
+</tr>
+</thead>
+</table>
+</div>
+<div id="tabs-4">
+<p>
+<strong>Harap isi 2 (dua) kuisioner didalam tab menu kuliah dan tab menu ini.</strong><br>
+<ol type="1">
+<li>Isi form Realisasi Perkuliahan dosen di tab menu-kuliah di sebelah tab kuisioner ini</li>
+<li>
+Isi kuisioner kelas ini.
+<strong>
+<a href="https://sik-puslit.mercubuana.ac.id/form/kelas?kodekelas=314949">Link kuisioner kelas.</a></strong>
+</li>
+</ol>
+</p>
+</div>
+</td>
+</tr>
+<tr id="314748" class="sub-header">
+<th colspan="2">
+<div style="float:left">P152110002 - PENGANTAR DATA SCIENCE (1A3154CB) -
+<strong> Tatap muka </strong>
+<br>
+</div>
+<div style="float:right">
+Kamis, 13:15 - 15:45 <a href="https://goo.gl/qz7qlG" target="_blank" title="Lihat Ruang"><img src="/application/akad/assets/images/map.png" alt="Maps" width="25" height="25" />@ D-402</a> </div>
+</th>
+</tr>
+<tr>
+<td style="padding-bottom:20px;width:250px">
+<div id="container_absen_5" style="width:250px;height:200px"></div>
+</td>
+<td>
+<div id="tabs">
+<ul>
+<li><a href="#tabs-1">Absensi</a></li>
+<li><a href="#tabs-2">Kuliah / Kuisioner Kuliah</a></li>
+<li><a href="#tabs-3">Nilai</a></li>
+<li><a href="#tabs-4">Kuisioner</a></li>
+</ul>
+<div id="tabs-1">
+<table class="table table-striped table-condensed">
+<thead>
+<tr class="sub-header">
+<th width="20">1</th>
+<th width="20">2</th>
+<th width="20">3</th>
+<th width="20">4</th>
+<th width="20">5</th>
+<th width="20">6</th>
+<th width="20">7</th>
+<th width="20">8</th>
+<th width="20">9</th>
+<th width="20">10</th>
+<th width="20">11</th>
+<th width="20">12</th>
+<th width="20">13</th>
+<th width="20">14</th>
+<th width="20">15</th>
+<th>&nbsp;</th>
+</tr>
+<tr class="sub-header">
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>&nbsp;</th>
+</tr>
+<tr class="sub-header">
+<th><sup>7</sup>&frasl;<sub>9</sub></th>
+<th><sup>14</sup>&frasl;<sub>9</sub></th>
+<th><sup>21</sup>&frasl;<sub>9</sub></th>
+<th><sup>5</sup>&frasl;<sub>10</sub></th>
+<th><sup>12</sup>&frasl;<sub>10</sub></th>
+<th><sup>19</sup>&frasl;<sub>10</sub></th>
+<th><sup>26</sup>&frasl;<sub>10</sub></th>
+<th><sup>2</sup>&frasl;<sub>11</sub></th>
+<th><sup>16</sup>&frasl;<sub>11</sub></th>
+<th><sup>23</sup>&frasl;<sub>11</sub></th>
+<th><sup>30</sup>&frasl;<sub>11</sub></th>
+<th><sup>7</sup>&frasl;<sub>12</sub></th>
+<th><sup>13</sup>&frasl;<sub>12</sub></th>
+<th><sup>14</sup>&frasl;<sub>12</sub></th>
+<th><sup>14</sup>&frasl;<sub>12</sub></th>
+<th>&nbsp;</th>
+</tr>
+<tr>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td colspan="16">
+</td>
+</tr>
+</thead>
+</table>
+</div>
+<div id="tabs-2">
+<table class="table table-striped table-condensed">
+<thead>
+<tr class="sub-header">
+<th width="50">Materi</th>
+<th width="120">Tanggal</th>
+<th>Materi</th>
+<th width="80">Download</th>
+<th width="80">Kuisioner</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td colspan="5">Tidak ada catatan materi perkuliahan mendatang</td>
+</tr>
+<tr>
+<td colspan="5"><a href="javascript:void(0)" onclick="if (!window.__cfRLUnblockHandlers) return false; showKuliahLalu(this)" style="color:#0088CC" data-cf-modified-9f67deca590fc74245d74c68->Tampilkan perkuliahan yang sudah berlalu dan Isi Kuisioner</a></td>
+</tr>
+<tr class="sub-header" style="display:none">
+<th colspan="5">Perkuliahan yang sudah berlalu</th>
+</tr>
+<tr style="display:none">
+<td>Ke - 1</td>
+<td>
+Kam, 7 Sep 2023 </td>
+<td>Sub-CPMK 1.1 Mampu memahami dan menjelaskan dasar-dasar data sains & (CPMK 1) | • Penjelasan Silabus • Penjelasan tentang kontrak perkuliahan
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/eDBpTXdBRE14RWpNMUVEVQ==/" target="_blank">P152110002-1</a></td>
+<td>
+</td>
+</tr>
+<tr class="alternate" style="display:none">
+<td>Ke - 2</td>
+<td>
+Kam, 14 Sep 2023 </td>
+<td>Sub-CPMK 1, 2 Mampu memahami dan menjelaskan, menganalisis definisi data sains (CPMK 1,2,3) | • Definis data sains dan tantangan saat ini
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/eTBpTXdBRE14RWpNMUVEVQ==/" target="_blank">P152110002-2</a></td>
+<td>
+</td>
+</tr>
+<tr style="display:none">
+<td>Ke - 3</td>
+<td>
+Kam, 21 Sep 2023 </td>
+<td>Sub-CPMK 1.2. 2.1, Mampu memahami dan menjelaskan pentingnya statistika dasar dan konsep data (CPMK 1,2,3) | • Mengimplementasikan konsep data • Menampilkan hasil
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/ejBpTXdBRE14RWpNMUVEVQ==/" target="_blank">P152110002-3</a></td>
+<td>
+</td>
+</tr>
+<tr class="alternate" style="display:none">
+<td>Ke - 4</td>
+<td>
+Kam, 5 Okt 2023 </td>
+<td>Sub-CPMK 2,4 • Mampu memahami dan menjelaskan batasan dari struktur data dan variabel data • Mampu memahami model statistik sederhana dan distribusi probabilistas | • Mengimplementasikan konsep struktur data dan variabel data
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/MDBpTXdBRE14RWpNMUVEVQ==/" target="_blank">P152110002-4</a></td>
+<td>
+</td>
+</tr>
+<tr style="display:none">
+<td>Ke - 5</td>
+<td>
+Kam, 12 Okt 2023 </td>
+<td>Sub-CPMK 1.3. 2.1., 31. Mampu memahami dan menjelaskan pemodelan statistik (CPMK 1,2,3) | • Mengimplementasikan masalah data • Mempelajari solusinya
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/MTBpTXdBRE14RWpNMUVEVQ==/" target="_blank">P152110002-5</a></td>
+<td>
+</td>
+</tr>
+<tr class="alternate" style="display:none">
+<td>Ke - 6</td>
+<td>
+Kam, 19 Okt 2023 </td>
+<td>Sub-CPMK 1.3. 2.1., 31. Mampu memahami dan menggunakan dasar-dasar Python (CPMK 1,2,3) | • Instalasi Python dan dasar-dasar Python
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/MjBpTXdBRE14RWpNMUVEVQ==/" target="_blank">P152110002-6</a></td>
+<td>
+</td>
+</tr>
+<tr style="display:none">
+<td>Ke - 7</td>
+<td>
+Kam, 26 Okt 2023 </td>
+<td>Sub-CPMK 1,2,3a,4 Mampu memahami dan menjelaskan Explanatory Data Analysis (EDA) | Mengimplementasikan konsep data modelling dan relationship
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/MzBpTXdBRE14RWpNMUVEVQ==/" target="_blank">P152110002-7</a></td>
+<td>
+</td>
+</tr>
+<tr class="alternate" style="display:none">
+<td>Ke - 8</td>
+<td>
+Kam, 2 Nov 2023 </td>
+<td>Sub-CPMK 2, 3a, 4 Mampu memahami dan menjeleskan dan memahami konsep Penggunaan Algoritma pada Aplikasi | Menjelaskan tentang statistik deskriptif | Menjelaskan tentang statistik deskriptif
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/NDBpTXdBRE14RWpNMUVEVQ==/" target="_blank">P152110002-8</a></td>
+<td>
+<a href="javascript:void(0)" style="color:#FF0000" onclick="if (!window.__cfRLUnblockHandlers) return false; isiKuisioner('314748/8')" data-cf-modified-9f67deca590fc74245d74c68->Isi Kuisioner</a>
+</td>
+</tr>
+<tr style="display:none">
+<td>Ke - 9</td>
+<td>
+Kam, 16 Nov 2023 </td>
+<td>Sub-CPMK 1,2,3,4,5,6. Mampu memahami dan menjeleskan dan memahami konsep Penggunaan Algoritma pada Aplikasi | • Mengimplementasikan konsep distribusi sampling
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/NTBpTXdBRE14RWpNMUVEVQ==/" target="_blank">P152110002-9</a></td>
+<td>
+</td>
+</tr>
+<tr class="alternate" style="display:none">
+<td>Ke - 10</td>
+<td>
+Kam, 23 Nov 2023 </td>
+<td>Sub-CPMK 1,2,3a,4 • Mampu memahami dan menjelaskan konsep dan teori tentang pemilihan fitur | • Menjelaskan pemahaman big data • Mengimplementasikan konsep big data dan statistik
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/PT1BTXgwaU13QURNeEVqTTFFRFU=/" target="_blank">P152110002-10</a></td>
+<td>
+</td>
+</tr>
+<tr style="display:none">
+<td>Ke - 11</td>
+<td>
+Kam, 30 Nov 2023 </td>
+<td>Sub-CPMK 1,2,3a,4 • Mampu memahami dan melakukan pengambilan data • Mampu melakukan proses clustering, partisi dan klasifikasi data | • Menjelaskan pemahaman regresi linear
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/PT1RTXgwaU13QURNeEVqTTFFRFU=/" target="_blank">P152110002-11</a></td>
+<td>
+</td>
+</tr>
+<tr class="alternate" style="display:none">
+<td>Ke - 12</td>
+<td>
+Kam, 7 Des 2023 </td>
+<td>Sub-CPMK 1,2,3a,4 • Mampu memahami dan menjelaskan tentang analisis cluster | • Menjelaskan pemahaman analisis cluster
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/PT1nTXgwaU13QURNeEVqTTFFRFU=/" target="_blank">P152110002-12</a></td>
+<td>
+</td>
+</tr>
+<tr style="display:none">
+<td>Ke - 13</td>
+<td>
+Rab, 13 Des 2023 </td>
+<td>Sub-CPMK 1,2,3a,4 • Mampu memahami dan menjelaskan konsep analisis klasifikasi • Mampu memahami dan menjelaskan konsep analysis teks | • Menjelaskan pemahaman analysis klasifikasi
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/PT13TXgwaU13QURNeEVqTTFFRFU=/" target="_blank">P152110002-13</a></td>
+<td>
+</td>
+</tr>
+<tr class="alternate" style="display:none">
+<td>Ke - 14</td>
+<td>
+Kam, 14 Des 2023 </td>
+<td>Sub-CPMK 1,2,3a,4 • Mampu memahami dan menjelaskan konsep visualisasi data | • Menjelaskan pemahaman analysis teks
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/PT1BTngwaU13QURNeEVqTTFFRFU=/" target="_blank">P152110002-14</a></td>
+<td>
+</td>
+</tr>
+<tr style="display:none">
+<td>Ke - 15</td>
+<td>
+Kam, 14 Des 2023 </td>
+<td>Sub-CPMK 5. Mampu bekerjasama dalam kelompok dan mengerjakan proyek mengenai issue-issue yang relevan dengan data sains (CPMK 5) | • Perencanaan dan pengelolaan tugas/ proyek yang efisien • Presentasi hasil laporan tertulis dan lisan.
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/PT1RTngwaU13QURNeEVqTTFFRFU=/" target="_blank">P152110002-15</a></td>
+<td>
+<a href="javascript:void(0)" style="color:#FF0000" onclick="if (!window.__cfRLUnblockHandlers) return false; isiKuisioner('314748/15')" data-cf-modified-9f67deca590fc74245d74c68->Isi Kuisioner</a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="tabs-3">
+<table class="table table-striped table-condensed">
+<thead>
+<tr class="sub-header">
+<th width="250">Komponen</th>
+<th width="80">Prosentase</th>
+<th width="70">Nilai</th>
+<th>&nbsp;</th>
+</tr>
+<tr>
+<td colspan="4">
+<span style="color:red">Nilai belum ada</span>
+</td>
+</tr>
+</thead>
+</table>
+</div>
+<div id="tabs-4">
+<p>
+<strong>Harap isi 2 (dua) kuisioner didalam tab menu kuliah dan tab menu ini.</strong><br>
+<ol type="1">
+<li>Isi form Realisasi Perkuliahan dosen di tab menu-kuliah di sebelah tab kuisioner ini</li>
+<li>
+Isi kuisioner kelas ini.
+<strong>
+<a href="https://sik-puslit.mercubuana.ac.id/form/kelas?kodekelas=314748">Link kuisioner kelas.</a></strong>
+</li>
+</ol>
+</p>
+</div>
+</td>
+</tr>
+<tr id="314754" class="sub-header">
+<th colspan="2">
+<div style="float:left">W152100011 - SISTEM OPERASI (1A3155AC) -
+<strong> Tatap muka </strong>
+<br>
+</div>
+<div style="float:right">
+Jumat, 07:30 - 10:00 <a href="https://goo.gl/3FJ7hM" target="_blank" title="Lihat Ruang"><img src="/application/akad/assets/images/map.png" alt="Maps" width="25" height="25" />@ A-402</a> </div>
+</th>
+</tr>
+<tr>
+<td style="padding-bottom:20px;width:250px">
+<div id="container_absen_6" style="width:250px;height:200px"></div>
+</td>
+<td>
+<div id="tabs">
+<ul>
+<li><a href="#tabs-1">Absensi</a></li>
+<li><a href="#tabs-2">Kuliah / Kuisioner Kuliah</a></li>
+<li><a href="#tabs-3">Nilai</a></li>
+<li><a href="#tabs-4">Kuisioner</a></li>
+</ul>
+<div id="tabs-1">
+<table class="table table-striped table-condensed">
+<thead>
+<tr class="sub-header">
+<th width="20">1</th>
+<th width="20">2</th>
+<th width="20">3</th>
+<th width="20">4</th>
+<th width="20">5</th>
+<th width="20">6</th>
+<th width="20">7</th>
+<th width="20">8</th>
+<th width="20">9</th>
+<th width="20">10</th>
+<th width="20">11</th>
+<th width="20">12</th>
+<th width="20">13</th>
+<th width="20">14</th>
+<th width="20">15</th>
+<th>&nbsp;</th>
+</tr>
+<tr class="sub-header">
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>&nbsp;</th>
+</tr>
+<tr class="sub-header">
+<th><sup>8</sup>&frasl;<sub>9</sub></th>
+<th><sup>15</sup>&frasl;<sub>9</sub></th>
+<th><sup>29</sup>&frasl;<sub>9</sub></th>
+<th><sup>6</sup>&frasl;<sub>10</sub></th>
+<th><sup>13</sup>&frasl;<sub>10</sub></th>
+<th><sup>20</sup>&frasl;<sub>10</sub></th>
+<th><sup>23</sup>&frasl;<sub>10</sub></th>
+<th><sup>27</sup>&frasl;<sub>10</sub></th>
+<th><sup>3</sup>&frasl;<sub>11</sub></th>
+<th><sup>10</sup>&frasl;<sub>11</sub></th>
+<th><sup>17</sup>&frasl;<sub>11</sub></th>
+<th><sup>24</sup>&frasl;<sub>11</sub></th>
+<th><sup>1</sup>&frasl;<sub>12</sub></th>
+<th><sup>8</sup>&frasl;<sub>12</sub></th>
+<th><sup>15</sup>&frasl;<sub>12</sub></th>
+<th>&nbsp;</th>
+</tr>
+<tr>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td colspan="16">
+</td>
+</tr>
+</thead>
+</table>
+</div>
+<div id="tabs-2">
+<table class="table table-striped table-condensed">
+<thead>
+<tr class="sub-header">
+<th width="50">Materi</th>
+<th width="120">Tanggal</th>
+<th>Materi</th>
+<th width="80">Download</th>
+<th width="80">Kuisioner</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td colspan="5">Tidak ada catatan materi perkuliahan mendatang</td>
+</tr>
+<tr>
+<td colspan="5"><a href="javascript:void(0)" onclick="if (!window.__cfRLUnblockHandlers) return false; showKuliahLalu(this)" style="color:#0088CC" data-cf-modified-9f67deca590fc74245d74c68->Tampilkan perkuliahan yang sudah berlalu dan Isi Kuisioner</a></td>
+</tr>
+<tr class="sub-header" style="display:none">
+<th colspan="5">Perkuliahan yang sudah berlalu</th>
+</tr>
+<tr style="display:none">
+<td>Ke - 1</td>
+<td>
+Jum, 8 Sep 2023 </td>
+<td>Sub-CPMK 1.1 Memahami dan dapat menjelaskan pentingnya kontribusi sistem operasi dalam memelihara kelangsungan sistem komputer secara keseluruhan (CPMK 1) | Materi : • Konsep dasar sistem operasi • Evolusi sistem operasi • Jenis-jenis sistem operasi: Linux, Windows, dan Unix
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/eDBTTXhBRE13RWpNMUV6Vg==/" target="_blank">W152100011-1</a></td>
+<td>
+</td>
+</tr>
+<tr class="alternate" style="display:none">
+<td>Ke - 2</td>
+<td>
+Jum, 15 Sep 2023 </td>
+<td>Sub-CPMK 1.2 Memahami dan dapat menjelaskan konsep dan arsitektur sistem komputer (CPMK 1) | Materi : • Organisasi sistem komputer • Arsitektur sistem komputer • Struktur sistem komputer
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/eTBTTXhBRE13RWpNMUV6Vg==/" target="_blank">W152100011-2</a></td>
+<td>
+</td>
+</tr>
+<tr style="display:none">
+<td>Ke - 3</td>
+<td>
+Jum, 29 Sep 2023 </td>
+<td>Sub-CPMK 2.1 Memahai dan dapat menjelaskan deskripsi dan kendali proses, bagaimana proses direpresentasikan dalam sistem operasi (CPMK 2) | Materi : • Manajemen proses dan interproses komunikasi • Terminasi proses • Tahapan elemen proses • Proses control block
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/ejBTTXhBRE13RWpNMUV6Vg==/" target="_blank">W152100011-3</a></td>
+<td>
+</td>
+</tr>
+<tr class="alternate" style="display:none">
+<td>Ke - 4</td>
+<td>
+Jum, 6 Okt 2023 </td>
+<td>Sub-CPMK 2.2 Memahami dan dapat menjelaskan konsep dasar proses, thread, symetric multiprocessing dan mikrokernel (CPMK 2) | Materi : • Konsep thread • Symatic multiprocessing • microkernel
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/MDBTTXhBRE13RWpNMUV6Vg==/" target="_blank">W152100011-4</a></td>
+<td>
+</td>
+</tr>
+<tr style="display:none">
+<td>Ke - 5</td>
+<td>
+Jum, 13 Okt 2023 </td>
+<td>Sub-CPMK 3.1 Memahami proses penjadwalan prosesor dan berbagai algoritma penjadwalan (CPMK 3) | Materi : • Konsep penjadwalan • Algoritma penjadwalan: FIFO, Short Job Next, Round Robin, dan Ratio Priority
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/MTBTTXhBRE13RWpNMUV6Vg==/" target="_blank">W152100011-5</a></td>
+<td>
+<a href="javascript:void(0)" style="color:#FF0000" onclick="if (!window.__cfRLUnblockHandlers) return false; isiKuisioner('314754/5')" data-cf-modified-9f67deca590fc74245d74c68->Isi Kuisioner</a>
+</td>
+</tr>
+<tr class="alternate" style="display:none">
+<td>Ke - 6</td>
+<td>
+Jum, 20 Okt 2023 </td>
+<td>Sub-CPMK 3.2 Memahami dan dapat menjelaskan konsep konkurensi, interaksi proses, sinkronisasi (CPMK 3) | Materi : • Konsep sinkronisasi • Mutual exclusion • Critical section
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/MjBTTXhBRE13RWpNMUV6Vg==/" target="_blank">W152100011-6</a></td>
+<td>
+</td>
+</tr>
+<tr style="display:none">
+<td>Ke - 7</td>
+<td>
+Sen, 23 Okt 2023 </td>
+<td>Sub-CPMK 3.3 Memahami dan dapat menjelaskan konsep deadlock dan starvasion (CPMK 3) | Materi : • Deadlock • Starvasion • Pencegahan deadlock
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/MzBTTXhBRE13RWpNMUV6Vg==/" target="_blank">W152100011-7</a></td>
+<td>
+</td>
+</tr>
+<tr class="alternate" style="display:none">
+<td>Ke - 8</td>
+<td>
+Jum, 27 Okt 2023 </td>
+<td>Sub-CPMK 3.4 Review Materi (CPMK 1,2,3,4) | Materi : • Review materi
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/NDBTTXhBRE13RWpNMUV6Vg==/" target="_blank">W152100011-8</a></td>
+<td>
+</td>
+</tr>
+<tr style="display:none">
+<td>Ke - 9</td>
+<td>
+Jum, 3 Nov 2023 </td>
+<td>Sub-CPMK 4.1 Memahami dan menjelaskan manajemen memory (CPMK 4) | Materi : • Jenis-jenis memory • Fungsi memory • Penggunaan memory • Teknik alokasi memory
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/NTBTTXhBRE13RWpNMUV6Vg==/" target="_blank">W152100011-9</a></td>
+<td>
+</td>
+</tr>
+<tr class="alternate" style="display:none">
+<td>Ke - 10</td>
+<td>
+Jum, 10 Nov 2023 </td>
+<td>Sub-CPMK 4.2 Memahami dan menjelaskan penggunaan virtual memory (CPMK 4) | Materi : • Overlay • Virtual Memory: prinsip virtual memory dan implementasi virtual memory
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/PT1BTXgwU014QURNd0VqTTFFelY=/" target="_blank">W152100011-10</a></td>
+<td>
+</td>
+</tr>
+<tr style="display:none">
+<td>Ke - 11</td>
+<td>
+Jum, 17 Nov 2023 </td>
+<td>Sub-CPMK 5.1 Memahami dan menjelaskan prinsip kerja berbagai sistem input/output yang digunakan oleh perangkat lunak dan keras (CPMK 5) | Materi : • Input/Output hardware • Input/Output software
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/PT1RTXgwU014QURNd0VqTTFFelY=/" target="_blank">W152100011-11</a></td>
+<td>
+<a href="javascript:void(0)" style="color:#FF0000" onclick="if (!window.__cfRLUnblockHandlers) return false; isiKuisioner('314754/11')" data-cf-modified-9f67deca590fc74245d74c68->Isi Kuisioner</a>
+</td>
+</tr>
+<tr class="alternate" style="display:none">
+<td>Ke - 12</td>
+<td>
+Jum, 24 Nov 2023 </td>
+<td>Sub-CPMK 6.1 Memahami dan menjelaskan konsep sistem berkas (file system) dan alokasi sistem berkas (CPMK 6) | Materi : • Sistem Berkas (File System) • Alokasi Sistem Berkas
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/PT1nTXgwU014QURNd0VqTTFFelY=/" target="_blank">W152100011-12</a></td>
+<td>
+</td>
+</tr>
+<tr style="display:none">
+<td>Ke - 13</td>
+<td>
+Jum, 1 Des 2023 </td>
+<td>Sub-CPMK 7.1 Memahami dan menjelaskan melindungi komputer dari jenis ancaman (CPMK 7) | Materi : • Proteksi dan keamanan • Jenis-jenis ancaman
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/PT13TXgwU014QURNd0VqTTFFelY=/" target="_blank">W152100011-13</a></td>
+<td>
+</td>
+</tr>
+<tr class="alternate" style="display:none">
+<td>Ke - 14</td>
+<td>
+Jum, 8 Des 2023 </td>
+<td>Sub-CPMK 7.2 Memahami dan menjelaskan model proteksi dari ancaman (CPMK 7) | Materi : • Model proteksi • Jenis-jenis tools proteksi
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/PT1BTngwU014QURNd0VqTTFFelY=/" target="_blank">W152100011-14</a></td>
+<td>
+</td>
+</tr>
+<tr style="display:none">
+<td>Ke - 15</td>
+<td>
+Jum, 15 Des 2023 </td>
+<td>Sub-CPMK 7.2 Memahami dan menjelaskan model proteksi dari ancaman (CPMK 7) | Materi : • Model proteksi • Jenis-jenis tools proteksi
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/PT1RTngwU014QURNd0VqTTFFelY=/" target="_blank">W152100011-15</a></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="tabs-3">
+<table class="table table-striped table-condensed">
+<thead>
+<tr class="sub-header">
+<th width="250">Komponen</th>
+<th width="80">Prosentase</th>
+<th width="70">Nilai</th>
+<th>&nbsp;</th>
+</tr>
+<tr>
+<td colspan="4">
+<span style="color:red">Nilai belum ada</span>
+</td>
+</tr>
+</thead>
+</table>
+</div>
+<div id="tabs-4">
+<p>
+<strong>Harap isi 2 (dua) kuisioner didalam tab menu kuliah dan tab menu ini.</strong><br>
+<ol type="1">
+<li>Isi form Realisasi Perkuliahan dosen di tab menu-kuliah di sebelah tab kuisioner ini</li>
+<li>
+Isi kuisioner kelas ini.
+<strong>
+<a href="https://sik-puslit.mercubuana.ac.id/form/kelas?kodekelas=314754">Link kuisioner kelas.</a></strong>
+</li>
+</ol>
+</p>
+</div>
+</td>
+</tr>
+<tr id="314858" class="sub-header">
+<th colspan="2">
+<div style="float:left">U002100011 - KEWIRAUSAHAAN I (1A5155CA) -
+<strong> Tatap muka </strong>
+<br>
+</div>
+<div style="float:right">
+Jumat, 14:00 - 15:40 <a href="https://goo.gl/qz7qlG" target="_blank" title="Lihat Ruang"><img src="/application/akad/assets/images/map.png" alt="Maps" width="25" height="25" />@ D-402</a> </div>
+</th>
+</tr>
+<tr>
+<td style="padding-bottom:20px;width:250px">
+<div id="container_absen_7" style="width:250px;height:200px"></div>
+</td>
+<td>
+<div id="tabs">
+<ul>
+<li><a href="#tabs-1">Absensi</a></li>
+<li><a href="#tabs-2">Kuliah / Kuisioner Kuliah</a></li>
+<li><a href="#tabs-3">Nilai</a></li>
+<li><a href="#tabs-4">Kuisioner</a></li>
+</ul>
+<div id="tabs-1">
+<table class="table table-striped table-condensed">
+<thead>
+<tr class="sub-header">
+<th width="20">1</th>
+<th width="20">2</th>
+<th width="20">3</th>
+<th width="20">4</th>
+<th width="20">5</th>
+<th width="20">6</th>
+<th width="20">7</th>
+<th width="20">8</th>
+<th width="20">9</th>
+<th width="20">10</th>
+<th width="20">11</th>
+<th width="20">12</th>
+<th width="20">13</th>
+<th width="20">14</th>
+<th>&nbsp;</th>
+</tr>
+<tr class="sub-header">
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>K</th>
+<th>&nbsp;</th>
+</tr>
+<tr class="sub-header">
+<th><sup>8</sup>&frasl;<sub>9</sub></th>
+<th><sup>15</sup>&frasl;<sub>9</sub></th>
+<th><sup>22</sup>&frasl;<sub>9</sub></th>
+<th><sup>29</sup>&frasl;<sub>9</sub></th>
+<th><sup>6</sup>&frasl;<sub>10</sub></th>
+<th><sup>13</sup>&frasl;<sub>10</sub></th>
+<th><sup>20</sup>&frasl;<sub>10</sub></th>
+<th><sup>3</sup>&frasl;<sub>11</sub></th>
+<th><sup>10</sup>&frasl;<sub>11</sub></th>
+<th><sup>17</sup>&frasl;<sub>11</sub></th>
+<th><sup>24</sup>&frasl;<sub>11</sub></th>
+<th><sup>1</sup>&frasl;<sub>12</sub></th>
+<th><sup>8</sup>&frasl;<sub>12</sub></th>
+<th><sup>15</sup>&frasl;<sub>12</sub></th>
+<th>&nbsp;</th>
+</tr>
+<tr>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td><img src="https://sia.mercubuana.ac.id/application/akad/assets/images/check.png"></td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td colspan="16">
+</td>
+</tr>
+</thead>
+</table>
+</div>
+<div id="tabs-2">
+<table class="table table-striped table-condensed">
+<thead>
+<tr class="sub-header">
+<th width="50">Materi</th>
+<th width="120">Tanggal</th>
+<th>Materi</th>
+<th width="80">Download</th>
+<th width="80">Kuisioner</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td colspan="5">Tidak ada catatan materi perkuliahan mendatang</td>
+</tr>
+<tr>
+<td colspan="5"><a href="javascript:void(0)" onclick="if (!window.__cfRLUnblockHandlers) return false; showKuliahLalu(this)" style="color:#0088CC" data-cf-modified-9f67deca590fc74245d74c68->Tampilkan perkuliahan yang sudah berlalu dan Isi Kuisioner</a></td>
+</tr>
+<tr class="sub-header" style="display:none">
+<th colspan="5">Perkuliahan yang sudah berlalu</th>
+</tr>
+<tr style="display:none">
+<td>Ke - 1</td>
+<td>
+Jum, 8 Sep 2023 </td>
+<td>Mampu memahami pentingnya berwirausaha, makna dan hakikat, kerangka berfikir, dan kewirausahaan dari perspektif sejarah </td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/eDBTTXhBRE13RWpNd0FUVg==/" target="_blank">U002100011-1</a></td>
+<td>
+</td>
+</tr>
+<tr class="alternate" style="display:none">
+<td>Ke - 2</td>
+<td>
+Jum, 15 Sep 2023 </td>
+<td>Mampu mengetahui urgensi dan peran kewirausahaan, mengurai permasalahan dan kebutuhan global yang disesuaikan</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/eTBTTXhBRE13RWpNd0FUVg==/" target="_blank">U002100011-2</a></td>
+<td>
+</td>
+</tr>
+<tr style="display:none">
+<td>Ke - 3</td>
+<td>
+Jum, 22 Sep 2023 </td>
+<td>Mampu menemukan kesinambungan antara bakat, preference, dan kebutuhan global.</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/ejBTTXhBRE13RWpNd0FUVg==/" target="_blank">U002100011-3</a></td>
+<td>
+</td>
+</tr>
+<tr class="alternate" style="display:none">
+<td>Ke - 4</td>
+<td>
+Jum, 29 Sep 2023 </td>
+<td>Mampu dengan cepat dalam menghadirkan ide-ide kreatif dan inovatif sesuai dengan preferences, feasible dan reasonable. </td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/MDBTTXhBRE13RWpNd0FUVg==/" target="_blank">U002100011-4</a></td>
+<td>
+</td>
+</tr>
+<tr style="display:none">
+<td>Ke - 5</td>
+<td>
+Jum, 6 Okt 2023 </td>
+<td>Mampu memahami teori dasar kewirausahaan, menumbuhkan mental kepemimpinan, meningkatkan management skill, dan merumuskan strategy bisnis yang lengkap. </td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/MTBTTXhBRE13RWpNd0FUVg==/" target="_blank">U002100011-5</a></td>
+<td>
+</td>
+</tr>
+<tr class="alternate" style="display:none">
+<td>Ke - 6</td>
+<td>
+Jum, 13 Okt 2023 </td>
+<td>Mampu memahami teori dasar kewirausahaan, menumbuhkan mental kepemimpinan, meningkatkan management skill, dan merumuskan strategy bisnis yang lengkap.</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/MjBTTXhBRE13RWpNd0FUVg==/" target="_blank">U002100011-6</a></td>
+<td>
+</td>
+</tr>
+<tr style="display:none">
+<td>Ke - 7</td>
+<td>
+Jum, 20 Okt 2023 </td>
+<td>Mampu memahami teori dasar kewirausahaan, menumbuhkan mental kepemimpinan, meningkatkan management skill, dan merumuskan strategy bisnis yang lengkap.</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/MzBTTXhBRE13RWpNd0FUVg==/" target="_blank">U002100011-7</a></td>
+<td>
+</td>
+</tr>
+<tr class="alternate" style="display:none">
+<td>Ke - 8</td>
+<td>
+Jum, 3 Nov 2023 </td>
+<td>Mampu memahami teori dasar kewirausahaan, menumbuhkan mental kepemimpinan, meningkatkan management skill, dan merumuskan strategy bisnis yang lengkap.</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/NDBTTXhBRE13RWpNd0FUVg==/" target="_blank">U002100011-8</a></td>
+<td>
+</td>
+</tr>
+<tr style="display:none">
+<td>Ke - 9</td>
+<td>
+Jum, 10 Nov 2023 </td>
+<td>Mampu merancang ide bisnis yang kreatif, inovatif, feasible, reasonable, selaras dengan preferences, dan berpotensi besar untuk dikembangkan dimasa mendatang serta mampu menerapkan teori kewirausahaan.</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/NTBTTXhBRE13RWpNd0FUVg==/" target="_blank">U002100011-9</a></td>
+<td>
+<a href="javascript:void(0)" style="color:#FF0000" onclick="if (!window.__cfRLUnblockHandlers) return false; isiKuisioner('314858/9')" data-cf-modified-9f67deca590fc74245d74c68->Isi Kuisioner</a>
+</td>
+</tr>
+<tr class="alternate" style="display:none">
+<td>Ke - 10</td>
+<td>
+Jum, 17 Nov 2023 </td>
+<td>Mampu melakukan studi kelayakan, Analisa pada rancangan bisnis, menentukan goal, objective dan time management.
+</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/PT1BTXgwU014QURNd0VqTXdBVFY=/" target="_blank">U002100011-10</a></td>
+<td>
+</td>
+</tr>
+<tr style="display:none">
+<td>Ke - 11</td>
+<td>
+Jum, 24 Nov 2023 </td>
+<td>Mampu memahami jenis kepemilikan usaha, mempertimbangkan dan menentukan kepemilikan usaha rancangan.</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/PT1RTXgwU014QURNd0VqTXdBVFY=/" target="_blank">U002100011-11</a></td>
+<td>
+</td>
+</tr>
+<tr class="alternate" style="display:none">
+<td>Ke - 12</td>
+<td>
+Jum, 1 Des 2023 </td>
+<td>Mampu menerapkan konsep dasar dan jenis permodalan dalam merealisasikan rancangan bisnis</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/PT1nTXgwU014QURNd0VqTXdBVFY=/" target="_blank">U002100011-12</a></td>
+<td>
+</td>
+</tr>
+<tr style="display:none">
+<td>Ke - 13</td>
+<td>
+Jum, 8 Des 2023 </td>
+<td>Mampu menyusun proposal bisnis dan presentasi kepada investor secara lengkap (mencakup semua aspek yang dipelajari) dengan kelayakan yang tinggi dan menarik untuk direalisasikan bersama.</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/PT13TXgwU014QURNd0VqTXdBVFY=/" target="_blank">U002100011-13</a></td>
+<td>
+</td>
+</tr>
+<tr class="alternate" style="display:none">
+<td>Ke - 14</td>
+<td>
+Jum, 15 Des 2023 </td>
+<td>Mampu menyusun proposal bisnis dan presentasi kepada investor secara lengkap (mencakup semua aspek yang dipelajari) dengan kelayakan yang tinggi dan menarik untuk direalisasikan bersama.</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/PT1BTngwU014QURNd0VqTXdBVFY=/" target="_blank">U002100011-14</a></td>
+<td>
+</td>
+</tr>
+<tr style="display:none">
+<td>Ke - 15</td>
+<td>
+Jum, 15 Des 2023 </td>
+<td>REVIEW</td>
+<td>&nbsp;<a href="http://modul.mercubuana.ac.id/PT1RTngwU014QURNd0VqTXdBVFY=/" target="_blank">U002100011-15</a></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="tabs-3">
+<table class="table table-striped table-condensed">
+<thead>
+<tr class="sub-header">
+<th width="250">Komponen</th>
+<th width="80">Prosentase</th>
+<th width="70">Nilai</th>
+<th>&nbsp;</th>
+</tr>
+<tr>
+<td colspan="4">
+<span style="color:red">Nilai belum ada</span>
+</td>
+</tr>
+</thead>
+</table>
+</div>
+<div id="tabs-4">
+<p>
+<strong>Harap isi 2 (dua) kuisioner didalam tab menu kuliah dan tab menu ini.</strong><br>
+<ol type="1">
+<li>Isi form Realisasi Perkuliahan dosen di tab menu-kuliah di sebelah tab kuisioner ini</li>
+<li>
+Isi kuisioner kelas ini.
+<strong>
+<a href="https://sik-puslit.mercubuana.ac.id/form/kelas?kodekelas=314858">Link kuisioner kelas.</a></strong>
+</li>
+</ol>
+</p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<div style="clear:both"></div>
+</div>
+<script src="https://sia.mercubuana.ac.id/application/akad/assets//js/jquery/jquery.ui.datepicker.min.js" type="9f67deca590fc74245d74c68-text/javascript"></script>
+<script src="https://sia.mercubuana.ac.id/application/akad/assets//js/jquery/jquery.ui.datepicker-id.js" type="9f67deca590fc74245d74c68-text/javascript"></script>
+<script src="https://sia.mercubuana.ac.id/application/akad/assets//js/jquery/jquery.ui.autocomplete.min.js" type="9f67deca590fc74245d74c68-text/javascript"></script>
+<script src="https://sia.mercubuana.ac.id/application/akad/assets//js/jquery/jquery.ui.menu.min.js" type="9f67deca590fc74245d74c68-text/javascript"></script>
+<script src="https://sia.mercubuana.ac.id/application/akad/assets//js/jquery/jquery.ajax.js" type="9f67deca590fc74245d74c68-text/javascript"></script>
+<div id="div_modal" title="Isi Kuisioner Perkuliahan">
+<div class="green-unit">
+<table class="table table-condensed table-alert">
+<tr>
+<td width="110">Mata Kuliah</td>
+<td width="10" align="center">:</td>
+<td><span id="span_namamk"></span></td>
+</tr>
+<tr>
+<td>Dosen Pengajar</td>
+<td align="center">:</td>
+<td><span id="span_pengajar"></span></td>
+</tr>
+<tr>
+<td>Pertemuan</td>
+<td align="center">:</td>
+<td><span id="span_pertemuan"></span></td>
+</tr>
+</table>
+</div>
+<table class="table" id="table_form">
+<tbody>
+<tr class="alert-info">
+<td width="25%">&nbsp;</td>
+<td class="left_column">Rencana</td>
+</tr>
+<tr>
+<td class="left_column">Jadwal</td>
+<td id="jadwal"></td>
+</tr>
+<tr>
+<td class="left_column">Waktu</td>
+<td id="waktu"></td>
+</tr>
+<tr>
+<td class="left_column">Materi</td>
+<td id="materi"></td>
+</tr>
+<tr>
+<td class="left_column">Kegiatan</td>
+<td>
+<label class="checkbox" for="flag1" style="margin:0;padding:0">
+<img src="https://sia.mercubuana.ac.id/application/akad/assets//images/check.png"> Ceramah</label>
+<div style="height:5px"></div>
+<label class="checkbox" for="flag2" style="margin:0;padding:0">
+<img src="https://sia.mercubuana.ac.id/application/akad/assets//images/check.png"> Diskusi</label>
+<div style="height:5px"></div>
+<label class="checkbox" for="flag3" style="margin:0;padding:0">
+<img src="https://sia.mercubuana.ac.id/application/akad/assets//images/check.png"> Presentasi</label>
+<div style="height:5px"></div>
+<label class="checkbox" for="flag4" style="margin:0;padding:0">
+<img src="https://sia.mercubuana.ac.id/application/akad/assets//images/check.png"> Tanya Jawab</label>
+<div style="height:5px"></div>
+<label class="checkbox" for="flag5" style="margin:0;padding:0">
+<img src="https://sia.mercubuana.ac.id/application/akad/assets//images/check.png"> Kuis</label>
+<div style="height:5px"></div> </td>
+</tr>
+<tr>
+<td class="left_column">Prosentase Kesesuaian Materi</td>
+<td style="vertical-align: middle;">
+<input type="radio" name="statuskesesuain" maxlength="3" value="3" /> < 50 %
+<input type="radio" name="statuskesesuain" maxlength="3" value="2" /> 50 - 70 %
+<input type="radio" name="statuskesesuain" maxlength="3" value="1" /> > 70 %
+</td>
+</tr>
+</tbody>
+</table>
+<input type="hidden" id="key" name="key">
+<input type="hidden" id="act" name="act">
+<button type="button" title="Simpan Kuisioner" class="btn btn-small btn-primary" onclick="if (!window.__cfRLUnblockHandlers) return false; goSaveKuisioner()" data-cf-modified-9f67deca590fc74245d74c68-><i class="icon-ok icon-white"></i> Simpan Kuisioner</button><br><br>
+</div>
+<script type="9f67deca590fc74245d74c68-text/javascript">
+    $(document).ready(function() {
+        $("#div_modal").dialog({
+            autoOpen: false,
+            width: 700,
+            height: 600,
+            modal: true
+        });
+        
+        // harus create form on the fly
+        $("#div_modal").wrap('<form id="pop_form" method="post" action="https://sia.mercubuana.ac.id/akad.php/home"></form>');
+        $("#pop_form #backlink").val('home');
+    
+        $("#tglkuliah_format").datepicker({ dateFormat: "d MM yy", altField: "#tglkuliah", altFormat: "yy-mm-dd" });
+        $("#tglkuliahrealisasi_format").datepicker({ dateFormat: "d MM yy", altField: "#tglkuliahrealisasi", altFormat: "yy-mm-dd" });
+        
+        $("[id^='jammulairealisasi']").xhrAutoSelect("jammulai");
+        $("[id^='jamselesairealisasi']").xhrAutoSelect("jamselesai");
+    });
+    
+    function isiKuisioner(kode) {
+        // untuk penyimpanan
+        $("#pop_form #key").val(kode);
+        $("#pop_form #act").val("savekuisioner");
+        
+        resetForm();
+        
+        var ajaxurl = g_abs_url + "akad.php/ajax/kuisioner/" + kode;
+        var ajaxtimeout = 20000;
+        
+        var jqxhr = $.ajax({
+            url: ajaxurl,
+            dataType: 'json',
+            timeout: ajaxtimeout
+        });
+        jqxhr.done(function(data) {
+            $("#span_namamk").html(data.namamk);
+            $("#span_pengajar").html(data.pengajar);
+            $("#span_pertemuan").html(data.pertemuan);
+            
+            $("#jadwal").html(data.jadwal);
+            $("#materi").html(data.materi);
+            $("#waktu").html(data.waktu);
+            
+            $("#div_modal").dialog("open");
+        });    
+    }
+    
+    function resetForm() {
+        $("#tglkuliahrealisasi_format").val('');
+        $("#tglkuliahrealisasi").val('');
+        $("#jammulairealisasi").val('');
+        $("#jamselesairealisasi").val('');
+        $("#statuskesesuain").val(1);
+    }
+    
+    function goSaveKuisioner() {
+        $("#pop_form").submit();
+    }
+</script><script type="9f67deca590fc74245d74c68-text/javascript">
+
+$(document).ready(function() {           
+  $("#div_modalpengumuman").dialog({
+      autoOpen: true,
+      width: 750,
+      height: 500,
+      modal: true
+  });
+	Highcharts.setOptions({
+		chart: {
+			borderWidth: 1,
+			type: 'gauge',
+			margin: 10,
+			plotBackgroundColor: null,
+			plotBorderWidth: null,
+			plotShadow: false
+		},
+		title: {
+			align: 'left',
+			text: 'Absensi',
+			style: {
+				fontSize: '14px'
+			}
+		},
+		pane: {
+			startAngle: -150,
+			endAngle: 150
+		},
+		yAxis: {
+			min: 0,
+			max: 100,
+			labels: {
+				style: {
+					fontSize: '11px'
+				}
+			},
+			plotBands: [{
+				from: 0,
+				to: 75,
+				color: '#DF5353' // red
+			}, {
+				from: 75,
+				to: 85,
+				color: '#DDDF0D' // yellow
+			}, {
+				from: 85,
+				to: 100,
+				color: '#55BF3B' // green
+			}]
+		},
+		plotOptions: {
+			gauge: {
+				dataLabels: {
+					y: 50,
+					borderWidth: 0,
+					style: {
+						fontSize: '13px'
+					}
+				}
+			}
+		},
+		series: [{
+			name: 'Persentase Absensi',
+			tooltip: {
+				valueSuffix: ' %'
+			}
+		}]
+	});
+	
+		var chart_absen_0 = new Highcharts.Chart({
+		chart: {
+			renderTo: 'container_absen_0'
+		},
+		series: [{
+			data: [100]
+		}]
+	});
+		var chart_absen_1 = new Highcharts.Chart({
+		chart: {
+			renderTo: 'container_absen_1'
+		},
+		series: [{
+			data: [100]
+		}]
+	});
+		var chart_absen_2 = new Highcharts.Chart({
+		chart: {
+			renderTo: 'container_absen_2'
+		},
+		series: [{
+			data: [100]
+		}]
+	});
+		var chart_absen_3 = new Highcharts.Chart({
+		chart: {
+			renderTo: 'container_absen_3'
+		},
+		series: [{
+			data: [100]
+		}]
+	});
+		var chart_absen_4 = new Highcharts.Chart({
+		chart: {
+			renderTo: 'container_absen_4'
+		},
+		series: [{
+			data: [100]
+		}]
+	});
+		var chart_absen_5 = new Highcharts.Chart({
+		chart: {
+			renderTo: 'container_absen_5'
+		},
+		series: [{
+			data: [100]
+		}]
+	});
+		var chart_absen_6 = new Highcharts.Chart({
+		chart: {
+			renderTo: 'container_absen_6'
+		},
+		series: [{
+			data: [100]
+		}]
+	});
+		var chart_absen_7 = new Highcharts.Chart({
+		chart: {
+			renderTo: 'container_absen_7'
+		},
+		series: [{
+			data: [100]
+		}]
+	});
+		
+	// karena banyak, nggak pakai #
+	$("[id='tabs']").tabs();
+});
+
+function showKuliahLalu(elem) {
+	var tr = $(elem).parents("tr:first");
+	
+	tr.hide();
+	tr.nextAll().show();
+}
+
+// tambah alert utk url map
+function alertURL() {
+    alert("Map Ruang D-402 belum tersedia");
+}
+
+</script>
+</div>
+</form>
+</div>
+<div class="footer-container">
+<div style="float: left;color: white;margin-right:10px">Teknik Informatika</div>
+<div style="text-align:left;color:#fff; width:50%; float:left;">
+Tahun Kurikulum Berlaku : 2021 &nbsp;&nbsp;||&nbsp;&nbsp; Periode : Gasal 2023</div>
+<div style="text-align:right;color:#fff;">
+
+
+Status: mahasiswa || Username : 41522010137
+|
+<a href="https://sia.mercubuana.ac.id/akad.php/logout" style="color:#EA0000;">Logout</a>
+</div>
+<script src="https://sia.mercubuana.ac.id/application/akad/assets/bootstrap/js/bootstrap-alert.js" type="9f67deca590fc74245d74c68-text/javascript"></script>
+</div>
+</div>
+<div id="div_waiting" style="padding:20px">
+Data sedang diproses,
+harap tunggu...
+</div>
+<script type="9f67deca590fc74245d74c68-text/javascript">
+	var g_abs_url = 'https://sia.mercubuana.ac.id/';
+	var g_assets_url = 'https://sia.mercubuana.ac.id/application/akad/assets/';
+	
+	$("#div_waiting").dialog({
+		autoOpen: false,
+		width: 200,
+		height: 100,
+		modal: true,
+		dialogClass: 'notitle'
+	});
+</script>
+<br/>
+<br/>
+Memory: 11.92MB<br/>Time: 0.1366
+<iframe style="display:none" src="https://sia.mercubuana.ac.id/gate.php/session"></iframe>
+<script src="/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="9f67deca590fc74245d74c68-|49" defer></script><script>(function(){var js = "window['__CF$cv$params']={r:'83762f31bab23f59',t:'MTcwMjg4OTcwMC40MDQwMDA='};_cpo=document.createElement('script');_cpo.nonce='',_cpo.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js',document.getElementsByTagName('head')[0].appendChild(_cpo);";var _0xh = document.createElement('iframe');_0xh.height = 1;_0xh.width = 1;_0xh.style.position = 'absolute';_0xh.style.top = 0;_0xh.style.left = 0;_0xh.style.border = 'none';_0xh.style.visibility = 'hidden';document.body.appendChild(_0xh);function handler() {var _0xi = _0xh.contentDocument || _0xh.contentWindow.document;if (_0xi) {var _0xj = _0xi.createElement('script');_0xj.innerHTML = js;_0xi.getElementsByTagName('head')[0].appendChild(_0xj);}}if (document.readyState !== 'loading') {handler();} else if (window.addEventListener) {document.addEventListener('DOMContentLoaded', handler);} else {var prev = document.onreadystatechange || function () {};document.onreadystatechange = function (e) {prev(e);if (document.readyState !== 'loading') {document.onreadystatechange = prev;handler();}};}})();</script><script defer src="https://static.cloudflareinsights.com/beacon.min.js/v84a3a4012de94ce1a686ba8c167c359c1696973893317" integrity="sha512-euoFGowhlaLqXsPWQ48qSkBSCFs3DPRyiwVu3FjR96cMPx+Fr+gpWRhIafcHwqwCqWS42RZhIudOvEI+Ckf6MA==" data-cf-beacon='{"rayId":"83762f31bab23f59","b":1,"version":"2023.10.0","token":"197bf7e1a0664e83a65af96c052692bd"}' crossorigin="anonymous"></script>
+</body>
+</html>
