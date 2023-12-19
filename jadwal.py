@@ -57,7 +57,8 @@ def get_matkul(soup_jadwal: BeautifulSoup):
     logging.info('Finished Getting Mata Kuliah')
     return matkul
 
-def get_jadwal(soup_jadwal: BeautifulSoup):
+def get_jadwal(jadwal_html: str):
+    soup_jadwal = BeautifulSoup(jadwal_html, features="lxml")
     periode = get_periode(soup_jadwal)
     matkul = get_matkul(soup_jadwal)
     

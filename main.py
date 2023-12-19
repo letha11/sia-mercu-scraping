@@ -122,7 +122,7 @@ with open("result_jadwal.html", "w") as f:
 
 soup_jadwal = BeautifulSoup(jadwal_result.text, features="lxml")
 
-for matkul in jd.get_jadwal(soup_jadwal)["mata_kuliah"]:
+for matkul in jd.get_jadwal(jadwal_result.text)["mata_kuliah"]:
     print(matkul["hari"])
 
 
