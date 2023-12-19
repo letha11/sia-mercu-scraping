@@ -7,8 +7,11 @@ from bs4 import BeautifulSoup
 
 # Local
 import jadwal as jd
+import home as hm
 
-logging.basicConfig(format='%(asctime)s : (%(levelname)s) : %(message)s', level=logging.DEBUG)
+logging.basicConfig(
+    format="%(asctime)s : (%(levelname)s) : %(message)s", level=logging.DEBUG
+)
 
 # 1. Check if phpsessid are null
 # 2. if yes then login and store the new phpsessid
@@ -36,7 +39,7 @@ session.headers[
 
 
 def login(username, password):
-    logging.info('Login in process')
+    logging.info("Login in process")
     global login_timestamp, expired_date, phpsessid
     login_url = "https://sia.mercubuana.ac.id/gate.php/login"
     login_timestamp = DT.datetime.now()
@@ -57,8 +60,7 @@ def login(username, password):
     with open("history.txt", "w") as f:
         f.write(str(data))
         f.close()
-    logging.info('Login Finished')
-
+    logging.info("Login Finished")
 
 
 # First time
@@ -86,11 +88,17 @@ else:
 cookie_jar = requests.cookies.cookiejar_from_dict({"PHPSESSID": phpsessid})
 home_result = session.get(url, cookies=cookie_jar)
 
-if home_result.status_code == 302 or home_result.url == 'https://sia.mercubuana.ac.id/gate.php/login':
+if (
+    home_result.status_code == 302
+    or home_result.url == "https://sia.mercubuana.ac.id/gate.php/login"
+):
     login(username, password)
-#
-with open("result_home.html", "w") as f:
-    f.write(home_result.text)
+    home_result = session.get(url, cookies=cookie_jar)
+    with open("result_home.html", "w") as f:
+        f.write(home_result.text)
+else:
+    with open("result_home.html", "w") as f:
+        f.write(home_result.text)
 
 jadwal_url = "https://sia.mercubuana.ac.id/akad.php/biomhs/jadwal"
 jadwal_result = session.post(
@@ -109,17 +117,14 @@ jadwal_result = session.post(
     cookies=cookie_jar,
 )
 
-# print(test.text)
 with open("result_jadwal.html", "w") as f:
     f.write(jadwal_result.text)
 
 soup_jadwal = BeautifulSoup(jadwal_result.text, features="lxml")
 
-for matkul in jd.get_jadwal(soup_jadwal)['mata_kuliah']:
-    print(matkul['hari'])
-# print(jd.get_jadwal(soup_jadwal))
-# print(soup_jadwal.prettify())
+for matkul in jd.get_jadwal(soup_jadwal)["mata_kuliah"]:
+    print(matkul["hari"])
 
 
-# print(test.)
-# print(cookie_jar)
+print(hm.scrape_home(home_result.text))
+

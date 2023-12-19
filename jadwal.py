@@ -1,5 +1,6 @@
 import logging
 from bs4 import BeautifulSoup
+from bs4.element import Tag
 
 def get_periode(soup_jadwal: BeautifulSoup):
     logging.info('Getting Periode')
@@ -36,7 +37,7 @@ def get_matkul(soup_jadwal: BeautifulSoup):
 
         content = [
             clean_nama_matkul(item)
-            if item.find("i") != None
+            if item.find("i") is not None
             else item.find("a").text.strip()
             if i == 6
             else item.text.strip()
