@@ -9,6 +9,11 @@
 2. Melihat absensi, materi, matkul, modul
 3. Cache (jika server SIA lagi down, nanti tetep bisa nampilin hanya saja jika ada update saat server SIA down, kita tidak bisa mendapatkan pembaruan tersebut hingga refresh)
 
+# Running this application locally
+```bash
+$ python app.py
+```
+
 # Response Example
 ## Jadwal
 ```json
