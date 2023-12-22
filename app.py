@@ -35,6 +35,7 @@ def login_route():
         username = data["username"]
         password = data["password"]
         result = pages.login(username=username, password=password)
+
         if result is None:
             return (
                 jsonify(
@@ -50,6 +51,7 @@ def login_route():
             {
                 "success": True,
                 "message": "Login success",
+                "token": result,
             }
         )
     except KeyError as error:
@@ -73,21 +75,34 @@ def login_route():
 
 @app.route("/jadwal", methods=["GET"])
 def jadwal():
-    username = request.args.get("username")
     periode_args = request.args.get("periode")
-
-    if username is None:
+    bearer = request.headers.get('Authorization')
+    if bearer is None :
         return (
             jsonify(
                 {
                     "success": False,
-                    "message": "You need to set the 'username' query",
+                    "message": "You need to log in first",
                 }
             ),
-            400,
+            401,
         )
 
-    result = pages.scrape_jadwal(username, periode_args or '')
+    bearer_splitted = bearer.split()
+    if len(bearer_splitted) < 1:
+        return (
+            jsonify(
+                {
+                    "success": False,
+                    "message": "You need to log in first",
+                }
+            ),
+            401,
+        )
+
+    token = bearer_splitted[1]
+
+    result = pages.scrape_jadwal(token, periode_args or '')
 
     if result is None:
         return (
@@ -113,23 +128,33 @@ def jadwal():
 
 @app.route("/home", methods=["GET"])
 def home():
-    username = request.args.get("username")
-
-    # if username is not in the phpsessid_storage 400
-    # if username is not set
-
-    if username is None:
+    bearer = request.headers.get('Authorization')
+    if bearer is None :
         return (
             jsonify(
                 {
                     "success": False,
-                    "message": "You need to set the 'username' query",
+                    "message": "You need to log in first",
                 }
             ),
-            400,
+            401,
         )
 
-    result = pages.scrape_home(username)
+    bearer_splitted = bearer.split()
+    if len(bearer_splitted) < 1:
+        return (
+            jsonify(
+                {
+                    "success": False,
+                    "message": "You need to log in first",
+                }
+            ),
+            401,
+        )
+
+    token = bearer_splitted[1]
+
+    result = pages.scrape_home(token)
     if result is None:
         return (
             jsonify(
@@ -152,4 +177,4 @@ def home():
     )
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()

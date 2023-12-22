@@ -4,6 +4,7 @@ import requests.cookies
 import logging
 import datetime as DT
 from bs4 import BeautifulSoup, NavigableString
+from uuid import uuid4
 
 from utils.constants import login_url, home_url, jadwal_url
 
@@ -17,8 +18,8 @@ class Pages:
     ) -> None:
         self.session = session
 
-    def scrape_jadwal(self, username: str, periode_args: str):
-        phpsessid = self.phpsessid_storage.get(username)
+    def scrape_jadwal(self, token: str, periode_args: str):
+        phpsessid = self.phpsessid_storage.get(token)
 
         # have not login
         if phpsessid is None:
@@ -80,8 +81,8 @@ class Pages:
             "mata_kuliah": matkul,
         }
 
-    def scrape_home(self, username: str):
-        phpsessid = self.phpsessid_storage.get(username)
+    def scrape_home(self, token: str):
+        phpsessid = self.phpsessid_storage.get(token)
 
         if phpsessid is None:
             return
@@ -159,7 +160,7 @@ class Pages:
 
         return mata_kuliah
 
-    def login(self, username, password) -> requests.Response | None:
+    def login(self, username, password) -> str | None:
         logging.info("Login in process")
         login_result = self.session.post(
             login_url, data={"act": "login", "username": username, "password": password}
@@ -168,10 +169,11 @@ class Pages:
         if login_result.url == login_url:
             return
 
-        self.phpsessid_storage[username] = self.session.cookies["PHPSESSID"]
+        unique_id = str(uuid4())
+        self.phpsessid_storage[unique_id] = self.session.cookies["PHPSESSID"]
         logging.info("Login Finished")
 
-        return login_result
+        return unique_id
 
     def __create_cookie_jar(self, phpsessid: str) -> requests.cookies.RequestsCookieJar:
         return requests.cookies.cookiejar_from_dict({"PHPSESSID": phpsessid})
@@ -186,4 +188,5 @@ class Pages:
         nama_matkul = " ".join(nama_matkul_clean)
 
         return nama_matkul
+
 
