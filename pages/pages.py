@@ -2,7 +2,7 @@ from typing import Any
 import requests
 import requests.cookies
 import logging
-import datetime as DT
+import dateparser
 from bs4 import BeautifulSoup, NavigableString
 from uuid import uuid4
 
@@ -37,7 +37,7 @@ class Pages:
         if jadwal_result.url == login_url:
             return
 
-        jadwal_parsed = BeautifulSoup(jadwal_result.text, features="lxml")
+        jadwal_parsed = BeautifulSoup(jadwal_result.text, 'lxml')
 
         periode = []
         periode_html = jadwal_parsed.find(id="periode")
@@ -94,7 +94,7 @@ class Pages:
         if home_result.url == login_url:
             return
 
-        home_parsed = BeautifulSoup(home_result.text, features="lxml")
+        home_parsed = BeautifulSoup(home_result.text, 'lxml')
 
         matkul_table = home_parsed.find("tbody")
         mata_kuliah = []
@@ -135,7 +135,8 @@ class Pages:
                     "pertemuan": int(
                         "".join([text for text in col_data[0] if text.isdigit()])
                     ),
-                    "tanggal": str(DT.datetime.strptime(col_data[1], "%a, %d %b %Y")),
+                    # "tanggal": str(.datetime.strptime(col_data[1], "%a, %d %b %Y")),
+                    "tanggal": dateparser.parse(col_data[1], languages=['id']),
                     "kehadiran": "Belum Dilaksanakan",
                     "materi": col_data[2],
                     "link_modul": col_data[3],

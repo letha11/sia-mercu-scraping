@@ -1,18 +1,19 @@
+# Sia Mercubuana Website Scraping
 
-# MVP - Backend
-1. Login
-2. get absensi
-3. Matkul
-
-# MVP - Frontend (Mobile)
-1. Login
-2. Melihat absensi, materi, matkul, modul
-3. Cache (jika server SIA lagi down, nanti tetep bisa nampilin hanya saja jika ada update saat server SIA down, kita tidak bisa mendapatkan pembaruan tersebut hingga refresh)
-
-# Running this application locally
+# Usage
+1. clone this repository
+```bash
+$ git clone 
+```
+2. Install all required packages
+```bash
+$ pip install -r requirements.txt
+```
+3. Start the app
 ```bash
 $ python app.py
 ```
+4. Visit http://localhost:5000/api
 
 # Response Example
 ## Jadwal
@@ -58,7 +59,7 @@ $ python app.py
 }
 ```
 
-## Home ? or Absen ?
+## Home
 ```json
 {
     'mata_kuliah': [

@@ -1,12 +1,8 @@
-import locale
 import requests
 import logging
 from flask import Flask, jsonify, request
 
 from pages.pages import Pages
-
-# For formatting date from string of indonesian locale date to datetime object
-locale.setlocale(locale.LC_TIME, "id_ID.utf8")
 
 logging.basicConfig(
     format="%(asctime)s : (%(levelname)s) : %(message)s", level=logging.DEBUG
