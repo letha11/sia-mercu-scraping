@@ -3,7 +3,7 @@
 # Usage
 1. clone this repository
 ```bash
-$ git clone 
+$ git clone https://github.com/letha11/sia-mercu-scraping.git
 ```
 2. Install all required packages
 ```bash
