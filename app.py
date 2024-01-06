@@ -1,6 +1,7 @@
 import requests
 import logging
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, Blueprint
+from flask_swagger_ui import get_swaggerui_blueprint
 
 from pages.pages import Pages
 
@@ -8,7 +9,23 @@ logging.basicConfig(
     format="%(asctime)s : (%(levelname)s) : %(message)s", level=logging.DEBUG
 )
 
+SWAGGER_URL = '' 
+API_URL = '/static/swagger.json' 
+
+swaggerui_blueprint = get_swaggerui_blueprint(
+    SWAGGER_URL,
+    API_URL,
+    config={ 
+        'app_name': "sia-scraping"
+    },
+)
+
+blueprint = Blueprint("api", __name__, url_prefix="/api")
+
 app = Flask(__name__)
+
+app.register_blueprint(swaggerui_blueprint)
+app.register_blueprint(blueprint)
 
 session = requests.session()
 session.headers[
@@ -17,13 +34,7 @@ session.headers[
 
 pages = Pages(session)
 
-
-@app.route("/")
-def root():
-    return "Scraping API!"
-
-
-@app.route("/login", methods=["POST"])
+@app.route("/api/login", methods=["POST"])
 def login_route():
     data = request.form
 
@@ -69,7 +80,7 @@ def login_route():
         )
 
 
-@app.route("/jadwal", methods=["GET"])
+@app.route("/api/jadwal", methods=["GET"])
 def jadwal():
     periode_args = request.args.get("periode")
     bearer = request.headers.get('Authorization')
@@ -122,7 +133,7 @@ def jadwal():
     )
 
 
-@app.route("/home", methods=["GET"])
+@app.route("/api/home", methods=["GET"])
 def home():
     bearer = request.headers.get('Authorization')
     if bearer is None :
