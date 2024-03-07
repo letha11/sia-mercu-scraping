@@ -8,6 +8,7 @@ from uuid import uuid4
 
 from utils.constants import login_url, home_url, jadwal_url
 
+
 class Pages:
     cookies_jar = None
     phpsessid_storage: dict[str, Any] = {}
@@ -37,7 +38,7 @@ class Pages:
         if jadwal_result.url == login_url:
             return
 
-        jadwal_parsed = BeautifulSoup(jadwal_result.text, 'lxml')
+        jadwal_parsed = BeautifulSoup(jadwal_result.text, "lxml")
 
         periode = []
         periode_html = jadwal_parsed.find(id="periode")
@@ -94,7 +95,7 @@ class Pages:
         if home_result.url == login_url:
             return
 
-        home_parsed = BeautifulSoup(home_result.text, 'lxml')
+        home_parsed = BeautifulSoup(home_result.text, "lxml")
 
         matkul_table = home_parsed.find("tbody")
         mata_kuliah = []
@@ -121,28 +122,28 @@ class Pages:
             absensi_image = absensi_table[-2].find_all("img")
 
             for i, kuliah_row in enumerate(
-                perkuliahan_table.find_all("tr", recursive=False)[3:]
+                perkuliahan_table.find_all("tr", recursive=False)
             ):
-                col_data = [
-                    item.text.strip()
-                    if item.find("a") is None
-                    else item.find("a")["href"]
-                    for item in kuliah_row.contents
-                    if type(item) is not NavigableString
-                ]
+                if len(kuliah_row.find_all("td")) >= 3:
+                    col_data = [
+                        item.text.strip()
+                        if item.find("a") is None
+                        else item.find("a")["href"]
+                        for item in kuliah_row.contents
+                        if type(item) is not NavigableString
+                    ]
 
-                result = {
-                    "pertemuan": int(
-                        "".join([text for text in col_data[0] if text.isdigit()])
-                    ),
-                    # "tanggal": str(.datetime.strptime(col_data[1], "%a, %d %b %Y")),
-                    "tanggal": dateparser.parse(col_data[1], languages=['id']),
-                    "kehadiran": "Belum Dilaksanakan",
-                    "materi": col_data[2],
-                    "link_modul": col_data[3],
-                }
+                    result = {
+                        "pertemuan": int(
+                            "".join([text for text in col_data[0] if text.isdigit()])
+                        ),
+                        "tanggal": dateparser.parse(col_data[1], languages=["id"]),
+                        "kehadiran": "Belum Dilaksanakan",
+                        "materi": col_data[2],
+                        "link_modul": col_data[3],
+                    }
 
-                perkuliahan.append(result)
+                    perkuliahan.append(result)
 
             for i, img in enumerate(absensi_image):
                 kehadiran = "Tidak Hadir"
@@ -189,5 +190,3 @@ class Pages:
         nama_matkul = " ".join(nama_matkul_clean)
 
         return nama_matkul
-
-
