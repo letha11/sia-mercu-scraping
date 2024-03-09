@@ -119,7 +119,13 @@ class Pages:
             absensi_table = (
                 rows_matkul_table[table_idx].find("div", id="tabs-1").find_all("tr")
             )
-            absensi_image = absensi_table[-2].find_all("img")
+            tr_pertemuan = [
+                th_tag.text
+                for th_tag in absensi_table[0].find_all("th")
+                if th_tag.text.strip()
+            ]
+            td_abseni_checkmark = absensi_table[-2].find_all("td")
+
 
             for i, kuliah_row in enumerate(
                 perkuliahan_table.find_all("tr", recursive=False)
@@ -133,25 +139,33 @@ class Pages:
                         if type(item) is not NavigableString
                     ]
 
+                    pertemuan = ""
+                    temp_pertemuan = ""
+
+                    for char in reversed(col_data[0]):
+                        if char.isdigit():
+                            temp_pertemuan += char
+                        else:
+                            break
+
+                    pertemuan = int(temp_pertemuan[::-1])
+
+                    kehadiran = "Belum Dilaksanakan"
+
+                    for i, pt in enumerate(tr_pertemuan):
+                        if pt == str(pertemuan):
+                            kehadiran = "Hadir" if td_abseni_checkmark[i].find("img") else "Tidak Hadir"
+                            break
+
                     result = {
-                        "pertemuan": int(
-                            "".join([text for text in col_data[0] if text.isdigit()])
-                        ),
+                        "pertemuan": pertemuan,
                         "tanggal": dateparser.parse(col_data[1], languages=["id"]),
-                        "kehadiran": "Belum Dilaksanakan",
+                        "kehadiran": kehadiran,
                         "materi": col_data[2],
                         "link_modul": col_data[3],
                     }
 
                     perkuliahan.append(result)
-
-            for i, img in enumerate(absensi_image):
-                kehadiran = "Tidak Hadir"
-
-                if img["src"].find("check") != -1:
-                    kehadiran = "Hadir"
-
-                    perkuliahan[i]["kehadiran"] = kehadiran
 
             mata_kuliah.append(
                 {
