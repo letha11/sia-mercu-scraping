@@ -1,26 +1,38 @@
-from typing import Any
 import requests
 import requests.cookies
 import logging
 import dateparser
-from bs4 import BeautifulSoup, NavigableString
-from uuid import uuid4
 
+from bs4 import BeautifulSoup, NavigableString
+from repository.user_repository import UserRepositoryImpl
+from utils.auth_helper import AuthHelper
 from utils.constants import login_url, home_url, jadwal_url
+from utils.jwt_service import JWT_Service
 
 
 class Pages:
     cookies_jar = None
-    phpsessid_storage: dict[str, Any] = {}
 
     def __init__(
         self,
         session: requests.Session,
+        jwt_service: JWT_Service,
+        user_repository: UserRepositoryImpl,
+        auth_helper: AuthHelper,
     ) -> None:
         self.session = session
+        self.jwt_service = jwt_service
+        self.user_repository = user_repository
+        self.auth_helper = auth_helper
 
     def scrape_jadwal(self, token: str, periode_args: str):
-        phpsessid = self.phpsessid_storage.get(token)
+        username = self.jwt_service.decode_token(token)["username"]
+        user = self.user_repository.get(username)
+
+        if user is None:
+            return
+
+        phpsessid = self.auth_helper.decrypt(user.phpsessid)
 
         # have not login
         if phpsessid is None:
@@ -34,9 +46,22 @@ class Pages:
             cookies=self.__create_cookie_jar(phpsessid),
         )
 
-        # have not login
+        # phpsessid expired
         if jadwal_result.url == login_url:
-            return
+            relog_result = self.__re_login(username, user.password)
+
+            # Something went wrong
+            if relog_result is None:
+                return
+
+            phpsessid = relog_result
+
+            # Re-try getting jadwal
+            jadwal_result = self.session.post(
+                jadwal_url,
+                data={"periode": periode_args},
+                cookies=self.__create_cookie_jar(phpsessid),
+            )
 
         jadwal_parsed = BeautifulSoup(jadwal_result.text, "lxml")
 
@@ -83,7 +108,13 @@ class Pages:
         }
 
     def scrape_home(self, token: str):
-        phpsessid = self.phpsessid_storage.get(token)
+        username = self.jwt_service.decode_token(token)["username"]
+        user = self.user_repository.get(username)
+
+        if user is None:
+            return
+
+        phpsessid = self.auth_helper.decrypt(user.phpsessid)
 
         if phpsessid is None:
             return
@@ -93,7 +124,18 @@ class Pages:
         )
 
         if home_result.url == login_url:
-            return
+            relog_result = self.__re_login(username, user.password)
+
+            # Something went wrong
+            if relog_result is None:
+                return
+
+            phpsessid = relog_result
+
+            # Re-try getting home
+            home_result = self.session.get(
+                home_url, cookies=self.__create_cookie_jar(phpsessid)
+            )
 
         home_parsed = BeautifulSoup(home_result.text, "lxml")
 
@@ -126,7 +168,6 @@ class Pages:
             ]
             td_abseni_checkmark = absensi_table[-2].find_all("td")
 
-
             for i, kuliah_row in enumerate(
                 perkuliahan_table.find_all("tr", recursive=False)
             ):
@@ -154,7 +195,11 @@ class Pages:
 
                     for i, pt in enumerate(tr_pertemuan):
                         if pt == str(pertemuan):
-                            kehadiran = "Hadir" if td_abseni_checkmark[i].find("img") else "Tidak Hadir"
+                            kehadiran = (
+                                "Hadir"
+                                if td_abseni_checkmark[i].find("img")
+                                else "Tidak Hadir"
+                            )
                             break
 
                     result = {
@@ -182,14 +227,47 @@ class Pages:
             login_url, data={"act": "login", "username": username, "password": password}
         )
 
+        # Wrong credentials
         if login_result.url == login_url:
             return
 
-        unique_id = str(uuid4())
-        self.phpsessid_storage[unique_id] = self.session.cookies["PHPSESSID"]
+        phpsessid = self.session.cookies["PHPSESSID"]
+
+        user = self.user_repository.get(username)
+
+        if user is None:
+            self.user_repository.save(username, password=password, PHPSESSID=phpsessid)
+        else:
+            self.user_repository.update(username, password=password, PHPSESSID=phpsessid)
+
+        token = self.jwt_service.generate_token({"username": username})
+
         logging.info("Login Finished")
 
-        return unique_id
+        return token
+
+    def __re_login(self, username, password) -> str | None:
+        logging.info("Re-Login in process")
+        login_result = self.session.post(
+            login_url,
+            data={
+                "act": "login",
+                "username": username,
+                "password": self.auth_helper.decrypt(password),
+            },
+        )
+
+        # Wrong credentials
+        if login_result.url == login_url:
+            return
+
+        phpsessid: str = self.session.cookies["PHPSESSID"]
+
+        self.user_repository.update(username, PHPSESSID=phpsessid)
+
+        logging.info("Re-Login Finished")
+
+        return phpsessid
 
     def __create_cookie_jar(self, phpsessid: str) -> requests.cookies.RequestsCookieJar:
         return requests.cookies.cookiejar_from_dict({"PHPSESSID": phpsessid})

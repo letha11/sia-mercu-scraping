@@ -1,23 +1,37 @@
 import requests
+import os
 import logging
-from flask import Flask, jsonify, request, Blueprint
-from flask_swagger_ui import get_swaggerui_blueprint
+import sqlalchemy
 
+from jwt.exceptions import (
+    ExpiredSignatureError,
+    InvalidSignatureError,
+    InvalidTokenError,
+)
+from flask import Flask,  jsonify, request, Blueprint
+from flask_swagger_ui import get_swaggerui_blueprint
+from sqlalchemy.orm import Session
+from models.base_model import Base
 from pages.pages import Pages
+from repository.user_repository import UserRepositoryImpl
+from dotenv import load_dotenv
+from cryptography.fernet import Fernet
+from utils.auth_helper import AuthHelper
+from utils.jwt_service import JWT_Service
+
+load_dotenv()
 
 logging.basicConfig(
     format="%(asctime)s : (%(levelname)s) : %(message)s", level=logging.DEBUG
 )
 
-SWAGGER_URL = '' 
-API_URL = '/static/swagger.json' 
+SWAGGER_URL = ""
+API_URL = "/static/swagger.json"
 
 swaggerui_blueprint = get_swaggerui_blueprint(
     SWAGGER_URL,
     API_URL,
-    config={ 
-        'app_name': "sia-scraping"
-    },
+    config={"app_name": "sia-scraping"},
 )
 
 blueprint = Blueprint("api", __name__, url_prefix="/api")
@@ -32,7 +46,29 @@ session.headers[
     "user-agent"
 ] = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36"
 
-pages = Pages(session)
+db_engine = sqlalchemy.create_engine("sqlite:///data.db")
+Base.metadata.create_all(db_engine)
+db_session = Session(db_engine)
+
+encryption_key = os.getenv("ENCRYPT_KEY")
+JWT_SECRET = os.getenv("JWT_SECRET")
+assert encryption_key is not None
+assert JWT_SECRET is not None
+
+FERNET = Fernet(encryption_key)
+
+jwt_service = JWT_Service(secret_key=JWT_SECRET)
+
+auth_helper = AuthHelper(encryptor=FERNET)
+user_repository = UserRepositoryImpl(db_session, auth_helper)
+
+pages = Pages(
+    session,
+    jwt_service=jwt_service,
+    user_repository=user_repository,
+    auth_helper=auth_helper,
+)
+
 
 @app.route("/api/login", methods=["POST"])
 def login_route():
@@ -61,7 +97,7 @@ def login_route():
                 "token": result,
             }
         )
-    except KeyError as error:
+    except KeyError as _:
         return (
             jsonify(
                 {
@@ -71,7 +107,7 @@ def login_route():
             ),
             400,
         )
-    except Exception as error:
+    except Exception as _:
         return jsonify(
             {
                 "success": False,
@@ -83,8 +119,8 @@ def login_route():
 @app.route("/api/jadwal", methods=["GET"])
 def jadwal():
     periode_args = request.args.get("periode")
-    bearer = request.headers.get('Authorization')
-    if bearer is None :
+    bearer = request.headers.get("Authorization")
+    if bearer is None:
         return (
             jsonify(
                 {
@@ -109,34 +145,65 @@ def jadwal():
 
     token = bearer_splitted[1]
 
-    result = pages.scrape_jadwal(token, periode_args or '')
+    try:
+        result = pages.scrape_jadwal(token, periode_args or "")
 
-    if result is None:
+        if result is None:
+            return (
+                jsonify(
+                    {
+                        "success": False,
+                        "message": "You need to log in first",
+                    }
+                ),
+                401,
+            )
+
+        return (
+            jsonify(
+                {
+                    "success": True,
+                    "data": result,
+                }
+            ),
+            200,
+        )
+    except ExpiredSignatureError as _:
         return (
             jsonify(
                 {
                     "success": False,
-                    "message": "You need to log in first",
+                    "message": "Token expired, try logging in again",
                 }
             ),
             401,
         )
-
-    return (
-        jsonify(
-            {
-                "success": True,
-                "data": result,
-            }
-        ),
-        200,
-    )
+    except InvalidTokenError as _:
+        return (
+            jsonify(
+                {
+                    "success": False,
+                    "message": "Invalid token, try logging in again",
+                }
+            ),
+            401,
+        )
+    except Exception as _:
+        return (
+            jsonify(
+                {
+                    "success": False,
+                    "message": "Something went wrong",
+                }
+            ),
+            401,
+        )
 
 
 @app.route("/api/home", methods=["GET"])
 def home():
-    bearer = request.headers.get('Authorization')
-    if bearer is None :
+    bearer = request.headers.get("Authorization")
+    if bearer is None:
         return (
             jsonify(
                 {
@@ -161,27 +228,68 @@ def home():
 
     token = bearer_splitted[1]
 
-    result = pages.scrape_home(token)
-    if result is None:
+    try:
+        result = pages.scrape_home(token)
+        if result is None:
+            return (
+                jsonify(
+                    {
+                        "success": False,
+                        "message": "You need to log in first",
+                    }
+                ),
+                401,
+            )
+
+        return (
+            jsonify(
+                {
+                    "success": True,
+                    "data": result,
+                }
+            ),
+            200,
+        )
+    except ExpiredSignatureError as _:
         return (
             jsonify(
                 {
                     "success": False,
-                    "message": "You need to log in first",
+                    "message": "Token expired, try logging in again",
+                }
+            ),
+            401,
+        )
+    except InvalidSignatureError as _:
+        return (
+            jsonify(
+                {
+                    "success": False,
+                    "message": "Invalid signature, try logging in again",
+                }
+            ),
+            401,
+        )
+    except InvalidTokenError as _:
+        return (
+            jsonify(
+                {
+                    "success": False,
+                    "message": "Invalid token, try logging in again",
+                }
+            ),
+            401,
+        )
+    except Exception as _:
+        return (
+            jsonify(
+                {
+                    "success": False,
+                    "message": "Something went wrong",
                 }
             ),
             401,
         )
 
-    return (
-        jsonify(
-            {
-                "success": True,
-                "data": result,
-            }
-        ),
-        200,
-    )
-
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
