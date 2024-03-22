@@ -1,6 +1,7 @@
 import requests
 import os
 import logging
+from requests.exceptions import Timeout
 import sqlalchemy
 
 from jwt.exceptions import (
@@ -8,7 +9,7 @@ from jwt.exceptions import (
     InvalidSignatureError,
     InvalidTokenError,
 )
-from flask import Flask,  jsonify, request, Blueprint
+from flask import Flask, jsonify, request, Blueprint
 from flask_swagger_ui import get_swaggerui_blueprint
 from sqlalchemy.orm import Session
 from models.base_model import Base
@@ -42,9 +43,9 @@ app.register_blueprint(swaggerui_blueprint)
 app.register_blueprint(blueprint)
 
 session = requests.session()
-session.headers[
-    "user-agent"
-] = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36"
+session.headers["user-agent"] = (
+    "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36"
+)
 
 db_engine = sqlalchemy.create_engine("sqlite:///data.db")
 Base.metadata.create_all(db_engine)
@@ -106,6 +107,16 @@ def login_route():
                 },
             ),
             400,
+        )
+    except Timeout as _:
+        return (
+            jsonify(
+                {
+                    "success": False,
+                    "message": "The host website are currently down, please try again later.",
+                },
+            ),
+            503,
         )
     except Exception as _:
         return jsonify(
@@ -187,6 +198,16 @@ def jadwal():
                 }
             ),
             401,
+        )
+    except Timeout as _:
+        return (
+            jsonify(
+                {
+                    "success": False,
+                    "message": "The host website are currently down, please try again later.",
+                },
+            ),
+            503,
         )
     except Exception as _:
         return (
@@ -280,6 +301,16 @@ def home():
             ),
             401,
         )
+    except Timeout as _:
+        return (
+            jsonify(
+                {
+                    "success": False,
+                    "message": "The host website are currently down, please try again later.",
+                },
+            ),
+            503,
+        )
     except Exception as _:
         return (
             jsonify(
@@ -290,6 +321,7 @@ def home():
             ),
             401,
         )
+
 
 if __name__ == "__main__":
     app.run(debug=True)

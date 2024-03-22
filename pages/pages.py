@@ -4,6 +4,7 @@ import logging
 import dateparser
 
 from bs4 import BeautifulSoup, NavigableString
+from requests.exceptions import RequestException, Timeout
 from repository.user_repository import UserRepositoryImpl
 from utils.auth_helper import AuthHelper
 from utils.constants import login_url, home_url, jadwal_url
@@ -44,6 +45,7 @@ class Pages:
             jadwal_url,
             data={"periode": periode_args},
             cookies=self.__create_cookie_jar(phpsessid),
+            timeout=25,
         )
 
         # phpsessid expired
@@ -61,6 +63,7 @@ class Pages:
                 jadwal_url,
                 data={"periode": periode_args},
                 cookies=self.__create_cookie_jar(phpsessid),
+                timeout=25,
             )
 
         jadwal_parsed = BeautifulSoup(jadwal_result.text, "lxml")
@@ -82,11 +85,11 @@ class Pages:
             content = matkul_list[i].find_all("td")
 
             content = [
-                self.__clean_nama_matkul(item)
-                if item.find("i") is not None
-                else item.find("a").text.strip()
-                if i == 6
-                else item.text.strip()
+                (
+                    self.__clean_nama_matkul(item)
+                    if item.find("i") is not None
+                    else item.find("a").text.strip() if i == 6 else item.text.strip()
+                )
                 for i, item in enumerate(content)
             ]
 
@@ -120,7 +123,9 @@ class Pages:
             return
 
         home_result = self.session.get(
-            home_url, cookies=self.__create_cookie_jar(phpsessid)
+            home_url,
+            cookies=self.__create_cookie_jar(phpsessid),
+            timeout=25,
         )
 
         if home_result.url == login_url:
@@ -134,7 +139,7 @@ class Pages:
 
             # Re-try getting home
             home_result = self.session.get(
-                home_url, cookies=self.__create_cookie_jar(phpsessid)
+                home_url, cookies=self.__create_cookie_jar(phpsessid), timeout=25
             )
 
         home_parsed = BeautifulSoup(home_result.text, "lxml")
@@ -173,9 +178,11 @@ class Pages:
             ):
                 if len(kuliah_row.find_all("td")) >= 3:
                     col_data = [
-                        item.text.strip()
-                        if item.find("a") is None
-                        else item.find("a")["href"]
+                        (
+                            item.text.strip()
+                            if item.find("a") is None
+                            else item.find("a")["href"]
+                        )
                         for item in kuliah_row.contents
                         if type(item) is not NavigableString
                     ]
@@ -223,8 +230,11 @@ class Pages:
 
     def login(self, username, password) -> str | None:
         logging.info("Login in process")
+
         login_result = self.session.post(
-            login_url, data={"act": "login", "username": username, "password": password}
+            login_url,
+            data={"act": "login", "username": username, "password": password},
+            timeout=25,
         )
 
         # Wrong credentials
@@ -238,7 +248,9 @@ class Pages:
         if user is None:
             self.user_repository.save(username, password=password, PHPSESSID=phpsessid)
         else:
-            self.user_repository.update(username, password=password, PHPSESSID=phpsessid)
+            self.user_repository.update(
+                username, password=password, PHPSESSID=phpsessid
+            )
 
         token = self.jwt_service.generate_token({"username": username})
 
@@ -255,6 +267,7 @@ class Pages:
                 "username": username,
                 "password": self.auth_helper.decrypt(password),
             },
+            timeout=25,
         )
 
         # Wrong credentials
