@@ -1,3 +1,4 @@
+from typing import Any, Callable, Dict, Literal, Union
 import requests
 import requests.cookies
 import logging
@@ -5,6 +6,7 @@ import dateparser
 
 from bs4 import BeautifulSoup, NavigableString
 from requests.exceptions import RequestException, Timeout
+from requests.models import Response
 from repository.user_repository import UserRepositoryImpl
 from utils.auth_helper import AuthHelper
 from utils.constants import login_url, home_url, jadwal_url
@@ -50,21 +52,16 @@ class Pages:
 
         # phpsessid expired
         if jadwal_result.url == login_url:
-            relog_result = self.__re_login(username, user.password)
+            jadwal_result = self.__re_try_request(
+                url_to_re_try=jadwal_url,
+                method="GET",
+                username=username,
+                password=user.password,
+            )
 
             # Something went wrong
-            if relog_result is None:
+            if jadwal_result is None:
                 return
-
-            phpsessid = relog_result
-
-            # Re-try getting jadwal
-            jadwal_result = self.session.post(
-                jadwal_url,
-                data={"periode": periode_args},
-                cookies=self.__create_cookie_jar(phpsessid),
-                timeout=25,
-            )
 
         jadwal_parsed = BeautifulSoup(jadwal_result.text, "lxml")
 
@@ -129,18 +126,16 @@ class Pages:
         )
 
         if home_result.url == login_url:
-            relog_result = self.__re_login(username, user.password)
+            home_result = self.__re_try_request(
+                url_to_re_try=home_url,
+                method="GET",
+                username=username,
+                password=user.password,
+            )
 
             # Something went wrong
-            if relog_result is None:
+            if home_result is None:
                 return
-
-            phpsessid = relog_result
-
-            # Re-try getting home
-            home_result = self.session.get(
-                home_url, cookies=self.__create_cookie_jar(phpsessid), timeout=25
-            )
 
         home_parsed = BeautifulSoup(home_result.text, "lxml")
 
@@ -257,6 +252,34 @@ class Pages:
         logging.info("Login Finished")
 
         return token
+
+    def __re_try_request(
+        self,
+        url_to_re_try: str,
+        method: Literal["GET", "POST"],
+        username: str,
+        password: str,
+        data: Dict[str, Any] | None = None,
+    ) -> Response | None:
+        logging.info("Re-trying Request")
+        phpsessid = self.__re_login(username=username, password=password)
+
+        if phpsessid == None:
+            return
+
+        result: Response | None = None
+
+        if method == "GET":
+            result = self.session.get(
+                url_to_re_try, cookies=self.__create_cookie_jar(phpsessid)
+            )
+        elif method == "POST":
+            result = self.session.get(
+                url_to_re_try, cookies=self.__create_cookie_jar(phpsessid), data=data
+            )
+
+        logging.info("Re-trying Finished")
+        return result
 
     def __re_login(self, username, password) -> str | None:
         logging.info("Re-Login in process")
