@@ -9,7 +9,7 @@ from requests.exceptions import RequestException, Timeout
 from requests.models import Response
 from repository.user_repository import UserRepositoryImpl
 from utils.auth_helper import AuthHelper
-from utils.constants import login_url, home_url, jadwal_url
+from utils.constants import login_url, home_url, jadwal_url, detail_url
 from utils.jwt_service import JWT_Service
 
 
@@ -223,6 +223,55 @@ class Pages:
 
         return mata_kuliah
 
+    def scrape_detail_mhs(self, token: str):
+        username = self.jwt_service.decode_token(token)["username"]
+        user = self.user_repository.get(username)
+
+        if user is None:
+            return
+
+        phpsessid = self.auth_helper.decrypt(user.phpsessid)
+
+        if phpsessid is None:
+            return
+
+        detail_result = self.session.get(
+            detail_url,
+            cookies=self.__create_cookie_jar(phpsessid),
+            timeout=25,
+        )
+
+        if detail_result.url == login_url:
+            detail_result = self.__re_try_request(
+                url_to_re_try=home_url,
+                method="GET",
+                username=username,
+                password=user.password,
+            )
+
+            # Something went wrong
+            if detail_result is None:
+                return
+
+        detail_parsed = BeautifulSoup(detail_result.text, "lxml")
+
+        data: Dict[str, Any] = {}
+        container_tbody = detail_parsed.select_one("div.form-container > table.table")
+        list_tr = container_tbody.find_all("tr", recursive=False)
+
+        for tr in list_tr:
+            result = self.__extract_tr_to_dict(tr)
+            if len(result) == 2:
+                data[result[0]] = result[1]
+
+        alert_tr = list_tr[0].find_all("tr", recursive=True)
+        for tr in alert_tr:
+            result = self.__extract_tr_to_dict(tr)
+            if len(result) == 2:
+                data[result[0]] = result[1]
+
+        return data
+
     def login(self, username, password) -> str | None:
         logging.info("Login in process")
 
@@ -307,6 +356,12 @@ class Pages:
 
     def __create_cookie_jar(self, phpsessid: str) -> requests.cookies.RequestsCookieJar:
         return requests.cookies.cookiejar_from_dict({"PHPSESSID": phpsessid})
+
+    def __extract_tr_to_dict(self, tr):
+        list_td = tr.find_all("td")
+        list_td = [td.text.replace("\n", "") for td in list_td if td.text.strip() != ""]
+        list_td[0] = list_td[0].lower().replace(" ", "_")
+        return list_td
 
     # Jadwal Helper
     def __clean_nama_matkul(self, element):

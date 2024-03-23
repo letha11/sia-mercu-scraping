@@ -119,7 +119,84 @@
                     },
                     "data": {
                       "type": "object",
-                      "example": "..."
+                      "example": {
+		"mata_kuliah": [
+			{
+				"dosen": "Yayah Makiyah, SS,M.Pd",
+				"hari": "Senin",
+				"nama_matkul": "ENGLISH FOR COMPUTER I English for Computer I",
+				"ruangan": "A-406",
+				"time": "13:15 - 15:45"
+			},
+			{
+				"dosen": "Siti Maesaroh, S.Kom., M.T.I",
+				"hari": "Rabu",
+				"nama_matkul": "ANALISA BERORIENTASI OBJEK Object Oriented Analysis",
+				"ruangan": "D-308",
+				"time": "07:30 - 10:00"
+			},
+			{
+				"dosen": "Hariesa Budi Prabowo, ST., MM",
+				"hari": "Rabu",
+				"nama_matkul": "MOBILE PROGRAMMING Mobile Programming",
+				"ruangan": "T-007",
+				"time": "10:15 - 12:45"
+			},
+			{
+				"dosen": "Rudi Hartono, ST, M.Kom",
+				"hari": "Kamis",
+				"nama_matkul": "PENGOLAHAN CITRA Image Processing https://fast.mercubuana.ac.id",
+				"ruangan": "VT.D-101",
+				"time": "07:30 - 10:00"
+			},
+			{
+				"dosen": "Dwi Ade Handayani Capah, S.Kom, M.Kom",
+				"hari": "Kamis",
+				"nama_matkul": "PEMODELAN 2D/3D Modeling 2D/3D https://fast.mercubuana.ac.id",
+				"ruangan": "VE-048",
+				"time": "10:15 - 12:45"
+			},
+			{
+				"dosen": "Sustono, Ir, MT",
+				"hari": "Kamis",
+				"nama_matkul": "KOMPUTASI AWAN Cloud Computing",
+				"ruangan": "B-302",
+				"time": "13:15 - 15:45"
+			},
+			{
+				"dosen": "Syamsir Alam, S.Kom, MT",
+				"hari": "Jumat",
+				"nama_matkul": "PENDIDIKAN ANTI KORUPSI DAN ETIK UMB Anti-Corruption Education and UMB Ethics",
+				"ruangan": "B-402",
+				"time": "07:30 - 09:10"
+			},
+			{
+				"dosen": "Dadi Waras Suhardjono, Dr. S.S, M.Pd.",
+				"hari": "Jumat",
+				"nama_matkul": "BAHASA INDONESIA Indonesian Language",
+				"ruangan": "E-403",
+				"time": "09:30 - 11:10"
+			}
+		],
+		"periode": [
+			{
+				"label": "Gasal 2022",
+				"value": "20221"
+			},
+			{
+				"label": "Genap 2022",
+				"value": "20223"
+			},
+			{
+				"label": "Gasal 2023",
+				"value": "20231"
+			},
+			{
+				"label": "Genap 2023",
+				"value": "20233"
+			}
+		]
+	},
                     }
                   }
                 }
@@ -173,7 +250,124 @@
                     },
                     "data": {
                       "type": "object",
-                      "example": "..."
+                      "example": [
+{
+			"nama_matkul": "ENGLISH FOR COMPUTER I (1A6151CA)",
+			"perkuliahan": [
+				{
+					"kehadiran": "Belum Dilaksanakan",
+					"link_modul": "https://modul.mercubuana.ac.id/modul.php?kd_mk=F062100007&namamk=ENGLISH FOR COMPUTER I&4",
+					"materi": "Students are able to write about the benefit of computers Mahasiswa mampu menulis tentang manfaat dari komputer",
+					"pertemuan": 4,
+					"tanggal": null
+				},
+				{
+					"kehadiran": "Belum Dilaksanakan",
+					"link_modul": "https://modul.mercubuana.ac.id/modul.php?kd_mk=F062100007&namamk=ENGLISH FOR COMPUTER I&5",
+					"materi": "Students are able to talk about the ideal computer system Mahasiswa mampu menjelaskan tentang sistem komputer yang ideal",
+					"pertemuan": 5,
+					"tanggal": null
+				},
+				{
+					"kehadiran": "Belum Dilaksanakan",
+					"link_modul": "https://modul.mercubuana.ac.id/modul.php?kd_mk=F062100007&namamk=ENGLISH FOR COMPUTER I&6",
+					"materi": "Students are able to use the terms used in e-mail and write an e-mail Mahasiswa mampu menulis email menggunakan istilah yang benar",
+					"pertemuan": 6,
+					"tanggal": null
+				},
+				{
+					"kehadiran": "Belum Dilaksanakan",
+					"link_modul": "https://modul.mercubuana.ac.id/modul.php?kd_mk=F062100007&namamk=ENGLISH FOR COMPUTER I&7",
+					"materi": "Review Sessions 1-6",
+					"pertemuan": 7,
+					"tanggal": null
+				},
+				{
+					"kehadiran": "Belum Dilaksanakan",
+					"link_modul": "https://modul.mercubuana.ac.id/modul.php?kd_mk=F062100007&namamk=ENGLISH FOR COMPUTER I&8",
+					"materi": "Perkuliahan",
+					"pertemuan": 8,
+					"tanggal": null
+				},
+				{
+					"kehadiran": "Hadir",
+					"link_modul": "http://modul.mercubuana.ac.id/eDB5TndBRE13RWpNMkFqUg==/",
+					"materi": "Students are able to make introduction about themselves and others Mahasiswa mampu memperkenalkan diri sendiri dan orang lain",
+					"pertemuan": 1,
+					"tanggal": "Mon, 04 Mar 2024 00:00:00 GMT"
+				},
+				{
+					"kehadiran": "Hadir",
+					"link_modul": "http://modul.mercubuana.ac.id/eTB5TndBRE13RWpNMkFqUg==/",
+					"materi": "Students are able to make conversation about describing a job related to IT Mahasiswa mampu menjelaskan profesi yang berkaitan dengan IT",
+					"pertemuan": 2,
+					"tanggal": "Mon, 18 Mar 2024 00:00:00 GMT"
+				},
+				{
+					"kehadiran": "Belum Dilaksanakan",
+					"link_modul": "http://modul.mercubuana.ac.id/ejB5TndBRE13RWpNMkFqUg==/",
+					"materi": "Students are able to give a presentation about the use of computers. Mahasiswa mampu melakukan presentasi tentang kegunaan komputer",
+					"pertemuan": 3,
+					"tanggal": "Mon, 18 Mar 2024 00:00:00 GMT"
+				}
+			]
+		},
+                      ],
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid Credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Invalid Credentials"
+                    },
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": [
+              "read"
+            ]
+          }
+        ]
+      }
+    },
+    "/detail": {
+      "get": {
+        "operationId": "detail",
+        "responses": {
+          "200": {
+            "description": "Successful request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "type": "object",
+                      "example": 
+{'fakultas':'Ilmu Komputer','ipk':'3.86','ips_terakhir':'3.87','jurusan':'Teknik Informatika','kampus':'Meruya','kelas':'Reguler','kurikulum':'1521 - Kurikulum 2021 Reguler','nama':'IBKA ANHAR FATCHA(Lapor BAP, ijazah)','pendidikan_asal':'SMU','periode_masuk':'Semester Gasal 2022 ','semester':'4','sks_tempuh':'66','status':'Aktif'}
                     }
                   }
                 }
@@ -210,6 +404,7 @@
         ]
       }
     }
+
   },
   "components": {
     "schemas": {

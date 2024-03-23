@@ -13,6 +13,7 @@ from flask import Flask, jsonify, request, Blueprint
 from flask_swagger_ui import get_swaggerui_blueprint
 from sqlalchemy.orm import Session
 from models.base_model import Base
+from models.user import User
 from pages.pages import Pages
 from repository.user_repository import UserRepositoryImpl
 from dotenv import load_dotenv
@@ -323,5 +324,80 @@ def home():
         )
 
 
+@app.route("/api/detail", methods=["GET"])
+def detail():
+    bearer = request.headers.get("Authorization")
+    if bearer is None:
+        return (
+            jsonify(
+                {
+                    "success": False,
+                    "message": "You need to log in first",
+                }
+            ),
+            401,
+        )
+
+    bearer_splitted = bearer.split()
+    if len(bearer_splitted) < 1:
+        return (
+            jsonify(
+                {
+                    "success": False,
+                    "message": "You need to log in first",
+                }
+            ),
+            401,
+        )
+
+    token = bearer_splitted[1]
+
+    try:
+        result = pages.scrape_detail_mhs(token)
+        if result is None:
+            return (
+                jsonify(
+                    {
+                        "success": False,
+                        "message": "You need to log in first",
+                    }
+                ),
+                401,
+            )
+
+        return (
+            jsonify(
+                {
+                    "success": True,
+                    "data": result,
+                }
+            ),
+            200,
+        )
+    except Exception as _:
+        return (
+            jsonify(
+                {
+                    "success": False,
+                    "message": "Something went wrong",
+                }
+            ),
+            401,
+        )
+
+
+@app.route("/api/dump", methods=["GET"])
+def dump():
+    user = user_repository.get("41522010137")
+    print(user)
+    if type(user) is User:
+        print(f"user after before: {auth_helper.decrypt(user.phpsessid)}")
+        result_update = user_repository.update("41522010137", PHPSESSID="123450132921")
+        print(result_update)
+        print(f"user after update: {user}")
+
+    return "success"
+
+
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
