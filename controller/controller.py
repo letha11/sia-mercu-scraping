@@ -1,11 +1,10 @@
-from typing import Any, Callable, Dict, Literal, Union
+from typing import Any, Dict, Literal, Tuple
 import requests
 import requests.cookies
 import logging
 import dateparser
 
 from bs4 import BeautifulSoup, NavigableString
-from requests.exceptions import RequestException, Timeout
 from requests.models import Response
 from repository.user_repository import UserRepositoryImpl
 from utils.auth_helper import AuthHelper
@@ -13,7 +12,7 @@ from utils.constants import login_url, home_url, jadwal_url, detail_url
 from utils.jwt_service import JWT_Service
 
 
-class Pages:
+class Controller:
     cookies_jar = None
 
     def __init__(
@@ -272,7 +271,19 @@ class Pages:
 
         return data
 
-    def login(self, username, password) -> str | None:
+    def refresh_token(self, refresh_token: str) -> Tuple[str, str]:
+        logging.info("Refreshing token...")
+
+        decoded = self.jwt_service.decode_token(refresh_token)
+
+        new_token = self.jwt_service.generate_token(decoded, expiration_time="7h")
+        new_refresh_token = self.jwt_service.generate_token(
+            decoded, expiration_time="7d"
+        )
+
+        return new_token, new_refresh_token
+
+    def login(self, username, password) -> tuple[str, str] | None:
         logging.info("Login in process")
 
         login_result = self.session.post(
@@ -297,10 +308,13 @@ class Pages:
             )
 
         token = self.jwt_service.generate_token({"username": username})
+        refresh_token = self.jwt_service.generate_token(
+            {"username": username}, expiration_time="7d"
+        )
 
         logging.info("Login Finished")
 
-        return token
+        return token, refresh_token
 
     def __re_try_request(
         self,

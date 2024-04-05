@@ -12,9 +12,9 @@ from jwt.exceptions import (
 from flask import Flask, jsonify, request, Blueprint
 from flask_swagger_ui import get_swaggerui_blueprint
 from sqlalchemy.orm import Session
+from controller.controller import Controller
 from models.base_model import Base
 from models.user import User
-from pages.pages import Pages
 from repository.user_repository import UserRepositoryImpl
 from dotenv import load_dotenv
 from cryptography.fernet import Fernet
@@ -64,7 +64,7 @@ jwt_service = JWT_Service(secret_key=JWT_SECRET)
 auth_helper = AuthHelper(encryptor=FERNET)
 user_repository = UserRepositoryImpl(db_session, auth_helper)
 
-pages = Pages(
+controller = Controller(
     session,
     jwt_service=jwt_service,
     user_repository=user_repository,
@@ -79,7 +79,7 @@ def login_route():
     try:
         username = data["username"]
         password = data["password"]
-        result = pages.login(username=username, password=password)
+        result = controller.login(username=username, password=password)
 
         if result is None:
             return (
@@ -96,7 +96,8 @@ def login_route():
             {
                 "success": True,
                 "message": "Login success",
-                "token": result,
+                "token": result[0],
+                "refresh_token": result[1],
             }
         )
     except KeyError as _:
@@ -125,6 +126,89 @@ def login_route():
                 "success": False,
                 "message": "Something went wrong",
             },
+            500,
+        )
+
+
+@app.route("/api/refresh-token", methods=["POST"])
+def refresh_token():
+    bearer = request.headers.get("Authorization")
+    if bearer is None:
+        return (
+            jsonify(
+                {
+                    "success": False,
+                    "message": "No refresh token provided",
+                }
+            ),
+            401,
+        )
+
+    bearer_splitted = bearer.split()
+    if len(bearer_splitted) < 1:
+        return (
+            jsonify(
+                {
+                    "success": False,
+                    "message": "No refresh token provided",
+                }
+            ),
+            401,
+        )
+
+    refresh_token = bearer_splitted[1]
+
+    try:
+        new_token, new_refresh_token = controller.refresh_token(
+            refresh_token=refresh_token
+        )
+
+        return jsonify(
+            {
+                "success": True,
+                "token": new_token,
+                "refresh_token": new_refresh_token,
+            }
+        )
+    except ExpiredSignatureError as _:
+        return (
+            jsonify(
+                {
+                    "success": False,
+                    "message": "Token expired, try logging in again",
+                }
+            ),
+            401,
+        )
+    except InvalidTokenError as _:
+        return (
+            jsonify(
+                {
+                    "success": False,
+                    "message": "Invalid token, try logging in again",
+                }
+            ),
+            401,
+        )
+    except Timeout as _:
+        return (
+            jsonify(
+                {
+                    "success": False,
+                    "message": "The host website are currently down, please try again later.",
+                },
+            ),
+            503,
+        )
+    except Exception as _:
+        return (
+            jsonify(
+                {
+                    "success": False,
+                    "message": "Something went wrong",
+                }
+            ),
+            500,
         )
 
 
@@ -158,7 +242,7 @@ def jadwal():
     token = bearer_splitted[1]
 
     try:
-        result = pages.scrape_jadwal(token, periode_args or "")
+        result = controller.scrape_jadwal(token, periode_args or "")
 
         if result is None:
             return (
@@ -218,7 +302,7 @@ def jadwal():
                     "message": "Something went wrong",
                 }
             ),
-            401,
+            500,
         )
 
 
@@ -251,7 +335,7 @@ def home():
     token = bearer_splitted[1]
 
     try:
-        result = pages.scrape_home(token)
+        result = controller.scrape_home(token)
         if result is None:
             return (
                 jsonify(
@@ -320,7 +404,7 @@ def home():
                     "message": "Something went wrong",
                 }
             ),
-            401,
+            500,
         )
 
 
@@ -353,7 +437,7 @@ def detail():
     token = bearer_splitted[1]
 
     try:
-        result = pages.scrape_detail_mhs(token)
+        result = controller.scrape_detail_mhs(token)
         if result is None:
             return (
                 jsonify(
@@ -382,21 +466,8 @@ def detail():
                     "message": "Something went wrong",
                 }
             ),
-            401,
+            500,
         )
-
-
-@app.route("/api/dump", methods=["GET"])
-def dump():
-    user = user_repository.get("41522010137")
-    print(user)
-    if type(user) is User:
-        print(f"user after before: {auth_helper.decrypt(user.phpsessid)}")
-        result_update = user_repository.update("41522010137", PHPSESSID="123450132921")
-        print(result_update)
-        print(f"user after update: {user}")
-
-    return "success"
 
 
 if __name__ == "__main__":
