@@ -101,6 +101,7 @@ class Controller:
 
         logging.info("Finished Getting Jadwal")
 
+        self.session.cookies.clear()
         return {
             "periode": periode,
             "mata_kuliah": matkul,
@@ -220,6 +221,7 @@ class Controller:
                 }
             )
 
+        self.session.cookies.clear()
         return mata_kuliah
 
     def scrape_detail_mhs(self, token: str):
@@ -269,6 +271,7 @@ class Controller:
             if len(result) == 2:
                 data[result[0]] = result[1]
 
+        self.session.cookies.clear()
         return data
 
     def refresh_token(self, refresh_token: str) -> Tuple[str, str]:
@@ -297,6 +300,8 @@ class Controller:
             return
 
         phpsessid = self.session.cookies["PHPSESSID"]
+
+        self.session.cookies.clear()
 
         user = self.user_repository.get(username)
 
@@ -361,6 +366,8 @@ class Controller:
             return
 
         phpsessid: str = self.session.cookies["PHPSESSID"]
+
+        self.session.cookies.clear()
 
         self.user_repository.update(username, PHPSESSID=phpsessid)
 
