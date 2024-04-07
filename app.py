@@ -458,12 +458,53 @@ def detail():
             ),
             200,
         )
-    except Exception as _:
+    except ExpiredSignatureError as _:
+        return (
+            jsonify(
+                {
+                    "success": False,
+                    "message": "Token expired, try logging in again",
+                }
+            ),
+            401,
+        )
+    except InvalidSignatureError as _:
+        return (
+            jsonify(
+                {
+                    "success": False,
+                    "message": "Invalid signature, try logging in again",
+                }
+            ),
+            401,
+        )
+    except InvalidTokenError as _:
+        return (
+            jsonify(
+                {
+                    "success": False,
+                    "message": "Invalid token, try logging in again",
+                }
+            ),
+            401,
+        )
+    except Timeout as _:
+        return (
+            jsonify(
+                {
+                    "success": False,
+                    "message": "The host website are currently down, please try again later.",
+                },
+            ),
+            503,
+        )
+    except Exception as e:
         return (
             jsonify(
                 {
                     "success": False,
                     "message": "Something went wrong",
+                    "stacktrace": e,
                 }
             ),
             500,

@@ -244,7 +244,7 @@ class Controller:
 
         if detail_result.url == login_url:
             detail_result = self.__re_try_request(
-                url_to_re_try=home_url,
+                url_to_re_try=detail_url,
                 method="GET",
                 username=username,
                 password=user.password,
@@ -342,7 +342,7 @@ class Controller:
                 url_to_re_try, cookies=self.__create_cookie_jar(phpsessid)
             )
         elif method == "POST":
-            result = self.session.get(
+            result = self.session.post(
                 url_to_re_try, cookies=self.__create_cookie_jar(phpsessid), data=data
             )
 
