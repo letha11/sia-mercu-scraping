@@ -262,13 +262,13 @@ class Controller:
 
         for tr in list_tr:
             result = self.__extract_tr_to_dict(tr)
-            if len(result) == 2:
+            if len(result) >= 2:
                 data[result[0]] = result[1]
 
         alert_tr = list_tr[0].find_all("tr", recursive=True)
         for tr in alert_tr:
             result = self.__extract_tr_to_dict(tr)
-            if len(result) == 2:
+            if len(result) >= 2:
                 data[result[0]] = result[1]
 
         self.session.cookies.clear()
