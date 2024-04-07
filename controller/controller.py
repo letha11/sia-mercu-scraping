@@ -1,4 +1,5 @@
-from typing import Any, Dict, Literal, Tuple
+from collections import defaultdict
+from typing import Any, Dict, List, Literal, Set, Tuple
 import requests
 import requests.cookies
 import logging
@@ -62,7 +63,10 @@ class Controller:
             if jadwal_result is None:
                 return
 
+        # jadwal_html = open("jadwal_html.html")
+        # jadwal_html = jadwal_html.read()
         jadwal_parsed = BeautifulSoup(jadwal_result.text, "lxml")
+        # jadwal_parsed = BeautifulSoup(jadwal_html, "lxml")
 
         periode = []
         periode_html = jadwal_parsed.find(id="periode")
@@ -101,10 +105,17 @@ class Controller:
 
         logging.info("Finished Getting Jadwal")
 
+        matkul_categorized_by_day = defaultdict(list)
+
+        for m in matkul:
+            matkul_categorized_by_day[m['hari'].lower()].append(m)
+
+        matkul_categorized_by_day = dict(matkul_categorized_by_day)
+
         self.session.cookies.clear()
         return {
             "periode": periode,
-            "mata_kuliah": matkul,
+            "mata_kuliah": matkul_categorized_by_day,
         }
 
     def scrape_home(self, token: str):
