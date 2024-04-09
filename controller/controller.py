@@ -88,7 +88,8 @@ class Controller:
                 (
                     self.__clean_nama_matkul(item)
                     if item.find("i") is not None
-                    else item.find("a").text.strip() if i == 6 else item.text.strip()
+                    else item.find("a").text.strip() if i == 6 
+                    else item.text.strip()
                 )
                 for i, item in enumerate(content)
             ]
@@ -398,10 +399,10 @@ class Controller:
     # Jadwal Helper
     def __clean_nama_matkul(self, element):
         # Filtering empty string
-        nama_matkul_clean = list(
+        nama_matkul_clean: list[str] = list(
             filter(None, [cs.text.strip() for cs in element.contents])
         )
 
-        nama_matkul = " ".join(nama_matkul_clean)
+        nama_matkul = nama_matkul_clean[0].title()
 
         return nama_matkul
