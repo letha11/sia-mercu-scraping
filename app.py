@@ -1,7 +1,6 @@
 import requests
 import os
 import logging
-from requests.exceptions import Timeout
 import sqlalchemy
 
 from jwt.exceptions import (
@@ -9,6 +8,8 @@ from jwt.exceptions import (
     InvalidSignatureError,
     InvalidTokenError,
 )
+from requests.exceptions import Timeout
+from requests.adapters import HTTPAdapter
 from flask import Flask, jsonify, request, Blueprint
 from flask_swagger_ui import get_swaggerui_blueprint
 from sqlalchemy.orm import Session
@@ -20,6 +21,7 @@ from dotenv import load_dotenv
 from cryptography.fernet import Fernet
 from utils.auth_helper import AuthHelper
 from utils.jwt_service import JWT_Service
+from urllib3.util.retry import Retry
 
 load_dotenv()
 
@@ -44,6 +46,10 @@ app.register_blueprint(swaggerui_blueprint)
 app.register_blueprint(blueprint)
 
 session = requests.session()
+retry = Retry(connect=5, backoff_factor=0.5)
+adapter = HTTPAdapter(max_retries=retry)
+session.mount('http://', adapter)
+session.mount('https://', adapter)
 session.headers["user-agent"] = (
     "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36"
 )
@@ -306,8 +312,8 @@ def jadwal():
         )
 
 
-@app.route("/api/home", methods=["GET"])
-def home():
+@app.route("/api/attendance", methods=["GET"])
+def attendance():
     bearer = request.headers.get("Authorization")
     if bearer is None:
         return (
@@ -512,4 +518,4 @@ def detail():
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True, host="0.0.0.0")
