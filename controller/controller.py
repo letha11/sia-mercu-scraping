@@ -216,15 +216,25 @@ class Controller:
                             )
                             break
 
+                    tanggal = dateparser.parse(col_data[1], languages=["id"]);
+                    tanggal_isostring = ""
+
+                    if tanggal is not None:
+                        tanggal_isostring = tanggal.isoformat()
+                    else:
+                        tanggal_isostring = None;
+
                     result = {
                         "pertemuan": pertemuan,
-                        "tanggal": dateparser.parse(col_data[1], languages=["id"]),
+                        "tanggal": tanggal_isostring,
                         "kehadiran": kehadiran,
                         "materi": col_data[2],
                         "link_modul": col_data[3],
                     }
 
                     perkuliahan.append(result)
+
+            perkuliahan = sorted(perkuliahan, key=lambda p: p['pertemuan'])
 
             mata_kuliah.append(
                 {
