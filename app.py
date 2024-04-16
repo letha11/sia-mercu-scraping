@@ -22,6 +22,7 @@ from cryptography.fernet import Fernet
 from utils.auth_helper import AuthHelper
 from utils.jwt_service import JWT_Service
 from urllib3.util.retry import Retry
+from flask_cors import CORS, cross_origin
 
 load_dotenv()
 
@@ -40,7 +41,13 @@ swaggerui_blueprint = get_swaggerui_blueprint(
 
 blueprint = Blueprint("api", __name__, url_prefix="/api")
 
+allowed_origins = [
+    "http://localhost:5000",
+    "https://sia-mercu-scraping.vercel.app"
+]
+
 app = Flask(__name__)
+CORS(app, origins="*", methods=["GET", "POST", "OPTIONS", "PUT", "DELETE"], allow_headers="*")
 
 app.register_blueprint(swaggerui_blueprint)
 app.register_blueprint(blueprint)
@@ -79,6 +86,7 @@ controller = Controller(
 
 
 @app.route("/api/login", methods=["POST"])
+@cross_origin(origins=allowed_origins)
 def login_route():
     data = request.form
 
@@ -126,17 +134,19 @@ def login_route():
             ),
             503,
         )
-    except Exception as _:
-        return jsonify(
+    except Exception as e:
+        logging.error(e)
+        return (jsonify(
             {
                 "success": False,
                 "message": "Something went wrong",
             },
             500,
-        )
+        ))
 
 
 @app.route("/api/refresh-token", methods=["POST"])
+@cross_origin(origins=allowed_origins)
 def refresh_token():
     bearer = request.headers.get("Authorization")
     if bearer is None:
@@ -219,6 +229,7 @@ def refresh_token():
 
 
 @app.route("/api/jadwal", methods=["GET"])
+@cross_origin(origins=allowed_origins)
 def jadwal():
     periode_args = request.args.get("periode")
     bearer = request.headers.get("Authorization")
@@ -313,6 +324,7 @@ def jadwal():
 
 
 @app.route("/api/attendance", methods=["GET"])
+@cross_origin(origins=allowed_origins)
 def attendance():
     bearer = request.headers.get("Authorization")
     if bearer is None:
@@ -415,6 +427,7 @@ def attendance():
 
 
 @app.route("/api/detail", methods=["GET"])
+@cross_origin(origins=allowed_origins)
 def detail():
     bearer = request.headers.get("Authorization")
     if bearer is None:
@@ -518,4 +531,4 @@ def detail():
 
 
 if __name__ == "__main__":
-    app.run(debug=True, host="0.0.0.0")
+    app.run()

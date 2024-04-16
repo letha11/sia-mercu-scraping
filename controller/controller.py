@@ -308,7 +308,7 @@ class Controller:
 
         return new_token, new_refresh_token
 
-    def login(self, username, password) -> tuple[str, str] | None:
+    def login(self, username, password):
         logging.info("Login in process")
 
         login_result = self.session.post(
@@ -349,15 +349,15 @@ class Controller:
         method: Literal["GET", "POST"],
         username: str,
         password: str,
-        data: Dict[str, Any] | None = None,
-    ) -> Response | None:
+        data = None,
+    ):
         logging.info("Re-trying Request")
         phpsessid = self.__re_login(username=username, password=password)
 
         if phpsessid == None:
             return
 
-        result: Response | None = None
+        result = None
 
         if method == "GET":
             result = self.session.get(
@@ -371,7 +371,7 @@ class Controller:
         logging.info("Re-trying Finished")
         return result
 
-    def __re_login(self, username, password) -> str | None:
+    def __re_login(self, username, password):
         logging.info("Re-Login in process")
         login_result = self.session.post(
             login_url,

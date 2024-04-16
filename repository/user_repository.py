@@ -6,19 +6,19 @@ from utils.auth_helper import AuthHelper
 
 class UserRepository(ABC):
     @abstractmethod
-    def get(self, username: str):
+    def get(self, username):
         pass
 
     @abstractmethod
-    def save(self, username: str, password: str, PHPSESSID: str):
+    def save(self, username, password, PHPSESSID):
         pass
 
     @abstractmethod
     def update(
         self,
-        username: str,
-        PHPSESSID: str | None,
-        password: str | None = None,
+        username,
+        PHPSESSID,
+        password,
     ):
         pass
 
@@ -37,8 +37,8 @@ class UserRepositoryImpl(UserRepository):
     def update(
         self,
         username: str,
-        password: str | None = None,
-        PHPSESSID: str | None = None,
+        password = None,
+        PHPSESSID = None,
     ):
         user = self.get(username)
 

@@ -9,3 +9,4 @@ macosVenv
 __pycache__
 data.db
 
+.vercel
