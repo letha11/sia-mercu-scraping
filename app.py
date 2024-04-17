@@ -61,7 +61,7 @@ session.headers["user-agent"] = (
     "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36"
 )
 
-db_engine = sqlalchemy.create_engine("sqlite:///data.db")
+db_engine = sqlalchemy.create_engine(f"postgresql+psycopg2://{os.getenv('DB_USERNAME')}:{os.getenv('DB_PASSWORD')}@{os.getenv('DB_HOST')}:{os.getenv('DB_PORT')}/{os.getenv('DB_NAME')}?sslmode=require")
 Base.metadata.create_all(db_engine)
 db_session = Session(db_engine)
 
@@ -531,4 +531,4 @@ def detail():
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)

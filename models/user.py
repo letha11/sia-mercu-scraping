@@ -6,9 +6,9 @@ class User(Base):
     __tablename__ = "user"
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
-    username: Mapped[str] = mapped_column(String(150))
-    password: Mapped[str] = mapped_column(String(150))
-    phpsessid: Mapped[str] = mapped_column(String(255))
+    username: Mapped[str] = mapped_column(String)
+    password: Mapped[str] = mapped_column(String)
+    phpsessid: Mapped[str] = mapped_column(String)
 
     def __repr__(self) -> str:
         return f"<User(id={self.id}, username={self.username}, password={self.password}, phpsessid={self.phpsessid})>"
