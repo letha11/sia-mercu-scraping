@@ -24,7 +24,10 @@ from utils.jwt_service import JWT_Service
 from urllib3.util.retry import Retry
 from flask_cors import CORS, cross_origin
 
-load_dotenv()
+
+load_dotenv(".env.local")
+load_dotenv(".env.prod")
+load_dotenv(".env")
 
 logging.basicConfig(
     format="%(asctime)s : (%(levelname)s) : %(message)s", level=logging.DEBUG
