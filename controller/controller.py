@@ -304,6 +304,7 @@ class Controller:
 
         data: Dict[str, Any] = {}
         container_tbody = detail_parsed.select_one("div.form-container > table.table")
+        picture_img_url  = container_tbody.find("img").get('src')
         list_tr = container_tbody.find_all("tr", recursive=False)
 
         for tr in list_tr:
@@ -316,6 +317,9 @@ class Controller:
             result = self.__extract_tr_to_dict(tr)
             if len(result) >= 2:
                 data[result[0]] = result[1]
+
+
+        data['picture_url'] = picture_img_url
 
         self.session.cookies.clear()
         return data
