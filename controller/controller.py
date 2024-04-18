@@ -43,12 +43,36 @@ class Controller:
 
         logging.info("Getting Jadwal")
 
-        jadwal_result = self.session.post(
-            jadwal_url,
-            data={"periode": periode_args},
-            cookies=self.__create_cookie_jar(phpsessid),
-            timeout=25,
-        )
+        print(periode_args)
+        if periode_args is None or periode_args == "":
+            jadwal_result = self.session.post(
+                jadwal_url,
+                data={"periode": periode_args},
+                cookies=self.__create_cookie_jar(phpsessid),
+                timeout=25,
+            )
+            
+            jadwal_parsed = BeautifulSoup(jadwal_result.text, "lxml")
+
+            periode = []
+            periode_html = jadwal_parsed.find(id="periode")
+
+            latest_periode_val = periode_html.find_all("option")[-1]["value"];
+
+            jadwal_result = self.session.post(
+                jadwal_url,
+                data={"periode": latest_periode_val},
+                cookies=self.__create_cookie_jar(phpsessid),
+                timeout=25,
+            )
+        else:
+            jadwal_result = self.session.post(
+                jadwal_url,
+                data={"periode": periode_args},
+                cookies=self.__create_cookie_jar(phpsessid),
+                timeout=25,
+            )
+
 
         # phpsessid expired
         if jadwal_result.url == login_url:
