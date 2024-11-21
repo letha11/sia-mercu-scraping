@@ -336,12 +336,28 @@ class Controller:
 
         return new_token, new_refresh_token
 
-    def login(self, username, password):
+    def get_captcha(self):
+        logging.info("Getting Captcha...")
+
+        captcha_result = self.session.get(
+            captcha_url,
+            timeout=25,
+        )
+
+        return captcha_result.content
+
+    def login(self, username, password, captcha):
         logging.info("Login in process")
 
         login_result = self.session.post(
             login_url,
-            data={"act": "login", "username": username, "password": password},
+
+            data={
+                "act": "login",
+                "username": username,
+                "password": password,
+                "captcha": captcha,
+            },
             timeout=25,
         )
 

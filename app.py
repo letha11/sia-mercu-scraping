@@ -96,14 +96,15 @@ def login_route():
     try:
         username = data["username"]
         password = data["password"]
-        result = controller.login(username=username, password=password)
+        captcha = data["captcha"]
+        result = controller.login(username=username, password=password, captcha=captcha)
 
         if result is None:
             return (
                 jsonify(
                     {
                         "success": False,
-                        "message": "Invalid Credentials",
+                        "message": "Invalid Credentials or captcha",
                     }
                 ),
                 401,
@@ -122,7 +123,7 @@ def login_route():
             jsonify(
                 {
                     "success": False,
-                    "message": "You need to fill username and password",
+                    "message": "You need to fill username and password and captcha",
                 },
             ),
             400,
@@ -428,6 +429,33 @@ def attendance():
             500,
         )
 
+@app.route("/api/captcha", methods=["GET"])
+@cross_origin(origins=allowed_origins)
+def captcha_image():
+    try:
+        result = controller.get_captcha()
+
+        return result
+    except Timeout as _:
+        return (
+            jsonify(
+                {
+                    "success": False,
+                    "message": "The host website are currently down, please try again later.",
+                },
+            ),
+            503,
+        )
+    except Exception as _:
+        return (
+            jsonify(
+                {
+                    "success": False,
+                    "message": "Something went wrong",
+                }
+            ),
+            500,
+        )
 
 @app.route("/api/detail", methods=["GET"])
 @cross_origin(origins=allowed_origins)
