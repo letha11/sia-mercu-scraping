@@ -1,5 +1,6 @@
 from collections import defaultdict
 from typing import Any, Dict, List, Literal, Set, Tuple
+from bs4.element import Tag
 import requests
 import requests.cookies
 import logging
@@ -9,7 +10,7 @@ from bs4 import BeautifulSoup, NavigableString
 from requests.models import Response
 from repository.user_repository import UserRepositoryImpl
 from utils.auth_helper import AuthHelper
-from utils.constants import login_url, home_url, jadwal_url, detail_url
+from utils.constants import *
 from utils.jwt_service import JWT_Service
 
 
@@ -27,6 +28,7 @@ class Controller:
         self.jwt_service = jwt_service
         self.user_repository = user_repository
         self.auth_helper = auth_helper
+
 
     def scrape_jadwal(self, token: str, periode_args: str):
         username = self.jwt_service.decode_token(token)["username"]
@@ -211,7 +213,7 @@ class Controller:
                     col_data = [
                         (
                             item.text.strip()
-                            if item.find("a") is None
+                            if item.find("a") is not Tag
                             else item.find("a")["href"]
                         )
                         for item in kuliah_row.contents
