@@ -8,6 +8,8 @@ import dateparser
 
 from bs4 import BeautifulSoup, NavigableString
 from requests.models import Response
+from models import status
+from models.status import Status
 from repository.user_repository import UserRepositoryImpl
 from utils.auth_helper import AuthHelper
 from utils.constants import *
@@ -35,17 +37,16 @@ class Controller:
         user = self.user_repository.get(username)
 
         if user is None:
-            return
+            return Status.UNAUTHORIZED
 
         phpsessid = self.auth_helper.decrypt(user.phpsessid)
 
         # have not login
         if phpsessid is None:
-            return
+            return Status.UNAUTHORIZED
 
         logging.info("Getting Jadwal")
 
-        print(periode_args)
         if periode_args is None or periode_args == "":
             jadwal_result = self.session.post(
                 jadwal_url,
@@ -78,16 +79,7 @@ class Controller:
 
         # phpsessid expired
         if jadwal_result.url == login_url:
-            jadwal_result = self.__re_try_request(
-                url_to_re_try=jadwal_url,
-                method="GET",
-                username=username,
-                password=user.password,
-            )
-
-            # Something went wrong
-            if jadwal_result is None:
-                return
+            return Status.RELOGIN_NEEDED
 
         # jadwal_html = open("jadwal_html.html")
         # jadwal_html = jadwal_html.read()
@@ -145,17 +137,17 @@ class Controller:
             "mata_kuliah": matkul_categorized_by_day,
         }
 
-    def scrape_home(self, token: str):
+    def scrape_attendance(self, token: str):
         username = self.jwt_service.decode_token(token)["username"]
         user = self.user_repository.get(username)
 
         if user is None:
-            return
+            return Status.UNAUTHORIZED
 
         phpsessid = self.auth_helper.decrypt(user.phpsessid)
 
         if phpsessid is None:
-            return
+            return Status.UNAUTHORIZED
 
         home_result = self.session.get(
             home_url,
@@ -163,17 +155,9 @@ class Controller:
             timeout=25,
         )
 
+        # phpsessid expired but token still valid
         if home_result.url == login_url:
-            home_result = self.__re_try_request(
-                url_to_re_try=home_url,
-                method="GET",
-                username=username,
-                password=user.password,
-            )
-
-            # Something went wrong
-            if home_result is None:
-                return
+            return Status.RELOGIN_NEEDED
 
         home_parsed = BeautifulSoup(home_result.text, "lxml")
 
@@ -271,18 +255,18 @@ class Controller:
 
         self.session.cookies.clear()
         return mata_kuliah
-
+    
     def scrape_detail_mhs(self, token: str):
         username = self.jwt_service.decode_token(token)["username"]
         user = self.user_repository.get(username)
 
         if user is None:
-            return
+            return Status.UNAUTHORIZED
 
         phpsessid = self.auth_helper.decrypt(user.phpsessid)
 
         if phpsessid is None:
-            return
+            return Status.UNAUTHORIZED
 
         detail_result = self.session.get(
             detail_url,
@@ -291,16 +275,7 @@ class Controller:
         )
 
         if detail_result.url == login_url:
-            detail_result = self.__re_try_request(
-                url_to_re_try=detail_url,
-                method="GET",
-                username=username,
-                password=user.password,
-            )
-
-            # Something went wrong
-            if detail_result is None:
-                return
+            return Status.RELOGIN_NEEDED
 
         detail_parsed = BeautifulSoup(detail_result.text, "lxml")
 
@@ -389,59 +364,40 @@ class Controller:
 
         return token, refresh_token
 
-    def __re_try_request(
-        self,
-        url_to_re_try: str,
-        method: Literal["GET", "POST"],
-        username: str,
-        password: str,
-        data = None,
-    ):
-        logging.info("Re-trying Request")
-        phpsessid = self.__re_login(username=username, password=password)
+    def relogin(self, token: str, captcha: str):
+        username = self.jwt_service.decode_token(token)["username"]
+        user = self.user_repository.get(username)
 
-        if phpsessid == None:
-            return
+        if user is None:
+            return Status.UNAUTHORIZED
 
-        result = None
+        password = self.auth_helper.decrypt(user.password)
 
-        if method == "GET":
-            result = self.session.get(
-                url_to_re_try, cookies=self.__create_cookie_jar(phpsessid)
-            )
-        elif method == "POST":
-            result = self.session.post(
-                url_to_re_try, cookies=self.__create_cookie_jar(phpsessid), data=data
-            )
-
-        logging.info("Re-trying Finished")
-        return result
-
-    def __re_login(self, username, password):
-        logging.info("Re-Login in process")
-        login_result = self.session.post(
+        relogin_result = self.session.post(
             login_url,
             data={
                 "act": "login",
                 "username": username,
-                "password": self.auth_helper.decrypt(password),
+                "password": password,
+                "captcha": captcha,
             },
             timeout=25,
         )
 
-        # Wrong credentials
-        if login_result.url == login_url:
+        # Wrong captcha
+        if relogin_result.url == login_url:
             return
-
+        
+        # Update latest PHPSESSID to database
+        print(self.session.cookies["PHPSESSID"])
         phpsessid: str = self.session.cookies["PHPSESSID"]
+        self.user_repository.update(
+            username, PHPSESSID=phpsessid
+        )
 
-        self.session.cookies.clear()
+        logging.info("ReLogin Finished")
 
-        self.user_repository.update(username, PHPSESSID=phpsessid)
-
-        logging.info("Re-Login Finished")
-
-        return phpsessid
+        return Status.SUCCESS
 
     def __create_cookie_jar(self, phpsessid: str) -> requests.cookies.RequestsCookieJar:
         return requests.cookies.cookiejar_from_dict({"PHPSESSID": phpsessid})

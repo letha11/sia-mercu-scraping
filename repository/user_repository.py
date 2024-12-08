@@ -6,20 +6,20 @@ from utils.auth_helper import AuthHelper
 
 class UserRepository(ABC):
     @abstractmethod
-    def get(self, username):
+    def get(self, username: str) -> User | None:
         pass
 
     @abstractmethod
-    def save(self, username, password, PHPSESSID):
+    def save(self, username, password, PHPSESSID) -> User:
         pass
 
     @abstractmethod
     def update(
         self,
         username,
-        PHPSESSID,
         password,
-    ):
+        PHPSESSID,
+    ) -> bool:
         pass
 
 

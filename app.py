@@ -15,6 +15,7 @@ from flask_swagger_ui import get_swaggerui_blueprint
 from sqlalchemy.orm import Session
 from controller.controller import Controller
 from models.base_model import Base
+from models.status import Status
 from models.user import User
 from repository.user_repository import UserRepositoryImpl
 from dotenv import load_dotenv
@@ -25,8 +26,6 @@ from urllib3.util.retry import Retry
 from flask_cors import CORS, cross_origin
 
 
-load_dotenv(".env.local")
-load_dotenv(".env.prod")
 load_dotenv(".env")
 
 logging.basicConfig(
@@ -51,6 +50,13 @@ allowed_origins = [
 
 app = Flask(__name__)
 CORS(app, origins="*", methods=["GET", "POST", "OPTIONS", "PUT", "DELETE"], allow_headers="*")
+
+base_url = ''
+
+if os.getenv("ENV") == "dev":
+    base_url = "http://localhost:5000"
+else:
+    base_url = "https://sia-mercu-scraping.vercel.app"
 
 app.register_blueprint(swaggerui_blueprint)
 app.register_blueprint(blueprint)
@@ -270,7 +276,31 @@ def jadwal():
                 jsonify(
                     {
                         "success": False,
+                        "message": "Something went wrong within the server, contact administrator.",
+                    }
+                ),
+                500,
+            )
+
+        if result is Status.UNAUTHORIZED:
+            return (
+                jsonify(
+                    {
+                        "success": False,
                         "message": "You need to log in first",
+                    }
+                ),
+                401,
+            )
+
+        if result is Status.RELOGIN_NEEDED:
+            return (
+                jsonify(
+                    {
+                        "success": False,
+                        "message": "You need to relog in first",
+                        "captcha_url": f"{base_url}/api/captcha",
+                        "relog_url": f"{base_url}/api/relogin",
                     }
                 ),
                 401,
@@ -357,8 +387,20 @@ def attendance():
     token = bearer_splitted[1]
 
     try:
-        result = controller.scrape_home(token)
+        result = controller.scrape_attendance(token)
+
         if result is None:
+            return (
+                jsonify(
+                    {
+                        "success": False,
+                        "message": "Something went wrong within the server, contact administrator.",
+                    }
+                ),
+                500,
+            )
+
+        if result is Status.UNAUTHORIZED:
             return (
                 jsonify(
                     {
@@ -367,7 +409,21 @@ def attendance():
                     }
                 ),
                 401,
+            )           
+
+        if result is Status.RELOGIN_NEEDED:
+            return (
+                jsonify(
+                    {
+                        "success": False,
+                        "message": "You need to relog in first",
+                        "captcha_url": f"{base_url}/api/captcha",
+                        "relog_url": f"{base_url}/api/relogin",
+                    }
+                ),
+                401,
             )
+
 
         return (
             jsonify(
@@ -433,7 +489,13 @@ def attendance():
 @cross_origin(origins=allowed_origins)
 def captcha_image():
     try:
+        isPreview = request.args.get("preview")
+
+        if isPreview is not None and isPreview == "true":
+            return f"<img src='{base_url}/api/captcha' />"
+
         result = controller.get_captcha()
+
 
         return result
     except Timeout as _:
@@ -493,7 +555,31 @@ def detail():
                 jsonify(
                     {
                         "success": False,
+                        "message": "Something went wrong within the server, contact administrator.",
+                    }
+                ),
+                500,
+            )
+
+        if result is Status.UNAUTHORIZED:
+            return (
+                jsonify(
+                    {
+                        "success": False,
                         "message": "You need to log in first",
+                    }
+                ),
+                401,
+            )
+
+        if result is Status.RELOGIN_NEEDED:
+            return (
+                jsonify(
+                    {
+                        "success": False,
+                        "message": "You need to relog in first",
+                        "captcha_url": f"{base_url}/api/captcha",
+                        "relog_url": f"{base_url}/api/relogin",
                     }
                 ),
                 401,
@@ -559,6 +645,129 @@ def detail():
             ),
             500,
         )
+
+
+@app.route("/api/relogin", methods=["POST"])
+@cross_origin(origins=allowed_origins)
+def relogin_route():
+    bearer = request.headers.get("Authorization")
+    if bearer is None:
+        return (
+            jsonify(
+                {
+                    "success": False,
+                    "message": "Unauthorized, token required to relogin",
+                }
+            ),
+            401,
+        )
+
+    bearer_splitted = bearer.split()
+    if len(bearer_splitted) < 1:
+        return (
+            jsonify(
+                {
+                    "success": False,
+                    "message": "Unauthorized, token required to relogin",
+                }
+            ),
+            401,
+        )
+
+    token = bearer_splitted[1]
+    data = request.form
+
+    try:
+        captcha = data["captcha"]
+        result = controller.relogin(token, captcha)
+            
+        if result is Status.UNAUTHORIZED:
+            return (
+                jsonify(
+                    {
+                        "success": False,
+                        "message": "You need to log in first",
+                    }
+                ),
+                401,
+            )
+
+        if result is None:
+            return (
+                jsonify(
+                    {
+                        "success": False,
+                        "message": "Captcha is invalid, try again",
+                    }
+                ),
+                401,
+            )
+
+        return (
+            jsonify(
+                {
+                    "success": True,
+                }
+            ),
+            200,
+        )
+    except ExpiredSignatureError as _:
+        return (
+            jsonify(
+                {
+                    "success": False,
+                    "message": "Token expired, try logging in again",
+                }
+            ),
+            401,
+        )
+    except InvalidSignatureError as _:
+        return (
+            jsonify(
+                {
+                    "success": False,
+                    "message": "Invalid signature, try logging in again",
+                }
+            ),
+            401,
+        )
+    except InvalidTokenError as _:
+        return (
+            jsonify(
+                {
+                    "success": False,
+                    "message": "Invalid token, try logging in again",
+                }
+            ),
+            401,
+        )
+    except Timeout as _:
+        return (
+            jsonify(
+                {
+                    "success": False,
+                    "message": "The host website are currently down, please try again later.",
+                },
+            ),
+            503,
+        )
+    except Exception as e:
+        return (
+            jsonify(
+                {
+                    "success": False,
+                    "message": "Something went wrong",
+                    "stacktrace": e,
+                }
+            ),
+            500,
+        )
+
+
+
+
+
+
 
 
 if __name__ == "__main__":
