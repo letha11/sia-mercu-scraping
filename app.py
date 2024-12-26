@@ -16,6 +16,7 @@ from sqlalchemy.orm import Session
 from controller.controller import Controller
 from models.base_model import Base
 from models.status import Status
+from models.flavor import Flavor
 from models.user import User
 from repository.user_repository import UserRepositoryImpl
 from dotenv import load_dotenv
@@ -53,7 +54,11 @@ CORS(app, origins="*", methods=["GET", "POST", "OPTIONS", "PUT", "DELETE"], allo
 
 base_url = ''
 
-if os.getenv("ENV") == "dev":
+raw_flavor = os.getenv("ENV")
+assert raw_flavor is not None
+flavor: Flavor = Flavor.parse(raw_flavor)
+
+if flavor.is_dev:
     base_url = "http://localhost:5000"
 else:
     base_url = "https://sia-mercu-scraping.vercel.app"
@@ -70,7 +75,10 @@ session.headers["user-agent"] = (
     "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36"
 )
 
-db_engine = sqlalchemy.create_engine(f"postgresql+psycopg2://{os.getenv('DB_USERNAME')}:{os.getenv('DB_PASSWORD')}@{os.getenv('DB_HOST')}:{os.getenv('DB_PORT')}/{os.getenv('DB_NAME')}?sslmode=require")
+if flavor.is_dev:
+    db_engine = sqlalchemy.create_engine(f"postgresql+psycopg2://{os.getenv('DB_USERNAME')}:{os.getenv('DB_PASSWORD')}@{os.getenv('DB_HOST')}:{os.getenv('DB_PORT')}/{os.getenv('DB_NAME')}")
+else:
+    db_engine = sqlalchemy.create_engine(f"postgresql+psycopg2://{os.getenv('DB_USERNAME')}:{os.getenv('DB_PASSWORD')}@{os.getenv('DB_HOST')}:{os.getenv('DB_PORT')}/{os.getenv('DB_NAME')}?sslmode=require")
 Base.metadata.create_all(db_engine)
 db_session = Session(db_engine)
 
