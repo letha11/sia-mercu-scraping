@@ -3,6 +3,7 @@ import os
 import logging
 import sqlalchemy
 
+from sqlalchemy_utils import database_exists, create_database
 from jwt.exceptions import (
     ExpiredSignatureError,
     InvalidSignatureError,
@@ -79,6 +80,10 @@ if flavor.is_dev:
     db_engine = sqlalchemy.create_engine(f"postgresql+psycopg2://{os.getenv('DB_USERNAME')}:{os.getenv('DB_PASSWORD')}@{os.getenv('DB_HOST')}:{os.getenv('DB_PORT')}/{os.getenv('DB_NAME')}")
 else:
     db_engine = sqlalchemy.create_engine(f"postgresql+psycopg2://{os.getenv('DB_USERNAME')}:{os.getenv('DB_PASSWORD')}@{os.getenv('DB_HOST')}:{os.getenv('DB_PORT')}/{os.getenv('DB_NAME')}?sslmode=require")
+
+if not database_exists(db_engine.url):
+    create_database(db_engine.url)
+
 Base.metadata.create_all(db_engine)
 db_session = Session(db_engine)
 
@@ -770,13 +775,6 @@ def relogin_route():
             ),
             500,
         )
-
-
-
-
-
-
-
 
 if __name__ == "__main__":
     app.run(debug=True)
