@@ -3,12 +3,8 @@ import os
 import logging
 import sqlalchemy
 
+from sqlalchemy.sql import except_
 from sqlalchemy_utils import database_exists, create_database
-from jwt.exceptions import (
-    ExpiredSignatureError,
-    InvalidSignatureError,
-    InvalidTokenError,
-)
 from requests.exceptions import Timeout
 from requests.adapters import HTTPAdapter
 from flask import Flask, jsonify, request, Blueprint
@@ -18,16 +14,18 @@ from controller.controller import Controller
 from models.base_model import Base
 from models.status import Status
 from models.flavor import Flavor
-from models.user import User
 from repository.user_repository import UserRepositoryImpl
 from dotenv import load_dotenv
 from cryptography.fernet import Fernet
+import utils
 from utils.auth_helper import AuthHelper
 from utils.jwt_service import JWT_Service
 from urllib3.util.retry import Retry
 from flask_cors import CORS, cross_origin
+from utils.helper import handle_exceptions, get_bearer_token
 
 
+load_dotenv()
 load_dotenv(".env")
 
 logging.basicConfig(
@@ -45,15 +43,17 @@ swaggerui_blueprint = get_swaggerui_blueprint(
 
 blueprint = Blueprint("api", __name__, url_prefix="/api")
 
-allowed_origins = [
-    "http://localhost:5000",
-    "https://sia-mercu-scraping.vercel.app"
-]
+allowed_origins = ["http://localhost:5000", "https://sia-mercu-scraping.vercel.app"]
 
 app = Flask(__name__)
-CORS(app, origins="*", methods=["GET", "POST", "OPTIONS", "PUT", "DELETE"], allow_headers="*")
+CORS(
+    app,
+    origins="*",
+    methods=["GET", "POST", "OPTIONS", "PUT", "DELETE"],
+    allow_headers="*",
+)
 
-base_url = ''
+base_url = ""
 
 raw_flavor = os.getenv("ENV")
 assert raw_flavor is not None
@@ -68,18 +68,22 @@ app.register_blueprint(swaggerui_blueprint)
 app.register_blueprint(blueprint)
 
 session = requests.session()
-retry = Retry(connect=5, backoff_factor=0.5)
+retry = Retry(total=2, backoff_factor=0.1)
 adapter = HTTPAdapter(max_retries=retry)
-session.mount('http://', adapter)
-session.mount('https://', adapter)
+session.mount("http://", adapter)
+session.mount("https://", adapter)
 session.headers["user-agent"] = (
     "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36"
 )
 
 if flavor.is_dev:
-    db_engine = sqlalchemy.create_engine(f"postgresql+psycopg2://{os.getenv('DB_USERNAME')}:{os.getenv('DB_PASSWORD')}@{os.getenv('DB_HOST')}:{os.getenv('DB_PORT')}/{os.getenv('DB_NAME')}")
+    db_engine = sqlalchemy.create_engine(
+        f"postgresql+psycopg2://{os.getenv('DB_USERNAME')}:{os.getenv('DB_PASSWORD')}@{os.getenv('DB_HOST')}:{os.getenv('DB_PORT')}/{os.getenv('DB_NAME')}"
+    )
 else:
-    db_engine = sqlalchemy.create_engine(f"postgresql+psycopg2://{os.getenv('DB_USERNAME')}:{os.getenv('DB_PASSWORD')}@{os.getenv('DB_HOST')}:{os.getenv('DB_PORT')}/{os.getenv('DB_NAME')}?sslmode=require")
+    db_engine = sqlalchemy.create_engine(
+        f"postgresql+psycopg2://{os.getenv('DB_USERNAME')}:{os.getenv('DB_PASSWORD')}@{os.getenv('DB_HOST')}:{os.getenv('DB_PORT')}/{os.getenv('DB_NAME')}?sslmode=require"
+    )
 
 if not database_exists(db_engine.url):
     create_database(db_engine.url)
@@ -147,32 +151,15 @@ def login_route():
             ),
             400,
         )
-    except Timeout as _:
-        return (
-            jsonify(
-                {
-                    "success": False,
-                    "message": "The host website are currently down, please try again later.",
-                },
-            ),
-            503,
-        )
     except Exception as e:
-        logging.error(e)
-        return (jsonify(
-            {
-                "success": False,
-                "message": "Something went wrong",
-            },
-            500,
-        ))
+        return handle_exceptions(e)
 
 
 @app.route("/api/refresh-token", methods=["POST"])
 @cross_origin(origins=allowed_origins)
 def refresh_token():
-    bearer = request.headers.get("Authorization")
-    if bearer is None:
+    refresh_token = get_bearer_token()
+    if refresh_token is None:
         return (
             jsonify(
                 {
@@ -182,20 +169,6 @@ def refresh_token():
             ),
             401,
         )
-
-    bearer_splitted = bearer.split()
-    if len(bearer_splitted) < 1:
-        return (
-            jsonify(
-                {
-                    "success": False,
-                    "message": "No refresh token provided",
-                }
-            ),
-            401,
-        )
-
-    refresh_token = bearer_splitted[1]
 
     try:
         new_token, new_refresh_token = controller.refresh_token(
@@ -209,54 +182,17 @@ def refresh_token():
                 "refresh_token": new_refresh_token,
             }
         )
-    except ExpiredSignatureError as _:
-        return (
-            jsonify(
-                {
-                    "success": False,
-                    "message": "Token expired, try logging in again",
-                }
-            ),
-            401,
-        )
-    except InvalidTokenError as _:
-        return (
-            jsonify(
-                {
-                    "success": False,
-                    "message": "Invalid token, try logging in again",
-                }
-            ),
-            401,
-        )
-    except Timeout as _:
-        return (
-            jsonify(
-                {
-                    "success": False,
-                    "message": "The host website are currently down, please try again later.",
-                },
-            ),
-            503,
-        )
-    except Exception as _:
-        return (
-            jsonify(
-                {
-                    "success": False,
-                    "message": "Something went wrong",
-                }
-            ),
-            500,
-        )
+    except Exception as e:
+        return handle_exceptions(e)
 
 
 @app.route("/api/jadwal", methods=["GET"])
 @cross_origin(origins=allowed_origins)
 def jadwal():
     periode_args = request.args.get("periode")
-    bearer = request.headers.get("Authorization")
-    if bearer is None:
+
+    token = get_bearer_token()
+    if token is None:
         return (
             jsonify(
                 {
@@ -266,20 +202,6 @@ def jadwal():
             ),
             401,
         )
-
-    bearer_splitted = bearer.split()
-    if len(bearer_splitted) < 1:
-        return (
-            jsonify(
-                {
-                    "success": False,
-                    "message": "You need to log in first",
-                }
-            ),
-            401,
-        )
-
-    token = bearer_splitted[1]
 
     try:
         result = controller.scrape_jadwal(token, periode_args or "")
@@ -328,53 +250,14 @@ def jadwal():
             ),
             200,
         )
-    except ExpiredSignatureError as _:
-        return (
-            jsonify(
-                {
-                    "success": False,
-                    "message": "Token expired, try logging in again",
-                }
-            ),
-            401,
-        )
-    except InvalidTokenError as _:
-        return (
-            jsonify(
-                {
-                    "success": False,
-                    "message": "Invalid token, try logging in again",
-                }
-            ),
-            401,
-        )
-    except Timeout as _:
-        return (
-            jsonify(
-                {
-                    "success": False,
-                    "message": "The host website are currently down, please try again later.",
-                },
-            ),
-            503,
-        )
-    except Exception as _:
-        return (
-            jsonify(
-                {
-                    "success": False,
-                    "message": "Something went wrong",
-                }
-            ),
-            500,
-        )
-
+    except Exception as e:
+        return handle_exceptions(e)
 
 @app.route("/api/attendance", methods=["GET"])
 @cross_origin(origins=allowed_origins)
 def attendance():
-    bearer = request.headers.get("Authorization")
-    if bearer is None:
+    token = get_bearer_token()
+    if token is None:
         return (
             jsonify(
                 {
@@ -384,20 +267,6 @@ def attendance():
             ),
             401,
         )
-
-    bearer_splitted = bearer.split()
-    if len(bearer_splitted) < 1:
-        return (
-            jsonify(
-                {
-                    "success": False,
-                    "message": "You need to log in first",
-                }
-            ),
-            401,
-        )
-
-    token = bearer_splitted[1]
 
     try:
         result = controller.scrape_attendance(token)
@@ -422,7 +291,7 @@ def attendance():
                     }
                 ),
                 401,
-            )           
+            )
 
         if result is Status.RELOGIN_NEEDED:
             return (
@@ -437,7 +306,6 @@ def attendance():
                 401,
             )
 
-
         return (
             jsonify(
                 {
@@ -447,56 +315,8 @@ def attendance():
             ),
             200,
         )
-    except ExpiredSignatureError as _:
-        return (
-            jsonify(
-                {
-                    "success": False,
-                    "message": "Token expired, try logging in again",
-                }
-            ),
-            401,
-        )
-    except InvalidSignatureError as _:
-        return (
-            jsonify(
-                {
-                    "success": False,
-                    "message": "Invalid signature, try logging in again",
-                }
-            ),
-            401,
-        )
-    except InvalidTokenError as _:
-        return (
-            jsonify(
-                {
-                    "success": False,
-                    "message": "Invalid token, try logging in again",
-                }
-            ),
-            401,
-        )
-    except Timeout as _:
-        return (
-            jsonify(
-                {
-                    "success": False,
-                    "message": "The host website are currently down, please try again later.",
-                },
-            ),
-            503,
-        )
-    except Exception as _:
-        return (
-            jsonify(
-                {
-                    "success": False,
-                    "message": "Something went wrong",
-                }
-            ),
-            500,
-        )
+    except Exception as e:
+        return handle_exceptions(e)
 
 @app.route("/api/captcha", methods=["GET"])
 @cross_origin(origins=allowed_origins)
@@ -508,7 +328,6 @@ def captcha_image():
             return f"<img src='{base_url}/api/captcha' />"
 
         result = controller.get_captcha()
-
 
         return result
     except Timeout as _:
@@ -532,11 +351,44 @@ def captcha_image():
             500,
         )
 
+
+@app.route("/api/transcript")
+@cross_origin(origins=allowed_origins)
+def transcript():
+    token = get_bearer_token()
+
+    if token is None:
+        return (
+            jsonify(
+                {
+                    "success": False,
+                    "message": "You need to log in first",
+                }
+            ),
+            401,
+        )
+
+    try:
+        result = controller.scrape_transcript(token)
+
+        return (
+            jsonify(
+                {
+                    "success": True,
+                    "data": result,
+                }
+            ),
+            200,
+        )
+    except Exception as e:
+        return handle_exceptions(e)
+
 @app.route("/api/detail", methods=["GET"])
 @cross_origin(origins=allowed_origins)
 def detail():
-    bearer = request.headers.get("Authorization")
-    if bearer is None:
+    token = get_bearer_token()
+
+    if token is None:
         return (
             jsonify(
                 {
@@ -546,20 +398,6 @@ def detail():
             ),
             401,
         )
-
-    bearer_splitted = bearer.split()
-    if len(bearer_splitted) < 1:
-        return (
-            jsonify(
-                {
-                    "success": False,
-                    "message": "You need to log in first",
-                }
-            ),
-            401,
-        )
-
-    token = bearer_splitted[1]
 
     try:
         result = controller.scrape_detail_mhs(token)
@@ -607,64 +445,16 @@ def detail():
             ),
             200,
         )
-    except ExpiredSignatureError as _:
-        return (
-            jsonify(
-                {
-                    "success": False,
-                    "message": "Token expired, try logging in again",
-                }
-            ),
-            401,
-        )
-    except InvalidSignatureError as _:
-        return (
-            jsonify(
-                {
-                    "success": False,
-                    "message": "Invalid signature, try logging in again",
-                }
-            ),
-            401,
-        )
-    except InvalidTokenError as _:
-        return (
-            jsonify(
-                {
-                    "success": False,
-                    "message": "Invalid token, try logging in again",
-                }
-            ),
-            401,
-        )
-    except Timeout as _:
-        return (
-            jsonify(
-                {
-                    "success": False,
-                    "message": "The host website are currently down, please try again later.",
-                },
-            ),
-            503,
-        )
     except Exception as e:
-        return (
-            jsonify(
-                {
-                    "success": False,
-                    "message": "Something went wrong",
-                    "stacktrace": e,
-                }
-            ),
-            500,
-        )
+        return handle_exceptions(e)
 
 
 @app.route("/api/relogin", methods=["POST"])
 @cross_origin(origins=allowed_origins)
 def relogin_route():
-    bearer = request.headers.get("Authorization")
-    if bearer is None:
+    token = get_bearer_token()
+
+    if token is None:
         return (
             jsonify(
                 {
@@ -675,25 +465,12 @@ def relogin_route():
             401,
         )
 
-    bearer_splitted = bearer.split()
-    if len(bearer_splitted) < 1:
-        return (
-            jsonify(
-                {
-                    "success": False,
-                    "message": "Unauthorized, token required to relogin",
-                }
-            ),
-            401,
-        )
-
-    token = bearer_splitted[1]
     data = request.form
 
     try:
         captcha = data["captcha"]
         result = controller.relogin(token, captcha)
-            
+
         if result is Status.UNAUTHORIZED:
             return (
                 jsonify(
@@ -713,7 +490,7 @@ def relogin_route():
                         "message": "Captcha is invalid, try again",
                     }
                 ),
-                401,
+                400,
             )
 
         return (
@@ -724,57 +501,9 @@ def relogin_route():
             ),
             200,
         )
-    except ExpiredSignatureError as _:
-        return (
-            jsonify(
-                {
-                    "success": False,
-                    "message": "Token expired, try logging in again",
-                }
-            ),
-            401,
-        )
-    except InvalidSignatureError as _:
-        return (
-            jsonify(
-                {
-                    "success": False,
-                    "message": "Invalid signature, try logging in again",
-                }
-            ),
-            401,
-        )
-    except InvalidTokenError as _:
-        return (
-            jsonify(
-                {
-                    "success": False,
-                    "message": "Invalid token, try logging in again",
-                }
-            ),
-            401,
-        )
-    except Timeout as _:
-        return (
-            jsonify(
-                {
-                    "success": False,
-                    "message": "The host website are currently down, please try again later.",
-                },
-            ),
-            503,
-        )
     except Exception as e:
-        return (
-            jsonify(
-                {
-                    "success": False,
-                    "message": "Something went wrong",
-                    "stacktrace": e,
-                }
-            ),
-            500,
-        )
+        return handle_exceptions(e)
+
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -1,4 +1,4 @@
-from collections import defaultdict
+from collections import defaultdict, OrderedDict
 from typing import Any, Dict, List, Literal, Set, Tuple
 from bs4.element import Tag
 import requests
@@ -31,7 +31,6 @@ class Controller:
         self.user_repository = user_repository
         self.auth_helper = auth_helper
 
-
     def scrape_jadwal(self, token: str, periode_args: str):
         username = self.jwt_service.decode_token(token)["username"]
         user = self.user_repository.get(username)
@@ -54,13 +53,15 @@ class Controller:
                 cookies=self.__create_cookie_jar(phpsessid),
                 timeout=25,
             )
-            
+            if jadwal_result.url == login_url:
+                return Status.RELOGIN_NEEDED
+
             jadwal_parsed = BeautifulSoup(jadwal_result.text, "lxml")
 
             periode = []
             periode_html = jadwal_parsed.find(id="periode")
 
-            latest_periode_val = periode_html.find_all("option")[-1]["value"];
+            latest_periode_val = periode_html.find_all("option")[-1]["value"]
 
             jadwal_result = self.session.post(
                 jadwal_url,
@@ -75,7 +76,6 @@ class Controller:
                 cookies=self.__create_cookie_jar(phpsessid),
                 timeout=25,
             )
-
 
         # phpsessid expired
         if jadwal_result.url == login_url:
@@ -106,8 +106,7 @@ class Controller:
                 (
                     self.__clean_nama_matkul(item)
                     if item.find("i") is not None
-                    else item.find("a").text.strip() if i == 6 
-                    else item.text.strip()
+                    else item.find("a").text.strip() if i == 6 else item.text.strip()
                 )
                 for i, item in enumerate(content)
             ]
@@ -127,7 +126,7 @@ class Controller:
         matkul_categorized_by_day = defaultdict(list)
 
         for m in matkul:
-            matkul_categorized_by_day[m['hari'].lower()].append(m)
+            matkul_categorized_by_day[m["hari"].lower()].append(m)
 
         matkul_categorized_by_day = dict(matkul_categorized_by_day)
 
@@ -226,13 +225,13 @@ class Controller:
                             )
                             break
 
-                    tanggal = dateparser.parse(col_data[1], languages=["id"]);
+                    tanggal = dateparser.parse(col_data[1], languages=["id"])
                     tanggal_isostring = ""
 
                     if tanggal is not None:
                         tanggal_isostring = tanggal.isoformat()
                     else:
-                        tanggal_isostring = None;
+                        tanggal_isostring = None
 
                     result = {
                         "pertemuan": pertemuan,
@@ -244,7 +243,7 @@ class Controller:
 
                     perkuliahan.append(result)
 
-            perkuliahan = sorted(perkuliahan, key=lambda p: p['pertemuan'])
+            perkuliahan = sorted(perkuliahan, key=lambda p: p["pertemuan"])
 
             mata_kuliah.append(
                 {
@@ -255,7 +254,58 @@ class Controller:
 
         self.session.cookies.clear()
         return mata_kuliah
-    
+
+
+    def scrape_transcript(self, token: str):
+        username = self.jwt_service.decode_token(token)["username"]
+        user = self.user_repository.get(username)
+
+        if user is None:
+            return Status.UNAUTHORIZED
+
+        phpsessid = self.auth_helper.decrypt(user.phpsessid)
+
+        if phpsessid is None:
+            return Status.UNAUTHORIZED
+
+        transkrip_page = self.session.get(
+            get_transcript_url(username),
+            cookies=self.__create_cookie_jar(phpsessid),
+            timeout=25,
+        )
+
+        if transkrip_page.url == login_url:
+            return Status.RELOGIN_NEEDED
+
+        transkrip_parsed = BeautifulSoup(transkrip_page.text, "lxml")
+        data: List = []
+        data_table = transkrip_parsed.css.select(
+            "#main_form > div > div.row-fluid > div:nth-child(3) > table"
+        )[0]
+        rows = data_table.find_all("tr")[1:-1]
+
+        for row in rows:
+            number = row.css.select("td:nth-child(1)")[0].text
+            semester = row.css.select("td:nth-child(2)")[0].text
+            subject_code = row.css.select("td:nth-child(3)")[0].text
+            subject = row.css.select("td:nth-child(4)")[0].text
+            sks = row.css.select("td:nth-child(5)")[0].text
+            grade = row.css.select("td:nth-child(6)")[0].text
+
+            dict = {
+                "number": number,
+                "semester": semester,
+                "subject_code": subject_code,
+                "subject": subject,
+                "sks": sks,
+                "grade": grade,
+            }
+
+            data.append(dict)
+
+        return data
+
+
     def scrape_detail_mhs(self, token: str):
         username = self.jwt_service.decode_token(token)["username"]
         user = self.user_repository.get(username)
@@ -281,7 +331,7 @@ class Controller:
 
         data: Dict[str, Any] = {}
         container_tbody = detail_parsed.select_one("div.form-container > table.table")
-        picture_img_url  = container_tbody.find("img").get('src')
+        picture_img_url = container_tbody.find("img").get("src")
         list_tr = container_tbody.find_all("tr", recursive=False)
 
         for tr in list_tr:
@@ -295,8 +345,7 @@ class Controller:
             if len(result) >= 2:
                 data[result[0]] = result[1]
 
-
-        data['picture_url'] = picture_img_url
+        data["picture_url"] = picture_img_url
 
         self.session.cookies.clear()
         return data
@@ -328,7 +377,6 @@ class Controller:
 
         login_result = self.session.post(
             login_url,
-
             data={
                 "act": "login",
                 "username": username,
@@ -387,13 +435,11 @@ class Controller:
         # Wrong captcha
         if relogin_result.url == login_url:
             return
-        
+
         # Update latest PHPSESSID to database
         print(self.session.cookies["PHPSESSID"])
         phpsessid: str = self.session.cookies["PHPSESSID"]
-        self.user_repository.update(
-            username, PHPSESSID=phpsessid
-        )
+        self.user_repository.update(username, PHPSESSID=phpsessid)
 
         logging.info("ReLogin Finished")
 
