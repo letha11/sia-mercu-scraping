@@ -2,12 +2,13 @@ import requests
 import os
 import logging
 import sqlalchemy
+import io
 
 from sqlalchemy.sql import except_
 from sqlalchemy_utils import database_exists, create_database
 from requests.exceptions import Timeout
 from requests.adapters import HTTPAdapter
-from flask import Flask, jsonify, request, Blueprint
+from flask import Flask, jsonify, request, Blueprint, send_file
 from flask_swagger_ui import get_swaggerui_blueprint
 from sqlalchemy.orm import Session
 from controller.controller import Controller
@@ -351,6 +352,28 @@ def captcha_image():
             500,
         )
 
+@app.route("/api/transcript/download", methods=["GET"])
+@cross_origin(origins=allowed_origins)
+def download_transcript():
+    token = get_bearer_token()
+
+    if token is None:
+        return (
+            jsonify(
+                {
+                    "success": False,
+                    "message": "You need to log in first",
+                }
+            ),
+            401,
+        )
+
+    try:
+        result = controller.download_transcript(token)
+
+        return result
+    except Exception as e:
+        return handle_exceptions(e)
 
 @app.route("/api/transcript")
 @cross_origin(origins=allowed_origins)
@@ -382,6 +405,7 @@ def transcript():
         )
     except Exception as e:
         return handle_exceptions(e)
+
 
 @app.route("/api/detail", methods=["GET"])
 @cross_origin(origins=allowed_origins)

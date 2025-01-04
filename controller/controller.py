@@ -5,6 +5,7 @@ import requests
 import requests.cookies
 import logging
 import dateparser
+import io
 
 from bs4 import BeautifulSoup, NavigableString
 from requests.models import Response
@@ -255,6 +256,28 @@ class Controller:
         self.session.cookies.clear()
         return mata_kuliah
 
+    def download_transcript(self, token:str):
+        username = self.jwt_service.decode_token(token)["username"]
+        user = self.user_repository.get(username)
+
+        if user is None:
+            return Status.UNAUTHORIZED
+
+        phpsessid = self.auth_helper.decrypt(user.phpsessid)
+
+        if phpsessid is None:
+            return Status.UNAUTHORIZED
+
+        print_transcript = self.session.get(
+            print_transcript_url,
+            cookies=self.__create_cookie_jar(phpsessid),
+            timeout=25,
+        )
+
+        if print_transcript.url == login_url:
+            return Status.RELOGIN_NEEDED
+
+        return print_transcript.content
 
     def scrape_transcript(self, token: str):
         username = self.jwt_service.decode_token(token)["username"]
