@@ -24,6 +24,7 @@ from utils.jwt_service import JWT_Service
 from urllib3.util.retry import Retry
 from flask_cors import CORS, cross_origin
 from utils.helper import handle_exceptions, get_bearer_token
+from xhtml2pdf import pisa
 
 
 load_dotenv()
@@ -370,7 +371,6 @@ def download_transcript():
 
     try:
         result = controller.download_transcript(token)
-
         return result
     except Exception as e:
         return handle_exceptions(e)
@@ -393,6 +393,41 @@ def transcript():
 
     try:
         result = controller.scrape_transcript(token)
+
+        if result is None:
+            return (
+                jsonify(
+                    {
+                        "success": False,
+                        "message": "Something went wrong within the server, contact administrator.",
+                    }
+                ),
+                500,
+            )
+
+        if result is Status.UNAUTHORIZED:
+            return (
+                jsonify(
+                    {
+                        "success": False,
+                        "message": "You need to log in first",
+                    }
+                ),
+                401,
+            )
+        
+        if result is Status.RELOGIN_NEEDED:
+            return (
+                jsonify(
+                    {
+                        "success": False,
+                        "message": "You need to relog in first",
+                        "captcha_url": f"{base_url}/api/captcha",
+                        "relog_url": f"{base_url}/api/relogin",
+                    }
+                ),
+                401,
+            )
 
         return (
             jsonify(

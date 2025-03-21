@@ -5,9 +5,10 @@ import requests
 import requests.cookies
 import logging
 import dateparser
+import pdfkit
 import io
 
-from bs4 import BeautifulSoup, NavigableString
+from bs4 import BeautifulSoup, Comment, NavigableString
 from requests.models import Response
 from models import status
 from models.status import Status
@@ -277,6 +278,33 @@ class Controller:
         if print_transcript.url == login_url:
             return Status.RELOGIN_NEEDED
 
+        # bs = BeautifulSoup(print_transcript.text, "lxml")
+        # style_url = bs.css.select("link")[0].attrs["href"]
+        # bs.head.link.decompose()
+
+        # style = self.session.get(style_url, cookies=self.__create_cookie_jar(phpsessid), timeout=25)
+
+        # if style.url == login_url:
+        #     return Status.RELOGIN_NEEDED
+
+        # #trim style.text
+        # # convert so it'll be a valid css styling 
+        # stylea = style.text.strip().replace("%%",'%')
+        # # stylea = ' '.join(style.text.split())
+        # print(stylea)
+        # bs.head.append(BeautifulSoup(f"<style>{stylea}</style>", "html.parser"))
+        # # Remove link css
+
+        # for comment in bs.find_all(text=lambda text: isinstance(text, Comment)):
+        #     comment.extract()
+
+        # with io.BytesIO() as output:
+        #     with open("transkrip.html", "w") as f:
+        #         f.write(bs.prettify(formatter="html5"))
+        #     output.write(bs.prettify(formatter="html5").encode("utf-8"))
+        #     output.seek(0)
+        #     return output
+
         return print_transcript.content
 
     def scrape_transcript(self, token: str):
@@ -298,6 +326,7 @@ class Controller:
         )
 
         if transkrip_page.url == login_url:
+            print("RELOGIN NEEDED")
             return Status.RELOGIN_NEEDED
 
         transkrip_parsed = BeautifulSoup(transkrip_page.text, "lxml")
