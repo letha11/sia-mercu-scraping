@@ -6,7 +6,7 @@ from utils.auth_helper import AuthHelper
 
 class UserRepository(ABC):
     @abstractmethod
-    def get(self, username: str) -> User | None:
+    def get(self, username: str):
         pass
 
     @abstractmethod
